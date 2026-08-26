@@ -48,7 +48,7 @@ export function HeroSection() {
               key={slug}
               data-venue={slug}
               className={cn(
-                "absolute inset-0 transition-opacity duration-1000",
+                "light-sweep absolute inset-0 transition-opacity duration-1000",
                 isActive ? "opacity-100" : "opacity-0"
               )}
               aria-hidden={!isActive}
