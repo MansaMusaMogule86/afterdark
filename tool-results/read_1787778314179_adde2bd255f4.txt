@@ -1,0 +1,1979 @@
+     1→GO GOD MODE BUILD DIRECTIVE
+     2→
+     3→ROLE
+     4→
+     5→Act as a senior nightlife product strategist, luxury hospitality designer, technical SEO architect, Astro engineer, conversion specialist, content architect, analytics engineer, and production launch lead.
+     6→
+     7→Do not produce a generic nightclub website.
+     8→
+     9→Do not stop at a visual mockup.
+    10→
+    11→Audit, architect, build, integrate, test, migrate, and prepare the complete production website.
+    12→
+    13→PROJECT
+    14→
+    15→Create one unified nightlife group website for the same owner covering:
+    16→
+    17→1. Avenue Club Dubai
+    18→
+    19→2. Ora Club Dubai
+    20→
+    21→3. Black Tape Club Dubai
+    22→
+    23→WORKING PARENT NAME
+    24→
+    25→Use W W Nightlife Dubai as the temporary parent name.
+    26→
+    27→Store the name, logo references, metadata, contact details, and social profiles in one central site configuration file so the permanent group name can be replaced instantly.
+    28→
+    29→Do not invent a permanent group logo.
+    30→
+    31→Use clearly labelled logo placeholders until the real group identity is provided.
+    32→
+    33→CORE BUSINESS OBJECTIVE
+    34→
+    35→Create the most useful, visually powerful, search optimized, and conversion focused nightlife platform in Dubai.
+    36→
+    37→The website must let a visitor:
+    38→
+    39→1. See what is happening tonight.
+    40→
+    41→2. Compare the three venues.
+    42→
+    43→3. Find the venue matching their music and mood.
+    44→
+    45→4. View upcoming events.
+    46→
+    47→5. Understand location, dress code, entry policy, and arrival guidance.
+    48→
+    49→6. Request a VIP table.
+    50→
+    51→7. Request guest list access.
+    52→
+    53→8. Plan a birthday, bachelorette event, corporate night, or private event.
+    54→
+    55→9. Contact the correct venue team through WhatsApp, phone, or a structured form.
+    56→
+    57→10. Read useful Dubai nightlife guidance through The Night Edit.
+    58→
+    59→WORKING VENUE FACTS
+    60→
+    61→Treat the following as working facts that require owner verification before production launch:
+    62→
+    63→1. Avenue is inside Shangri La Dubai on Sheikh Zayed Road, level forty two.
+    64→
+    65→2. Ora is inside Hilton Dubai Al Habtoor City, level forty four.
+    66→
+    67→3. Black Tape is inside Hilton Dubai Al Habtoor City, level forty four.
+    68→
+    69→4. All three venues share the same owner.
+    70→
+    71→5. Avenue focuses on Arabic and Khaleeji nights with selected English concepts.
+    72→
+    73→6. Ora focuses on Arabic, Khaleeji, international music, immersive visuals, and premium table culture.
+    74→
+    75→7. Black Tape focuses on hip hop, R&B, Afro, Dancehall, and urban music.
+    76→
+    77→Do not hardcode phone numbers, emails, opening days, opening hours, prices, entry fees, minimum spends, offers, age policies, or event schedules until they are verified inside a central venue facts record.
+    78→
+    79→MANDATORY ENTITY RESOLUTION
+    80→
+    81→Create a configuration field called venue_entity_mode with these possible values:
+    82→
+    83→1. separate_rooms
+    84→
+    85→2. shared_room_event_brands
+    86→
+    87→3. alternating_concepts
+    88→
+    89→4. pending_verification
+    90→
+    91→Ora and Black Tape currently appear online as separate clubs using the same floor and hotel.
+    92→
+    93→Do not publish separate local business structured data, separate map claims, or conflicting opening hours until the correct entity mode is confirmed.
+    94→
+    95→Create an internal warning in the content administration area whenever two venue records share the same coordinates, floor, and operating time.
+    96→
+    97→FIRST ACTION: AUDIT BEFORE BUILDING
+    98→
+    99→Before changing the project:
+   100→
+   101→1. Crawl the current Avenue, Ora, and Black Tape websites.
+   102→
+   103→2. Inventory every indexable URL.
+   104→
+   105→3. Record titles, descriptions, headings, canonicals, language versions, images, contact information, addresses, event pages, articles, and redirect behavior.
+   106→
+   107→4. Identify all active Black Tape domains.
+   108→
+   109→5. Find duplicate and copied content.
+   110→
+   111→6. Find incorrect location references.
+   112→
+   113→7. Find conflicting phone numbers and emails.
+   114→
+   115→8. Find keyword stuffing and competitor names inside headings or image descriptions.
+   116→
+   117→9. Find old event and launch content that is no longer accurate.
+   118→
+   119→10. Create an old URL to new URL redirect map.
+   120→
+   121→11. Preserve valuable media and legitimate content.
+   122→
+   123→12. Do not migrate spam, copied content, fake claims, or outdated event information.
+   124→
+   125→13. Create a written audit in docs/current_site_audit.md.
+   126→
+   127→14. Create the migration map in docs/redirect_map.csv.
+   128→
+   129→15. Create the verified facts checklist in docs/venue_facts_required.md.
+   130→
+   131→POSITIONING
+   132→
+   133→The website must not lead with “best nightclub in Dubai.”
+   134→
+   135→Position the platform as:
+   136→
+   137→The most direct way to discover and reserve the right Dubai night across three distinct venues.
+   138→
+   139→PARENT BRAND PROMISE
+   140→
+   141→Three venues. Two skyline addresses. One Dubai after dark.
+   142→
+   143→PRIMARY HOMEPAGE COPY
+   144→
+   145→Eyebrow:
+   146→
+   147→Avenue. Ora. Black Tape.
+   148→
+   149→Main heading:
+   150→
+   151→Three venues. Two skyline addresses. One Dubai after dark.
+   152→
+   153→Supporting text:
+   154→
+   155→See what is live tonight, choose the sound that fits you, and reserve through one direct nightlife concierge.
+   156→
+   157→Primary action:
+   158→
+   159→See Tonight
+   160→
+   161→Secondary action:
+   162→
+   163→Find My Venue
+   164→
+   165→BRAND ARCHITECTURE
+   166→
+   167→The parent platform must feel connected but neutral.
+   168→
+   169→The individual venues must retain distinct visual identities.
+   170→
+   171→PARENT VISUAL WORLD
+   172→
+   173→Use near black, warm ivory, soft chrome, restrained texture, editorial typography, and cinematic photography.
+   174→
+   175→Do not use a generic purple neon gradient.
+   176→
+   177→Do not use glass effects everywhere.
+   178→
+   179→Do not place every section inside identical rounded cards.
+   180→
+   181→Do not use endless glowing borders.
+   182→
+   183→Do not use meaningless moving particles.
+   184→
+   185→Do not use a huge empty hero that forces users to scroll before seeing useful information.
+   186→
+   187→AVENUE VISUAL WORLD
+   188→
+   189→Use deep crimson, burgundy, warm gold, skyline lines, elegant Arabic geometry, strong crowd energy, and elevated hotel imagery.
+   190→
+   191→Suggested initial colors:
+   192→
+   193→#050507
+   194→
+   195→#86142A
+   196→
+   197→#D2AF69
+   198→
+   199→Extract the final colors from the real Avenue logo and venue photography before finalizing.
+   200→
+   201→ORA VISUAL WORLD
+   202→
+   203→Use deep emerald, dark teal, brass, circular projection motifs, immersive lighting, and elegant Arabic visual references.
+   204→
+   205→Suggested initial colors:
+   206→
+   207→#031A17
+   208→
+   209→#006B58
+   210→
+   211→#C7A66A
+   212→
+   213→Extract the final colors from the real Ora logo and venue photography before finalizing.
+   214→
+   215→BLACK TAPE VISUAL WORLD
+   216→
+   217→Use ink black, graphite, cold white, restrained red accents, strong typography, sharp cropping, music culture, and minimal visual noise.
+   218→
+   219→Suggested initial colors:
+   220→
+   221→#050505
+   222→
+   223→#171717
+   224→
+   225→#E8E8E8
+   226→
+   227→Do not use clichéd cassette illustrations.
+   228→
+   229→Do not copy the branding of another Tape venue.
+   230→
+   231→TYPOGRAPHY
+   232→
+   233→Use self hosted open source fonts.
+   234→
+   235→Suggested English combination:
+   236→
+   237→Manrope for interface copy.
+   238→
+   239→Bodoni Moda for selected editorial headlines.
+   240→
+   241→Suggested Arabic combination:
+   242→
+   243→IBM Plex Sans Arabic for interface copy.
+   244→
+   245→Noto Kufi Arabic for selected display moments.
+   246→
+   247→The Arabic design must be intentionally composed and not merely mirrored mechanically.
+   248→
+   249→DESIGN RULES
+   250→
+   251→1. Use cinematic full width media with controlled heights.
+   252→
+   253→2. Use asymmetrical editorial layouts.
+   254→
+   255→3. Use clear typography hierarchy.
+   256→
+   257→4. Keep useful information visible early.
+   258→
+   259→5. Use motion to communicate changes between venues, dates, and event states.
+   260→
+   261→6. Respect reduced motion preferences.
+   262→
+   263→7. Never autoplay sound.
+   264→
+   265→8. Use muted video only after a lightweight poster has loaded.
+   266→
+   267→9. Avoid heavy WebGL experiences unless performance remains excellent on mobile.
+   268→
+   269→10. Use subtle grain, controlled light movement, masks, and directional transitions.
+   270→
+   271→11. Every visual effect must support navigation, storytelling, or conversion.
+   272→
+   273→12. Use real venue media only when it is owned or properly licensed.
+   274→
+   275→13. Never use a competitor image.
+   276→
+   277→14. Never use an AI generated interior and present it as the real venue.
+   278→
+   279→15. Use labelled placeholders until real assets are supplied.
+   280→
+   281→GLOBAL NAVIGATION
+   282→
+   283→Desktop navigation:
+   284→
+   285→1. Tonight
+   286→
+   287→2. Venues
+   288→
+   289→3. Events
+   290→
+   291→4. VIP
+   292→
+   293→5. Celebrations
+   294→
+   295→6. The Night Edit
+   296→
+   297→7. About
+   298→
+   299→8. Book VIP
+   300→
+   301→Mobile navigation:
+   302→
+   303→Use a compact header and a persistent lower action bar containing:
+   304→
+   305→1. Tonight
+   306→
+   307→2. Venues
+   308→
+   309→3. Book
+   310→
+   311→The mobile action bar must respect safe areas and must not overlap forms, cookie controls, or content.
+   312→
+   313→SITE MAP
+   314→
+   315→Build these routes:
+   316→
+   317→1. /
+   318→
+   319→2. /tonight
+   320→
+   321→3. /venues
+   322→
+   323→4. /venues/avenue
+   324→
+   325→5. /venues/ora
+   326→
+   327→6. /venues/blacktape
+   328→
+   329→7. /events
+   330→
+   331→8. /events/[venue]/[concept]/[date]
+   332→
+   333→9. /nights/[venue]/[concept]
+   334→
+   335→10. /vip
+   336→
+   337→11. /celebrations
+   338→
+   339→12. /private
+   340→
+   341→13. /music/arabic
+   342→
+   343→14. /music/urban
+   344→
+   345→15. /locations/shangrila
+   346→
+   347→16. /locations/habtoor
+   348→
+   349→17. /guide
+   350→
+   351→18. /guide/[article]
+   352→
+   353→19. /about
+   354→
+   355→20. /press
+   356→
+   357→21. /careers
+   358→
+   359→22. /contact
+   360→
+   361→23. /faq
+   362→
+   363→24. /privacy
+   364→
+   365→25. /cookies
+   366→
+   367→26. /terms
+   368→
+   369→27. /thankyou
+   370→
+   371→28. /asset_manifest
+   372→
+   373→Mirror all public content routes under /ar.
+   374→
+   375→The thank you and asset manifest pages must be excluded from search indexing.
+   376→
+   377→HOMEPAGE STRUCTURE
+   378→
+   379→SECTION 1: CINEMATIC HERO
+   380→
+   381→Show the three venue names immediately.
+   382→
+   383→Use a controlled visual transition between Avenue, Ora, and Black Tape.
+   384→
+   385→On desktop, allow pointer movement or tabs to reveal each visual world.
+   386→
+   387→On mobile, use a stable swipe experience with obvious controls.
+   388→
+   389→Display:
+   390→
+   391→1. Parent promise.
+   392→
+   393→2. Tonight status.
+   394→
+   395→3. See Tonight action.
+   396→
+   397→4. Find My Venue action.
+   398→
+   399→5. Direct VIP action.
+   400→
+   401→SECTION 2: TONIGHT IN DUBAI
+   402→
+   403→Show the current nightlife service date.
+   404→
+   405→A nightlife service date must not reset at midnight.
+   406→
+   407→Use 6:00 AM Dubai time as the boundary between nightlife service days.
+   408→
+   409→An event that begins at 11:00 PM and finishes at 4:00 AM remains attached to the original service date.
+   410→
+   411→For each venue display:
+   412→
+   413→1. Venue.
+   414→
+   415→2. Event concept.
+   416→
+   417→3. Music.
+   418→
+   419→4. Doors.
+   420→
+   421→5. Location.
+   422→
+   423→6. Status.
+   424→
+   425→7. Table availability only when supported by live data.
+   426→
+   427→8. Event details action.
+   428→
+   429→9. VIP request action.
+   430→
+   431→Never display fake availability or a fake sold out state.
+   432→
+   433→If availability data is stale, show Contact Concierge instead of a quantity.
+   434→
+   435→SECTION 3: CHOOSE YOUR VENUE
+   436→
+   437→Create three large editorial venue panels rather than three generic cards.
+   438→
+   439→AVENUE COPY DIRECTION
+   440→
+   441→Heading:
+   442→
+   443→Forty two floors above the ordinary.
+   444→
+   445→Supporting idea:
+   446→
+   447→Arabic and Khaleeji nights meet selected urban concepts above Sheikh Zayed Road.
+   448→
+   449→ORA COPY DIRECTION
+   450→
+   451→Heading:
+   452→
+   453→A room built to move with the night.
+   454→
+   455→Supporting idea:
+   456→
+   457→Immersive visuals, Arabic energy, and premium late night events above Al Habtoor City.
+   458→
+   459→BLACK TAPE COPY DIRECTION
+   460→
+   461→Heading:
+   462→
+   463→Hip hop. R&B. Afro. No filler.
+   464→
+   465→Supporting idea:
+   466→
+   467→A darker urban experience with a clear music identity and direct VIP access.
+   468→
+   469→Do not hardcode weekly schedules into permanent copy.
+   470→
+   471→Pull current schedules from the event system.
+   472→
+   473→SECTION 4: UPCOMING EVENTS
+   474→
+   475→Show the next relevant events with filters for:
+   476→
+   477→1. Date.
+   478→
+   479→2. Venue.
+   480→
+   481→3. Music.
+   482→
+   483→4. Occasion.
+   484→
+   485→5. Availability.
+   486→
+   487→Default to tonight and the next seven days.
+   488→
+   489→Each event card must display:
+   490→
+   491→1. Poster.
+   492→
+   493→2. Day and date.
+   494→
+   495→3. Event title.
+   496→
+   497→4. Venue.
+   498→
+   499→5. Music.
+   500→
+   501→6. Doors.
+   502→
+   503→7. Status.
+   504→
+   505→8. Price or minimum spend only when verified.
+   506→
+   507→9. View Event.
+   508→
+   509→10. Request VIP.
+   510→
+   511→SECTION 5: FIND MY VENUE
+   512→
+   513→Create an intelligent venue matcher.
+   514→
+   515→Ask:
+   516→
+   517→1. Preferred date.
+   518→
+   519→2. Preferred music.
+   520→
+   521→3. Desired mood.
+   522→
+   523→4. Preferred location.
+   524→
+   525→5. Group size.
+   526→
+   527→6. Occasion.
+   528→
+   529→7. Budget range.
+   530→
+   531→Rank live events and venues using structured data.
+   532→
+   533→Explain the recommendation in one concise sentence.
+   534→
+   535→Do not use an open ended chatbot that can hallucinate schedules or pricing.
+   536→
+   537→The recommendation engine must only use live venue and event records.
+   538→
+   539→Result actions:
+   540→
+   541→1. View recommended event.
+   542→
+   543→2. Reserve VIP.
+   544→
+   545→3. Share result.
+   546→
+   547→4. Open WhatsApp with the recommendation included.
+   548→
+   549→SECTION 6: VIP EXPERIENCE
+   550→
+   551→Explain the difference between:
+   552→
+   553→1. Guest list request.
+   554→
+   555→2. Standard table.
+   556→
+   557→3. Premium table.
+   558→
+   559→4. Stage or DJ area table.
+   560→
+   561→5. Private or corporate request.
+   562→
+   563→Only show capacities, minimum spends, inclusions, and table names that have been verified.
+   564→
+   565→Show the real venue floor plan when available.
+   566→
+   567→SECTION 7: CELEBRATIONS
+   568→
+   569→Create direct conversion paths for:
+   570→
+   571→1. Birthdays.
+   572→
+   573→2. Bachelorette events.
+   574→
+   575→3. Bachelor events.
+   576→
+   577→4. Corporate hosting.
+   578→
+   579→5. Client entertainment.
+   580→
+   581→6. Brand activations.
+   582→
+   583→7. Private venue enquiries.
+   584→
+   585→SECTION 8: THE NIGHT EDIT
+   586→
+   587→Feature the newest useful guides.
+   588→
+   589→Use the visible name The Night Edit.
+   590→
+   591→Use the search title Dubai Nightlife Guide.
+   592→
+   593→SECTION 9: TWO LOCATIONS
+   594→
+   595→Show the two hotel destinations with clear arrival information.
+   596→
+   597→Each location block must include:
+   598→
+   599→1. Hotel name.
+   600→
+   601→2. Exact entrance instructions.
+   602→
+   603→3. Floor.
+   604→
+   605→4. Map.
+   606→
+   607→5. Valet or parking guidance.
+   608→
+   609→6. Taxi instructions.
+   610→
+   611→7. Current venues at that location.
+   612→
+   613→8. Current events.
+   614→
+   615→Do not claim metro walking times unless verified.
+   616→
+   617→SECTION 10: NEWSLETTER AND WHATSAPP UPDATES
+   618→
+   619→Allow visitors to select:
+   620→
+   621→1. Avenue updates.
+   622→
+   623→2. Ora updates.
+   624→
+   625→3. Black Tape updates.
+   626→
+   627→4. Arabic nights.
+   628→
+   629→5. Urban nights.
+   630→
+   631→6. VIP offers.
+   632→
+   633→7. Major artist announcements.
+   634→
+   635→Collect consent properly.
+   636→
+   637→VENUE PAGE TEMPLATE
+   638→
+   639→Every venue page must contain:
+   640→
+   641→1. Unique hero and venue identity.
+   642→
+   643→2. Live tonight status.
+   644→
+   645→3. Upcoming events.
+   646→
+   647→4. Venue description.
+   648→
+   649→5. Music identity.
+   650→
+   651→6. Signature night concepts.
+   652→
+   653→7. Real gallery.
+   654→
+   655→8. VIP table experience.
+   656→
+   657→9. Floor plan.
+   658→
+   659→10. Celebration options.
+   660→
+   661→11. Dress code.
+   662→
+   663→12. Age and identification policy.
+   664→
+   665→13. Entry policy.
+   666→
+   667→14. Exact location and arrival.
+   668→
+   669→15. Parking and valet guidance.
+   670→
+   671→16. Opening hours.
+   672→
+   673→17. Phone.
+   674→
+   675→18. WhatsApp.
+   676→
+   677→19. Email.
+   678→
+   679→20. Frequently asked questions.
+   680→
+   681→21. Related Night Edit articles.
+   682→
+   683→22. Other group venues shown subtly at the end.
+   684→
+   685→Do not reuse the same paragraph across all three venues.
+   686→
+   687→EVENT ARCHITECTURE
+   688→
+   689→Create two content types:
+   690→
+   691→1. Event concept.
+   692→
+   693→2. Event occurrence.
+   694→
+   695→An event concept represents a recurring brand such as Urban Project.
+   696→
+   697→An event occurrence represents one specific date.
+   698→
+   699→Each occurrence must have:
+   700→
+   701→1. Unique URL.
+   702→
+   703→2. Event title.
+   704→
+   705→3. Venue.
+   706→
+   707→4. Service date.
+   708→
+   709→5. Start time.
+   710→
+   711→6. End time.
+   712→
+   713→7. Time zone set to Asia Dubai.
+   714→
+   715→8. Event status.
+   716→
+   717→9. Music genres.
+   718→
+   719→10. Artist or resident DJ.
+   720→
+   721→11. Event poster.
+   722→
+   723→12. Landscape image.
+   724→
+   725→13. Square social image.
+   726→
+   727→14. Description.
+   728→
+   729→15. Entry information.
+   730→
+   731→16. Dress code.
+   732→
+   733→17. Age policy.
+   734→
+   735→18. Table information.
+   736→
+   737→19. Offer information.
+   738→
+   739→20. Booking cutoff.
+   740→
+   741→21. Location.
+   742→
+   743→22. Map.
+   744→
+   745→23. WhatsApp booking action.
+   746→
+   747→24. Add to calendar.
+   748→
+   749→25. Share action.
+   750→
+   751→26. Related events.
+   752→
+   753→27. Structured data.
+   754→
+   755→Supported event statuses:
+   756→
+   757→1. draft
+   758→
+   759→2. scheduled
+   760→
+   761→3. live
+   762→
+   763→4. sold_out
+   764→
+   765→5. postponed
+   766→
+   767→6. cancelled
+   768→
+   769→7. completed
+   770→
+   771→When an event is postponed or cancelled, retain the page and update the visible status and structured data.
+   772→
+   773→Do not delete the URL.
+   774→
+   775→VIP BOOKING FLOW
+   776→
+   777→Create a focused three step booking flow.
+   778→
+   779→STEP 1
+   780→
+   781→1. Venue.
+   782→
+   783→2. Event or preferred date.
+   784→
+   785→3. Party size.
+   786→
+   787→4. Expected arrival time.
+   788→
+   789→STEP 2
+   790→
+   791→1. Table preference.
+   792→
+   793→2. Budget range.
+   794→
+   795→3. Occasion.
+   796→
+   797→4. Special requirements.
+   798→
+   799→5. Hotel guest status.
+   800→
+   801→6. Transport request.
+   802→
+   803→STEP 3
+   804→
+   805→1. Full name.
+   806→
+   807→2. WhatsApp number.
+   808→
+   809→3. Email.
+   810→
+   811→4. Promoter code.
+   812→
+   813→5. Concierge code.
+   814→
+   815→6. Marketing consent.
+   816→
+   817→After submission:
+   818→
+   819→1. Validate on the server.
+   820→
+   821→2. Create a NightOps lead.
+   822→
+   823→3. Generate a booking reference.
+   824→
+   825→4. Store campaign and referral attribution.
+   826→
+   827→5. Notify the correct venue team.
+   828→
+   829→6. Show a clear confirmation summary.
+   830→
+   831→7. Open an optional prefilled WhatsApp conversation.
+   832→
+   833→8. Send confirmation through the approved channel.
+   834→
+   835→Do not promise a response time unless the business has approved and measured that response time.
+   836→
+   837→Do not process deposits until a verified payment workflow exists.
+   838→
+   839→NIGHTOPS INTEGRATION
+   840→
+   841→NightOps OS must be the source of truth for:
+   842→
+   843→1. Venues.
+   844→
+   845→2. Event concepts.
+   846→
+   847→3. Event occurrences.
+   848→
+   849→4. Table types.
+   850→
+   851→5. Availability.
+   852→
+   853→6. Booking leads.
+   854→
+   855→7. Promoter attribution.
+   856→
+   857→8. Concierge attribution.
+   858→
+   859→9. Reservation status.
+   860→
+   861→10. Conversion reporting.
+   862→
+   863→Build a typed API adapter.
+   864→
+   865→If the NightOps API is not ready during development:
+   866→
+   867→1. Create a typed mock adapter.
+   868→
+   869→2. Use realistic seed data clearly labelled as sample data.
+   870→
+   871→3. Keep the interface identical to the future production adapter.
+   872→
+   873→4. Do not create a competing production database without approval.
+   874→
+   875→5. Do not expose internal NightOps credentials or database access to the browser.
+   876→
+   877→Do not introduce Turso unless there is no existing persistent data layer and the architecture has been approved.
+   878→
+   879→PROMOTER AND CONCIERGE ATTRIBUTION
+   880→
+   881→Support referral parameters for:
+   882→
+   883→1. Promoters.
+   884→
+   885→2. Hotel concierges.
+   886→
+   887→3. Partners.
+   888→
+   889→4. Influencers.
+   890→
+   891→5. Campaigns.
+   892→
+   893→Store first and last referral attribution.
+   894→
+   895→Do not place personal information in the URL.
+   896→
+   897→Create trackable actions for:
+   898→
+   899→1. Event view.
+   900→
+   901→2. VIP start.
+   902→
+   903→3. VIP submission.
+   904→
+   905→4. WhatsApp click.
+   906→
+   907→5. Call click.
+   908→
+   909→6. Map click.
+   910→
+   911→7. Completed venue matcher.
+   912→
+   913→8. Newsletter signup.
+   914→
+   915→THE NIGHT EDIT
+   916→
+   917→The visible content hub name is:
+   918→
+   919→The Night Edit
+   920→
+   921→The search positioning is:
+   922→
+   923→Dubai Nightlife Guide
+   924→
+   925→Categories:
+   926→
+   927→1. Tonight and This Week.
+   928→
+   929→2. Arabic and Khaleeji.
+   930→
+   931→3. Hip Hop and R&B.
+   932→
+   933→4. VIP and Tables.
+   934→
+   935→5. Dress and Door.
+   936→
+   937→6. Areas and Hotels.
+   938→
+   939→7. Celebrations.
+   940→
+   941→8. Artist Stories.
+   942→
+   943→9. Venue Notes.
+   944→
+   945→Launch with these core articles:
+   946→
+   947→1. Dubai Nightlife Guide: What to Know Before You Go
+   948→
+   949→2. Arabic and Khaleeji Nights in Dubai
+   950→
+   951→3. Hip Hop and R&B Clubs in Business Bay
+   952→
+   953→4. How VIP Table Booking Works in Dubai
+   954→
+   955→5. Dubai Nightclub Dress Code and Original ID Guide
+   956→
+   957→6. Nightlife at Al Habtoor City
+   958→
+   959→7. Nightlife on Sheikh Zayed Road
+   960→
+   961→8. Where to Go Out Near Burj Khalifa
+   962→
+   963→9. Monday Nightlife in Dubai
+   964→
+   965→10. Wednesday Nightlife in Dubai
+   966→
+   967→11. Planning a Birthday Night in Dubai
+   968→
+   969→12. Planning a Bachelorette Night in Dubai
+   970→
+   971→13. Avenue, Ora, or Black Tape: Which Venue Fits Your Night?
+   972→
+   973→Every article must:
+   974→
+   975→1. Answer the main question immediately.
+   976→
+   977→2. Include a visible reviewed or verified date.
+   978→
+   979→3. Link to relevant venue pages.
+   980→
+   981→4. Link to current events.
+   982→
+   983→5. Include useful practical information.
+   984→
+   985→6. Avoid unsupported superlatives.
+   986→
+   987→7. Avoid copying competitors.
+   988→
+   989→8. Have a professional Arabic version where appropriate.
+   990→
+   991→9. Use Article structured data.
+   992→
+   993→10. Use a unique cover image.
+   994→
+   995→SEO SYSTEM
+   996→
+   997→Create a complete metadata system.
+   998→
+   999→HOME TITLE
+  1000→
+  1001→Dubai Nightlife Events and VIP Tables | W W Nightlife
+  1002→
+  1003→AVENUE TITLE
+  1004→
+  1005→Avenue Club Dubai | Arabic and Urban Nights at Shangri La
+  1006→
+  1007→ORA TITLE
+  1008→
+  1009→Ora Club Dubai | Arabic Nights at Hilton Al Habtoor City
+  1010→
+  1011→BLACK TAPE TITLE
+  1012→
+  1013→Black Tape Dubai | Hip Hop and R&B Club in Business Bay
+  1014→
+  1015→EVENT TITLE FORMAT
+  1016→
+  1017→[Event Name] at [Venue] | [Date] | Dubai
+  1018→
+  1019→GUIDE TITLE FORMAT
+  1020→
+  1021→[Article Topic] | The Night Edit
+  1022→
+  1023→Generate:
+  1024→
+  1025→1. Unique title for every indexable page.
+  1026→
+  1027→2. Unique description.
+  1028→
+  1029→3. One clear H1.
+  1030→
+  1031→4. Self referencing canonical.
+  1032→
+  1033→5. English and Arabic hreflang.
+  1034→
+  1035→6. x default.
+  1036→
+  1037→7. Open Graph metadata.
+  1038→
+  1039→8. Social sharing images.
+  1040→
+  1041→9. Breadcrumbs.
+  1042→
+  1043→10. Sitemap index.
+  1044→
+  1045→11. Page sitemap.
+  1046→
+  1047→12. Event sitemap.
+  1048→
+  1049→13. Image sitemap.
+  1050→
+  1051→14. Robots file.
+  1052→
+  1053→15. Accurate last modification values.
+  1054→
+  1055→16. Structured data validation.
+  1056→
+  1057→STRUCTURED DATA
+  1058→
+  1059→Use visible, accurate JSON LD.
+  1060→
+  1061→Parent site:
+  1062→
+  1063→1. Organization.
+  1064→
+  1065→2. WebSite.
+  1066→
+  1067→3. BreadcrumbList.
+  1068→
+  1069→Venue pages:
+  1070→
+  1071→1. NightClub.
+  1072→
+  1073→2. LocalBusiness.
+  1074→
+  1075→3. Place.
+  1076→
+  1077→4. PostalAddress.
+  1078→
+  1079→5. GeoCoordinates.
+  1080→
+  1081→6. OpeningHoursSpecification.
+  1082→
+  1083→7. sameAs.
+  1084→
+  1085→8. hasMap.
+  1086→
+  1087→Event pages:
+  1088→
+  1089→1. Event or MusicEvent.
+  1090→
+  1091→2. Place.
+  1092→
+  1093→3. Offer only when real.
+  1094→
+  1095→4. Performer only when confirmed.
+  1096→
+  1097→Guide pages:
+  1098→
+  1099→1. Article.
+  1100→
+  1101→2. BreadcrumbList.
+  1102→
+  1103→3. FAQPage only when the questions and answers are visible.
+  1104→
+  1105→Media:
+  1106→
+  1107→1. VideoObject.
+  1108→
+  1109→2. ImageObject.
+  1110→
+  1111→Never add:
+  1112→
+  1113→1. Fake reviews.
+  1114→
+  1115→2. Fake ratings.
+  1116→
+  1117→3. Fake offers.
+  1118→
+  1119→4. Fake artist appearances.
+  1120→
+  1121→5. Hidden structured data.
+  1122→
+  1123→6. Structured data that does not match the page.
+  1124→
+  1125→MULTILINGUAL SEO
+  1126→
+  1127→Use separate English and Arabic routes.
+  1128→
+  1129→Each language page must:
+  1130→
+  1131→1. Reference itself.
+  1132→
+  1133→2. Reference the equivalent translated page.
+  1134→
+  1135→3. Use the correct language and text direction.
+  1136→
+  1137→4. Use language specific metadata.
+  1138→
+  1139→5. Use language specific image descriptions.
+  1140→
+  1141→6. Use a canonical within its own language.
+  1142→
+  1143→7. Preserve the selected language when navigating.
+  1144→
+  1145→Do not automatically force a language based on browser settings.
+  1146→
+  1147→FACETED NAVIGATION
+  1148→
+  1149→Event filters must not create thousands of indexable URL combinations.
+  1150→
+  1151→Use canonical and index controls for filter states.
+  1152→
+  1153→Only index curated pages with substantial unique content.
+  1154→
+  1155→Do not generate thin location, day, genre, or comparison pages simply to target keywords.
+  1156→
+  1157→IMAGE PLACEHOLDER SYSTEM
+  1158→
+  1159→Every missing image must display a designed placeholder.
+  1160→
+  1161→Never show a broken image icon.
+  1162→
+  1163→Every placeholder must visibly show:
+  1164→
+  1165→MISSING ASSET
+  1166→
+  1167→FILE: exact_file_name
+  1168→
+  1169→PURPOSE: what the real image must show
+  1170→
+  1171→RECOMMENDED SIZE: width by height
+  1172→
+  1173→CROP: desktop, mobile, portrait, square, or wide
+  1174→
+  1175→Create a reusable MissingAsset component.
+  1176→
+  1177→Create an internal /asset_manifest page showing:
+  1178→
+  1179→1. Required asset.
+  1180→
+  1181→2. Expected path.
+  1182→
+  1183→3. Purpose.
+  1184→
+  1185→4. Dimensions.
+  1186→
+  1187→5. Present or missing status.
+  1188→
+  1189→6. Preview.
+  1190→
+  1191→7. Venue.
+  1192→
+  1193→8. Page usage.
+  1194→
+  1195→Exclude /asset_manifest from indexing and the sitemap.
+  1196→
+  1197→Add an ASSET_STRICT_MODE environment setting.
+  1198→
+  1199→During development, missing assets render placeholders.
+  1200→
+  1201→During final production validation, required hero and logo assets must fail the launch check.
+  1202→
+  1203→IMAGE DIMENSION STANDARDS
+  1204→
+  1205→Desktop hero:
+  1206→
+  1207→2400 by 1350
+  1208→
+  1209→Mobile hero:
+  1210→
+  1211→1080 by 1440
+  1212→
+  1213→Wide section:
+  1214→
+  1215→2000 by 1125
+  1216→
+  1217→Portrait card:
+  1218→
+  1219→1600 by 2000
+  1220→
+  1221→Event landscape:
+  1222→
+  1223→1600 by 900
+  1224→
+  1225→Event portrait:
+  1226→
+  1227→1600 by 2000
+  1228→
+  1229→Square social:
+  1230→
+  1231→1200 by 1200
+  1232→
+  1233→Open Graph:
+  1234→
+  1235→1200 by 630
+  1236→
+  1237→GLOBAL REQUIRED ASSETS
+  1238→
+  1239→1. group_logo_light.svg
+  1240→
+  1241→Purpose: Parent group logo for dark backgrounds.
+  1242→
+  1243→2. group_logo_dark.svg
+  1244→
+  1245→Purpose: Parent group logo for light backgrounds.
+  1246→
+  1247→3. group_mark.svg
+  1248→
+  1249→Purpose: Compact header and favicon symbol.
+  1250→
+  1251→4. home_hero_desktop.webp
+  1252→
+  1253→Purpose: Cinematic composition representing all three nightlife brands.
+  1254→
+  1255→5. home_hero_mobile.webp
+  1256→
+  1257→Purpose: Mobile composition representing all three nightlife brands.
+  1258→
+  1259→6. home_hero_video_desktop.mp4
+  1260→
+  1261→Purpose: Optional muted venue montage for desktop.
+  1262→
+  1263→7. home_hero_video_mobile.mp4
+  1264→
+  1265→Purpose: Optional muted vertical venue montage.
+  1266→
+  1267→8. home_avenue_preview.webp
+  1268→
+  1269→Purpose: Avenue crowd, lighting, and skyline identity.
+  1270→
+  1271→9. home_ora_preview.webp
+  1272→
+  1273→Purpose: Ora immersive room and Arabic nightlife identity.
+  1274→
+  1275→10. home_black_tape_preview.webp
+  1276→
+  1277→Purpose: Black Tape urban crowd and music identity.
+  1278→
+  1279→11. home_vip_experience.webp
+  1280→
+  1281→Purpose: Real premium table experience from one of the venues.
+  1282→
+  1283→12. home_locations_wide.webp
+  1284→
+  1285→Purpose: Dubai skyline connecting the two hotel destinations.
+  1286→
+  1287→13. home_night_edit_feature.webp
+  1288→
+  1289→Purpose: Editorial Dubai nightlife image.
+  1290→
+  1291→14. global_og_default.jpg
+  1292→
+  1293→Purpose: Default social sharing image.
+  1294→
+  1295→LOCATION REQUIRED ASSETS
+  1296→
+  1297→1. shangri_la_arrival.webp
+  1298→
+  1299→Purpose: Exact hotel arrival and entrance used for Avenue guests.
+  1300→
+  1301→2. shangri_la_lobby.webp
+  1302→
+  1303→Purpose: Guest journey from hotel lobby to Avenue.
+  1304→
+  1305→3. shangri_la_map.webp
+  1306→
+  1307→Purpose: Clear location and arrival map graphic.
+  1308→
+  1309→4. hilton_habtoor_arrival.webp
+  1310→
+  1311→Purpose: Exact hotel arrival and entrance used for Ora and Black Tape guests.
+  1312→
+  1313→5. hilton_habtoor_lobby.webp
+  1314→
+  1315→Purpose: Guest journey from hotel lobby to the nightclub entrance.
+  1316→
+  1317→6. hilton_habtoor_map.webp
+  1318→
+  1319→Purpose: Clear Al Habtoor City arrival map graphic.
+  1320→
+  1321→7. business_bay_night.webp
+  1322→
+  1323→Purpose: Business Bay skyline at night.
+  1324→
+  1325→8. sheikh_zayed_road_night.webp
+  1326→
+  1327→Purpose: Sheikh Zayed Road and Downtown skyline at night.
+  1328→
+  1329→AVENUE REQUIRED ASSETS
+  1330→
+  1331→1. avenue_logo_light.svg
+  1332→
+  1333→2. avenue_logo_dark.svg
+  1334→
+  1335→3. avenue_hero_desktop.webp
+  1336→
+  1337→Purpose: Wide Avenue dance floor with strong crowd and skyline context.
+  1338→
+  1339→4. avenue_hero_mobile.webp
+  1340→
+  1341→Purpose: Vertical Avenue crowd or performer moment.
+  1342→
+  1343→5. avenue_hero_video.mp4
+  1344→
+  1345→Purpose: Muted cinematic Avenue hero sequence.
+  1346→
+  1347→6. avenue_arrival.webp
+  1348→
+  1349→Purpose: Real Avenue entrance and arrival moment.
+  1350→
+  1351→7. avenue_skyline_view.webp
+  1352→
+  1353→Purpose: Skyline view from level forty two.
+  1354→
+  1355→8. avenue_interior_wide.webp
+  1356→
+  1357→Purpose: Full room architecture.
+  1358→
+  1359→9. avenue_dancefloor.webp
+  1360→
+  1361→Purpose: Active crowd and dance floor.
+  1362→
+  1363→10. avenue_dj_booth.webp
+  1364→
+  1365→Purpose: Resident or guest DJ at the real booth.
+  1366→
+  1367→11. avenue_arabic_night.webp
+  1368→
+  1369→Purpose: Authentic Arabic or Khaleeji night.
+  1370→
+  1371→12. avenue_urban_project.webp
+  1372→
+  1373→Purpose: Real Urban Project event.
+  1374→
+  1375→13. avenue_bad_habits.webp
+  1376→
+  1377→Purpose: Real Bad Habits event.
+  1378→
+  1379→14. avenue_vip_table.webp
+  1380→
+  1381→Purpose: Real Avenue VIP table and sightline.
+  1382→
+  1383→15. avenue_bottle_service.webp
+  1384→
+  1385→Purpose: Real table service moment.
+  1386→
+  1387→16. avenue_performers.webp
+  1388→
+  1389→Purpose: Real live entertainment or dancers.
+  1390→
+  1391→17. avenue_bar_detail.webp
+  1392→
+  1393→Purpose: Real bar, beverage, or interior detail.
+  1394→
+  1395→18. avenue_floorplan.svg
+  1396→
+  1397→Purpose: Accurate Avenue seating and table plan.
+  1398→
+  1399→19. avenue_gallery_01.webp through avenue_gallery_12.webp
+  1400→
+  1401→Purpose: Real venue, crowd, DJ, performance, table, skyline, service, and detail images.
+  1402→
+  1403→20. avenue_og.jpg
+  1404→
+  1405→Purpose: Avenue social sharing image.
+  1406→
+  1407→ORA REQUIRED ASSETS
+  1408→
+  1409→1. ora_logo_light.svg
+  1410→
+  1411→2. ora_logo_dark.svg
+  1412→
+  1413→3. ora_hero_desktop.webp
+  1414→
+  1415→Purpose: Wide Ora room showing its immersive visual identity.
+  1416→
+  1417→4. ora_hero_mobile.webp
+  1418→
+  1419→Purpose: Vertical Ora crowd or performance image.
+  1420→
+  1421→5. ora_hero_video.mp4
+  1422→
+  1423→Purpose: Muted immersive Ora sequence.
+  1424→
+  1425→6. ora_arrival.webp
+  1426→
+  1427→Purpose: Exact Ora entrance and guest arrival.
+  1428→
+  1429→7. ora_skyline_view.webp
+  1430→
+  1431→Purpose: Real skyline view from the Ora location.
+  1432→
+  1433→8. ora_interior_wide.webp
+  1434→
+  1435→Purpose: Full Ora room architecture.
+  1436→
+  1437→9. ora_projection_dome.webp
+  1438→
+  1439→Purpose: Real projection or immersive visual feature.
+  1440→
+  1441→10. ora_dancefloor.webp
+  1442→
+  1443→Purpose: Active Ora crowd.
+  1444→
+  1445→11. ora_dj_booth.webp
+  1446→
+  1447→Purpose: Real Ora DJ booth.
+  1448→
+  1449→12. ora_arabic_night.webp
+  1450→
+  1451→Purpose: Authentic Ora Arabic night.
+  1452→
+  1453→13. ora_urban_night.webp
+  1454→
+  1455→Purpose: Real Ora international or urban event.
+  1456→
+  1457→14. ora_vip_table.webp
+  1458→
+  1459→Purpose: Real Ora VIP table and room sightline.
+  1460→
+  1461→15. ora_bottle_service.webp
+  1462→
+  1463→Purpose: Real Ora table service moment.
+  1464→
+  1465→16. ora_performers.webp
+  1466→
+  1467→Purpose: Real dancers, percussionists, or entertainment.
+  1468→
+  1469→17. ora_bar_detail.webp
+  1470→
+  1471→Purpose: Real Ora interior or beverage detail.
+  1472→
+  1473→18. ora_floorplan.svg
+  1474→
+  1475→Purpose: Accurate Ora seating and table plan.
+  1476→
+  1477→19. ora_gallery_01.webp through ora_gallery_12.webp
+  1478→
+  1479→Purpose: Real venue, visual system, crowd, DJ, performance, table, skyline, and detail images.
+  1480→
+  1481→20. ora_og.jpg
+  1482→
+  1483→Purpose: Ora social sharing image.
+  1484→
+  1485→BLACK TAPE REQUIRED ASSETS
+  1486→
+  1487→1. black_tape_logo_light.svg
+  1488→
+  1489→2. black_tape_logo_dark.svg
+  1490→
+  1491→3. black_tape_hero_desktop.webp
+  1492→
+  1493→Purpose: Wide Black Tape room with a strong urban crowd.
+  1494→
+  1495→4. black_tape_hero_mobile.webp
+  1496→
+  1497→Purpose: Vertical crowd, DJ, or performance image.
+  1498→
+  1499→5. black_tape_hero_video.mp4
+  1500→
+  1501→Purpose: Muted Black Tape music and crowd sequence.
+  1502→
+  1503→6. black_tape_arrival.webp
+  1504→
+  1505→Purpose: Exact Black Tape entrance and arrival.
+  1506→
+  1507→7. black_tape_skyline_view.webp
+  1508→
+  1509→Purpose: Real skyline view from the venue.
+  1510→
+  1511→8. black_tape_interior_wide.webp
+  1512→
+  1513→Purpose: Full Black Tape room architecture.
+  1514→
+  1515→9. black_tape_dancefloor.webp
+  1516→
+  1517→Purpose: Active crowd and urban music atmosphere.
+  1518→
+  1519→10. black_tape_dj_booth.webp
+  1520→
+  1521→Purpose: Real Black Tape DJ booth.
+  1522→
+  1523→11. black_tape_hiphop_night.webp
+  1524→
+  1525→Purpose: Real hip hop event.
+  1526→
+  1527→12. black_tape_rnb_night.webp
+  1528→
+  1529→Purpose: Real R&B event.
+  1530→
+  1531→13. black_tape_afro_night.webp
+  1532→
+  1533→Purpose: Real Afro, Afrobeats, or Dancehall event.
+  1534→
+  1535→14. black_tape_vip_table.webp
+  1536→
+  1537→Purpose: Real Black Tape VIP table and sightline.
+  1538→
+  1539→15. black_tape_bottle_service.webp
+  1540→
+  1541→Purpose: Real table service moment.
+  1542→
+  1543→16. black_tape_performers.webp
+  1544→
+  1545→Purpose: Real artist, MC, dancer, or live entertainment.
+  1546→
+  1547→17. black_tape_bar_detail.webp
+  1548→
+  1549→Purpose: Real Black Tape interior or beverage detail.
+  1550→
+  1551→18. black_tape_floorplan.svg
+  1552→
+  1553→Purpose: Accurate Black Tape seating and table plan.
+  1554→
+  1555→19. black_tape_gallery_01.webp through black_tape_gallery_12.webp
+  1556→
+  1557→Purpose: Real room, crowd, DJ, table, performance, skyline, and close detail images.
+  1558→
+  1559→20. black_tape_og.jpg
+  1560→
+  1561→Purpose: Black Tape social sharing image.
+  1562→
+  1563→THE NIGHT EDIT REQUIRED ASSETS
+  1564→
+  1565→1. night_edit_hero_desktop.webp
+  1566→
+  1567→2. night_edit_hero_mobile.webp
+  1568→
+  1569→3. night_edit_category_arabic.webp
+  1570→
+  1571→4. night_edit_category_urban.webp
+  1572→
+  1573→5. night_edit_category_vip.webp
+  1574→
+  1575→6. night_edit_category_city.webp
+  1576→
+  1577→7. night_edit_category_dress.webp
+  1578→
+  1579→8. night_edit_category_celebrations.webp
+  1580→
+  1581→DYNAMIC ASSET NAMING
+  1582→
+  1583→Event portrait:
+  1584→
+  1585→event_[venue]_[event_slug]_[date]_portrait.webp
+  1586→
+  1587→Event landscape:
+  1588→
+  1589→event_[venue]_[event_slug]_[date]_landscape.webp
+  1590→
+  1591→Event square:
+  1592→
+  1593→event_[venue]_[event_slug]_[date]_square.webp
+  1594→
+  1595→Artist portrait:
+  1596→
+  1597→artist_[artist_slug]_portrait.webp
+  1598→
+  1599→Article cover:
+  1600→
+  1601→article_[article_slug]_cover.webp
+  1602→
+  1603→Article social image:
+  1604→
+  1605→article_[article_slug]_og.jpg
+  1606→
+  1607→Every dynamic content record must display its required file name in the content administration interface.
+  1608→
+  1609→COPY RULES
+  1610→
+  1611→1. Never repeat “best nightclub in Dubai” unnaturally.
+  1612→
+  1613→2. Never insult a competitor.
+  1614→
+  1615→3. Never insert competitor names into image descriptions.
+  1616→
+  1617→4. Never publish a fake award.
+  1618→
+  1619→5. Never publish an unconfirmed artist.
+  1620→
+  1621→6. Never invent a minimum spend.
+  1622→
+  1623→7. Never use fake customer reviews.
+  1624→
+  1625→8. Never use fake sold out messages.
+  1626→
+  1627→9. Never use “world class” in every section.
+  1628→
+  1629→10. Prefer clear, specific, practical language.
+  1630→
+  1631→11. Keep headings strong and concise.
+  1632→
+  1633→12. Make event pages answer real customer questions.
+  1634→
+  1635→13. All Arabic copy requires fluent human review before launch.
+  1636→
+  1637→TECHNICAL ARCHITECTURE
+  1638→
+  1639→Use:
+  1640→
+  1641→1. Current stable Astro.
+  1642→
+  1643→2. Strict TypeScript.
+  1644→
+  1645→3. Tailwind CSS.
+  1646→
+  1647→4. React islands only for interactive components.
+  1648→
+  1649→5. Astro content collections for initial editorial content when a CMS is not yet connected.
+  1650→
+  1651→6. A typed NightOps API adapter for live events and bookings.
+  1652→
+  1653→7. Server endpoints for booking forms.
+  1654→
+  1655→8. Environment based configuration.
+  1656→
+  1657→9. Responsive image generation.
+  1658→
+  1659→10. Static rendering for evergreen content.
+  1660→
+  1661→11. Server rendering for live tonight data and availability where required.
+  1662→
+  1663→12. Caching with safe stale fallbacks.
+  1664→
+  1665→Do not ship the entire website as a heavy client rendered React application.
+  1666→
+  1667→Keep JavaScript minimal.
+  1668→
+  1669→ANALYTICS
+  1670→
+  1671→Implement consent aware tracking for:
+  1672→
+  1673→1. GA4.
+  1674→
+  1675→2. Google Tag Manager.
+  1676→
+  1677→3. Meta Pixel.
+  1678→
+  1679→4. Meta server events when approved.
+  1680→
+  1681→5. TikTok Pixel when approved.
+  1682→
+  1683→Track these events:
+  1684→
+  1685→1. view_venue
+  1686→
+  1687→2. view_event
+  1688→
+  1689→3. filter_events
+  1690→
+  1691→4. complete_venue_matcher
+  1692→
+  1693→5. start_vip_inquiry
+  1694→
+  1695→6. submit_vip_inquiry
+  1696→
+  1697→7. click_whatsapp
+  1698→
+  1699→8. click_call
+  1700→
+  1701→9. click_map
+  1702→
+  1703→10. add_to_calendar
+  1704→
+  1705→11. newsletter_signup
+  1706→
+  1707→12. promoter_conversion
+  1708→
+  1709→Include venue, event, date, campaign, referrer, promoter code, concierge code, and language where appropriate.
+  1710→
+  1711→Do not send personal information to analytics platforms.
+  1712→
+  1713→PERFORMANCE REQUIREMENTS
+  1714→
+  1715→Target:
+  1716→
+  1717→1. Largest Contentful Paint below 2.5 seconds.
+  1718→
+  1719→2. Interaction to Next Paint below 200 milliseconds.
+  1720→
+  1721→3. Cumulative Layout Shift below 0.1.
+  1722→
+  1723→4. Mobile Lighthouse performance above 90 on representative pages.
+  1724→
+  1725→5. Accessibility above 95.
+  1726→
+  1727→6. SEO validation at 100 where technically possible.
+  1728→
+  1729→7. No autoplay sound.
+  1730→
+  1731→8. No excessive third party embeds.
+  1732→
+  1733→9. No full Instagram feed loaded during initial rendering.
+  1734→
+  1735→10. No layout shift from images, fonts, or cookie controls.
+  1736→
+  1737→ACCESSIBILITY
+  1738→
+  1739→1. Full keyboard navigation.
+  1740→
+  1741→2. Visible focus states.
+  1742→
+  1743→3. Correct heading order.
+  1744→
+  1745→4. Accurate labels.
+  1746→
+  1747→5. Accessible form errors.
+  1748→
+  1749→6. Strong contrast.
+  1750→
+  1751→7. Captions for important video.
+  1752→
+  1753→8. Reduced motion support.
+  1754→
+  1755→9. No dangerous flashing.
+  1756→
+  1757→10. Minimum touch target sizing.
+  1758→
+  1759→11. Proper Arabic direction and reading order.
+  1760→
+  1761→SECURITY AND FORM PROTECTION
+  1762→
+  1763→1. Validate all form data on the server.
+  1764→
+  1765→2. Rate limit submissions.
+  1766→
+  1767→3. Use a honeypot.
+  1768→
+  1769→4. Use Turnstile or an approved human verification method.
+  1770→
+  1771→5. Sanitize all content.
+  1772→
+  1773→6. Do not expose environment secrets.
+  1774→
+  1775→7. Apply a suitable Content Security Policy.
+  1776→
+  1777→8. Log booking submission failures safely.
+  1778→
+  1779→9. Prevent duplicate leads.
+  1780→
+  1781→10. Include appropriate privacy and marketing consent.
+  1782→
+  1783→MIGRATION PLAN
+  1784→
+  1785→1. Choose one parent domain.
+  1786→
+  1787→2. Create a complete old URL inventory.
+  1788→
+  1789→3. Map every valuable old page to its closest new page.
+  1790→
+  1791→4. Use permanent server redirects.
+  1792→
+  1793→5. Do not redirect everything to the homepage.
+  1794→
+  1795→6. Avoid redirect chains.
+  1796→
+  1797→7. Keep the old domains registered and redirects active long term.
+  1798→
+  1799→8. Update all internal links.
+  1800→
+  1801→9. Update all canonicals.
+  1802→
+  1803→10. Update English and Arabic language references.
+  1804→
+  1805→11. Submit the new sitemap.
+  1806→
+  1807→12. Verify all domain properties in Search Console.
+  1808→
+  1809→13. Update the website links in Google Business Profiles.
+  1810→
+  1811→14. Update social profile links.
+  1812→
+  1813→15. Update event and concierge platform links.
+  1814→
+  1815→16. Monitor old and new URLs for crawl errors.
+  1816→
+  1817→17. Monitor brand rankings, local visibility, event traffic, and conversions.
+  1818→
+  1819→18. Keep a rollback plan.
+  1820→
+  1821→QUALITY ASSURANCE
+  1822→
+  1823→Test at:
+  1824→
+  1825→1. 360 pixel mobile width.
+  1826→
+  1827→2. 390 pixel mobile width.
+  1828→
+  1829→3. 430 pixel mobile width.
+  1830→
+  1831→4. 768 pixel tablet width.
+  1832→
+  1833→5. 1024 pixel laptop width.
+  1834→
+  1835→6. 1440 pixel desktop width.
+  1836→
+  1837→7. Large desktop width.
+  1838→
+  1839→Test:
+  1840→
+  1841→1. iPhone Safari.
+  1842→
+  1843→2. Android Chrome.
+  1844→
+  1845→3. Desktop Chrome.
+  1846→
+  1847→4. Desktop Safari where available.
+  1848→
+  1849→5. Arabic layout.
+  1850→
+  1851→6. English layout.
+  1852→
+  1853→7. Venue theme switching.
+  1854→
+  1855→8. Event filters.
+  1856→
+  1857→9. Tonight logic after midnight.
+  1858→
+  1859→10. Booking forms.
+  1860→
+  1861→11. WhatsApp actions.
+  1862→
+  1863→12. Call actions.
+  1864→
+  1865→13. Maps.
+  1866→
+  1867→14. Referral attribution.
+  1868→
+  1869→15. Consent behavior.
+  1870→
+  1871→16. Keyboard navigation.
+  1872→
+  1873→17. Reduced motion.
+  1874→
+  1875→18. Broken images.
+  1876→
+  1877→19. Missing assets.
+  1878→
+  1879→20. Redirects.
+  1880→
+  1881→21. Structured data.
+  1882→
+  1883→22. Canonicals.
+  1884→
+  1885→23. Language references.
+  1886→
+  1887→24. Sitemap.
+  1888→
+  1889→25. Robots configuration.
+  1890→
+  1891→26. Console errors.
+  1892→
+  1893→27. Network failures.
+  1894→
+  1895→28. Slow mobile connections.
+  1896→
+  1897→There must be:
+  1898→
+  1899→1. No overlapping navigation.
+  1900→
+  1901→2. No horizontal mobile overflow.
+  1902→
+  1903→3. No hidden primary actions.
+  1904→
+  1905→4. No broken placeholders.
+  1906→
+  1907→5. No duplicate H1 headings.
+  1908→
+  1909→6. No duplicate metadata.
+  1910→
+  1911→7. No dead event pages.
+  1912→
+  1913→8. No unverified prices.
+  1914→
+  1915→9. No fake event data.
+  1916→
+  1917→10. No console errors.
+  1918→
+  1919→FINAL DELIVERABLES
+  1920→
+  1921→Deliver:
+  1922→
+  1923→1. Full production website.
+  1924→
+  1925→2. English and Arabic architecture.
+  1926→
+  1927→3. Three complete venue experiences.
+  1928→
+  1929→4. Tonight engine.
+  1930→
+  1931→5. Event system.
+  1932→
+  1933→6. Venue matcher.
+  1934→
+  1935→7. VIP booking flow.
+  1936→
+  1937→8. NightOps adapter.
+  1938→
+  1939→9. Promoter and concierge attribution.
+  1940→
+  1941→10. The Night Edit content system.
+  1942→
+  1943→11. All image placeholders with exact visible file names.
+  1944→
+  1945→12. Asset manifest.
+  1946→
+  1947→13. Venue facts checklist.
+  1948→
+  1949→14. Redirect map.
+  1950→
+  1951→15. SEO keyword map.
+  1952→
+  1953→16. Structured data system.
+  1954→
+  1955→17. Sitemap and robots configuration.
+  1956→
+  1957→18. Analytics event documentation.
+  1958→
+  1959→19. Environment template.
+  1960→
+  1961→20. Deployment configuration.
+  1962→
+  1963→21. Production README.
+  1964→
+  1965→22. Launch checklist.
+  1966→
+  1967→23. Post launch monitoring checklist.
+  1968→
+  1969→Do not stop after planning.
+  1970→
+  1971→Do not return only a homepage.
+  1972→
+  1973→Do not ask for images before building.
+  1974→
+  1975→Use the named placeholders.
+  1976→
+  1977→Only block production launch for facts that could mislead a customer, create a location conflict, or damage search visibility.
+  1978→
+  1979→The final result must feel like a serious Dubai nightlife group, not three weak websites placed inside one template.
