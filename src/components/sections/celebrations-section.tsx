@@ -114,7 +114,7 @@ export function CelebrationsSection() {
             dimensions="2000 × 1125"
             crop="wide"
             venue="global"
-            alt="Celebrations at W W Nightlife Dubai"
+            alt="Celebrations at AFTER MIDNIGHT DXB"
             className="aspect-[16/7] w-full md:aspect-[16/5]"
           />
         </div>

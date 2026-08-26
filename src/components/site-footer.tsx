@@ -17,7 +17,7 @@ export function SiteFooter() {
           <div className="md:col-span-4">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-sm border border-accent/40 font-serif-display text-accent text-xl">
-                W
+                AM
               </span>
               <div className="flex flex-col leading-none">
                 <span className="font-serif-display text-base">

@@ -31,8 +31,8 @@ export function EventDrawer() {
     const start = toICS(ev.serviceDate, ev.startTime);
     const end = toICS(ev.serviceDate, ev.endTime);
     const ics = [
-      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//WW Nightlife//EN",
-      "BEGIN:VEVENT", `UID:${ev.id}@ww-nightlife-dubai`,
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//After Midnight DXB//EN",
+      "BEGIN:VEVENT", `UID:${ev.id}@after-midnight-dxb`,
       `DTSTAMP:${start}`, `DTSTART:${start}`, `DTEND:${end}`,
       `SUMMARY:${ev.title}`, `LOCATION:${v.name} - ${v.location.hotelName}`,
       `DESCRIPTION:${ev.description}`, "END:VEVENT", "END:VCALENDAR",

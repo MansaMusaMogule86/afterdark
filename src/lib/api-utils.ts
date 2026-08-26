@@ -64,7 +64,7 @@ export function getClientIP(req: NextRequest): string {
 }
 
 /* ----------------------------------------------------------------------------
- * Booking reference — `WW-YYMMDD-XXXX`.
+ * Booking reference — `AMD-YYMMDD-XXXX` (After Midnight DXB).
  * XXXX is a 4-char uppercase alphanumeric suffix (crypto-sourced).
  * ------------------------------------------------------------------------- */
 
@@ -87,7 +87,7 @@ export function generateBookingReference(serviceDate: string): string {
       suffix += REF_ALPHABET[Math.floor(Math.random() * REF_ALPHABET.length)];
     }
   }
-  return `WW-${yy}${mm}${dd}-${suffix}`;
+  return `AMD-${yy}${mm}${dd}-${suffix}`;
 }
 
 /* ----------------------------------------------------------------------------

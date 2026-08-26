@@ -36,7 +36,7 @@ export function HeroSection() {
     <section
       id="top"
       className="relative min-h-[100svh] w-full overflow-hidden bg-background"
-      aria-label="W W Nightlife Dubai"
+      aria-label="AFTER MIDNIGHT DXB"
     >
       {/* Per-venue cinematic background layers */}
       <div className="absolute inset-0">

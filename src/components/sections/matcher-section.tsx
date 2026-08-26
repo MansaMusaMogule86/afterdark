@@ -345,7 +345,7 @@ export function MatcherSection() {
                   variant="outline"
                   onClick={() => {
                     track("click_whatsapp", { venue: top?.venue, source: "matcher_result" });
-                    const text = encodeURIComponent(`Hi, I used the venue matcher on ${"W W Nightlife Dubai"} and it recommended ${topVenue?.name}${topEvent ? ` for ${topEvent.title}` : ""}. I'd like to discuss a table.`);
+                    const text = encodeURIComponent(`Hi, I used the venue matcher on AFTER MIDNIGHT DXB and it recommended ${topVenue?.name}${topEvent ? ` for ${topEvent.title}` : ""}. I'd like to discuss a table.`);
                     window.open(`https://wa.me/?text=${text}`, "_blank");
                   }}
                   className="rounded-none border-foreground/30"

@@ -54,13 +54,13 @@ export function SiteHeader() {
             aria-label={`${siteConfig.parentName} home`}
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-accent/40 font-serif-display text-accent text-lg">
-              W
+              AM
             </span>
             <span className="hidden flex-col leading-none sm:flex">
               <span className="font-serif-display text-sm text-foreground">
                 {siteConfig.parentShortName}
               </span>
-              <span className="eyebrow mt-0.5 text-[0.5rem]">Dubai</span>
+              <span className="eyebrow mt-0.5 text-[0.5rem]">DXB · After Dark</span>
             </span>
           </Link>
 

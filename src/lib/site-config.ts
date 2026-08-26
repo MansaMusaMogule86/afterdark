@@ -66,8 +66,8 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  parentName: "W W Nightlife Dubai",
-  parentShortName: "W W Nightlife",
+  parentName: "AFTER MIDNIGHT DXB",
+  parentShortName: "After Midnight",
   promise: "Three venues. Two skyline addresses. One Dubai after dark.",
   eyebrow: "Avenue. Ora. Black Tape.",
   heroHeading: "Three venues. Two skyline addresses. One Dubai after dark.",
@@ -81,12 +81,12 @@ export const siteConfig: SiteConfig = {
   serviceDayBoundaryHour: 6,
   timezone: "Asia/Dubai",
   seo: {
-    siteName: "W W Nightlife Dubai",
-    defaultTitle: "Dubai Nightlife Events and VIP Tables | W W Nightlife",
+    siteName: "AFTER MIDNIGHT DXB",
+    defaultTitle: "Dubai Nightlife Events and VIP Tables | AFTER MIDNIGHT DXB",
     defaultDescription:
       "Discover and reserve the right Dubai night across three distinct venues — Avenue, Ora, and Black Tape. See what is live tonight, compare venues, and book VIP tables through one direct nightlife concierge.",
     defaultOgImage: "/placeholders/global_og_default.jpg",
-    siteUrl: "https://ww-nightlife-dubai.example",
+    siteUrl: "https://after-midnight-dxb.example",
   },
   contact: {
     whatsappPlaceholder: "Contact Concierge",
