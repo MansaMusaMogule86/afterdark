@@ -23,6 +23,8 @@ import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
 import { PromoterWelcomeBanner } from "@/components/promoter-welcome-banner";
 import { ReadingProgress } from "@/components/reading-progress";
 import { KeyboardShortcutHelp } from "@/components/keyboard-shortcut-help";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
+import { PastEventsSection } from "@/components/sections/past-events-section";
 import { AssetManifestView } from "@/components/asset-manifest-view";
 import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
@@ -99,6 +101,7 @@ export default async function Home({ searchParams }: PageProps) {
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />
+        <ScrollToTopButton />
       </div>
     );
   }
@@ -122,6 +125,7 @@ export default async function Home({ searchParams }: PageProps) {
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />
+        <ScrollToTopButton />
       </div>
     );
   }
@@ -165,6 +169,7 @@ export default async function Home({ searchParams }: PageProps) {
         <CelebrationsSection />
         <EnglishNightsPromo />
         <NightEditSection />
+        <PastEventsSection />
         <LocationsSection />
         <AboutFaqSection />
         <NewsletterSection />
@@ -183,6 +188,7 @@ export default async function Home({ searchParams }: PageProps) {
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />
+        <ScrollToTopButton />
     </div>
   );
 }

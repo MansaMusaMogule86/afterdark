@@ -9,6 +9,7 @@ import { siteConfig } from "@/lib/site-config";
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { LiveDubaiClock } from "@/components/live-dubai-clock";
+import { DubaiWeatherWidget } from "@/components/dubai-weather-widget";
 
 const NAV = [
   { label: "Tonight", href: "#tonight" },
@@ -83,8 +84,9 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
-            <div className="hidden xl:block">
+            <div className="hidden xl:flex items-center gap-2">
               <LiveDubaiClock />
+              <DubaiWeatherWidget />
             </div>
             <button
               onClick={() => {

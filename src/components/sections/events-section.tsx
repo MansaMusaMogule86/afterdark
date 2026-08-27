@@ -9,6 +9,7 @@ import { getServiceDate, addDays } from "@/lib/tonight";
 import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { DemandIndicator } from "@/components/demand-indicator";
 import type { MusicGenre, VenueSlug } from "@/lib/types";
 
 type VenueFilter = "all" | VenueSlug;
@@ -192,12 +193,15 @@ export function EventsSection() {
                       {ev.artist && <Meta label="Artist" value={ev.artist} />}
                     </div>
 
-                    {/* Availability line — never fake */}
-                    <div className="mt-3 flex items-center gap-1.5">
-                      <span className="h-1 w-1 rounded-full bg-[var(--venue-accent)]" />
-                      <span className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-[var(--venue-muted)]">
-                        Tables · Contact Concierge
-                      </span>
+                    {/* Demand + availability — honest, never fake */}
+                    <div className="mt-3 flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-1 w-1 rounded-full bg-[var(--venue-accent)]" />
+                        <span className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-[var(--venue-muted)]">
+                          Tables · Concierge
+                        </span>
+                      </div>
+                      <DemandIndicator event={ev.title} />
                     </div>
 
                     {/* Actions */}

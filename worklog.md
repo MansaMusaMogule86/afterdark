@@ -511,3 +511,69 @@ Platform stable (lint clean, tsc clean for src/, 0 runtime errors, 0 console err
 5. **Real-time availability**: Would require a live table-availability data source.
 6. **Venue compare "best for"**: Could add a recommendation row highlighting which venue wins each field.
 7. **Per-venue countdowns**: Doors countdown only tracks earliest event — could show per-venue.
+
+---
+Task ID: CRON-REVIEW-5
+Agent: webDevReview (automated cron round 5)
+Task: Add honest demand indicator + Dubai weather widget + past events archive + scroll-to-top
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean for src/, 0 runtime errors, 0 console errors). 12 homepage sections now. VLM suggested live availability and noted event card image consistency. Per directive: "Never display fake availability or a fake sold-out state" — so built an HONEST demand indicator based on real booking inquiry volume (not faked).
+
+## Completed Modifications This Round
+
+### 1. Honest demand indicator (`demand.ts` + `demand-indicator.tsx` + `/api/demand`) — new feature
+- `src/lib/demand.ts`: counts REAL booking inquiries from the in-memory bookingStore, classifies into 4 honest levels:
+  - NEW (0 inquiries) — "No inquiries yet — be the first to request a table"
+  - LOW (1-2) — "Light demand — tables likely available"
+  - TRENDING (3-5) — "Building interest — request early to secure a table"
+  - HIGH (6+) — "Strong interest — contact concierge immediately"
+- NEVER shows fake "selling fast" or "sold out" — always reflects actual inquiry count
+- `GET /api/demand?event=<title>&venue=<slug>` endpoint
+- `DemandIndicator` component (pill + full variants) with icons (Sparkles/Users/TrendingUp/Flame) and color coding
+- Integrated into event cards (pill variant) showing alongside "Tables · Concierge"
+- Uses derived-state pattern (prevKey) to avoid setState-in-effect lint
+
+### 2. Dubai nightlife weather widget (`dubai-weather-widget.tsx`) — new feature
+- Shows current Dubai temperature, wind, humidity in the header (xl breakpoint)
+- Moon icon at night, Sun during day
+- Mock generator based on Dubai hour + month (summer vs winter temps)
+- Clearly labeled "Sample" badge (no real weather API key yet)
+- Updates every 60 seconds
+- Relevant for nightlife planning (rooftop/terrace conditions)
+
+### 3. Past events archive section (`past-events-section.tsx`) — new feature
+- `id="archive"` — "Nights that moved Dubai."
+- Shows recent events as a compact 4-col grid with landscape images, date, venue, demand
+- Uses opacity-60 + dark gradient to convey "archive" feel
+- Sample data notice (real historical events populate when NightOps connected)
+- Positioned after The Night Edit, before Locations
+- Each card has DemandIndicator + View button
+
+### 4. Scroll-to-top floating button (`scroll-to-top-button.tsx`) — new feature
+- Appears after scrolling past 2x viewport height
+- Positioned bottom-right, above the WhatsApp floating button (lg+ only)
+- Smooth scroll behavior, tracks `filter_events` with source "scroll_to_top"
+- Hidden on mobile (avoids conflict with bottom action bar)
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0
+- **Console errors**: 0
+- **Demand API**: Returns `"level":"NEW","inquiryCount":0` for events with no bookings (honest) ✓
+- **Demand pills**: 6 event cards show "New" demand indicator ✓
+- **Weather widget**: "31° Dubai, wind 10, humidity 58%, Sample" in header ✓
+- **Archive section**: 4 articles render, "Nights that moved Dubai." heading ✓
+- **Scroll-to-top**: Appears after scroll, scrolls to top on click ✓
+- **Sections count**: 12 (was 11, added archive)
+- **Full page VLM rating**: 9/10 — confirmed weather + demand indicators visible
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Weather API**: Currently mock — connect to a real weather API (OpenWeatherMap, etc.) when key available.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Real-time availability**: Demand indicator shows inquiry volume, but real table availability would require NightOps OS integration.
+6. **Past events**: Currently shows upcoming events as "recent" — need NightOps to sync real completed events.
+7. **Command palette**: Could add recent searches and event-specific results.
