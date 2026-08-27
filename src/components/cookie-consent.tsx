@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Cookie, X, Check } from "lucide-react";
+import { Cookie, X, Check, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
@@ -88,90 +88,100 @@ export function CookieConsent() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[80] p-4 safe-pb"
+      className="fixed inset-x-0 bottom-0 z-[80] p-3 safe-pb md:inset-x-auto md:bottom-4 md:left-4 md:max-w-sm"
       role="dialog"
       aria-label="Cookie consent"
     >
-      <div className="mx-auto max-w-3xl overflow-hidden rounded-lg border border-border/60 bg-card/95 shadow-2xl backdrop-blur-xl">
-        {/* Compact bar */}
-        <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:gap-5">
-          <div className="flex items-start gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-accent/30 bg-accent/10">
-              <Cookie className="h-5 w-5 text-accent" />
-            </div>
-            <div className="flex-1">
-              <p className="font-serif-display text-base text-foreground">
-                We use cookies to improve your visit.
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Necessary cookies are always on. You choose analytics and marketing. Read our{" "}
-                <a href="/?view=privacy" className="underline hover:text-foreground">privacy policy</a>{" "}
-                and{" "}
-                <a href="/?view=cookies" className="underline hover:text-foreground">cookie policy</a>.
-              </p>
+      <div className="overflow-hidden rounded-lg border border-border/60 bg-card/95 shadow-2xl backdrop-blur-xl">
+        {/* Compact slim bar */}
+        {!expanded ? (
+          <div className="flex items-center gap-3 p-3">
+            <Cookie className="h-4 w-4 shrink-0 text-accent" />
+            <p className="flex-1 text-xs text-foreground/90">
+              We use cookies.{" "}
+              <a href="/?view=privacy" className="underline text-accent hover:text-foreground">Privacy</a>{" "}
+              ·{" "}
+              <a href="/?view=cookies" className="underline text-accent hover:text-foreground">Cookies</a>
+            </p>
+            <div className="flex shrink-0 items-center gap-1.5">
+              <button
+                onClick={() => accept({ analytics: true, marketing: false })}
+                className="rounded-sm bg-foreground px-3 py-1.5 font-mono-tight text-[0.5625rem] font-semibold uppercase tracking-[0.12em] text-background transition-colors hover:bg-accent"
+              >
+                Accept
+              </button>
+              <button
+                onClick={() => setExpanded(true)}
+                className="rounded-sm border border-border px-2 py-1.5 font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground"
+                aria-label="Customize preferences"
+              >
+                <Settings className="h-3 w-3" />
+              </button>
+              <button
+                onClick={reject}
+                className="rounded-sm px-2 py-1.5 font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground"
+                aria-label="Reject all"
+              >
+                <X className="h-3 w-3" />
+              </button>
             </div>
           </div>
+        ) : (
+          <div className="p-4">
+            {/* Header */}
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Cookie className="h-4 w-4 text-accent" />
+                <p className="font-serif-display text-sm text-foreground">Cookie Preferences</p>
+              </div>
+              <button
+                onClick={() => setExpanded(false)}
+                className="flex h-6 w-6 items-center justify-center text-muted-foreground hover:text-foreground"
+                aria-label="Close"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Necessary cookies are always on. Choose your preferences below.
+            </p>
 
-          {/* Actions */}
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button
-              onClick={() => accept({ analytics: true, marketing: false })}
-              size="sm"
-              className="rounded-none bg-foreground px-4 py-2.5 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-background hover:bg-accent"
-            >
-              <Check className="mr-1.5 h-3 w-3" />
-              Accept
-            </Button>
-            <Button
-              onClick={() => setExpanded(!expanded)}
-              variant="outline"
-              size="sm"
-              className="rounded-none border-border px-4 py-2.5 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-foreground hover:bg-foreground/10"
-            >
-              Customize
-            </Button>
-            <Button
-              onClick={reject}
-              variant="ghost"
-              size="sm"
-              className="rounded-none px-3 py-2.5 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-muted-foreground hover:text-foreground"
-            >
-              Reject
-            </Button>
-          </div>
-        </div>
-
-        {/* Expanded preferences */}
-        {expanded && (
-          <div className="border-t border-border/40 bg-secondary/30 p-5">
-            <div className="space-y-3">
+            {/* Preferences */}
+            <div className="mt-3 space-y-2.5">
               <PrefRow
                 title="Necessary"
-                desc="Required for the site to function. Cannot be disabled."
+                desc="Required for the site to function."
                 checked
                 disabled
               />
               <PrefRow
                 title="Analytics"
-                desc="Anonymous visit data to improve the site (GA4, GTM)."
+                desc="Anonymous visit data (GA4, GTM)."
                 checked={prefs.analytics}
                 onChange={(v) => setPrefs((p) => ({ ...p, analytics: v }))}
               />
               <PrefRow
                 title="Marketing"
-                desc="Meta Pixel, TikTok Pixel for personalized ads."
+                desc="Meta Pixel, TikTok Pixel for ads."
                 checked={prefs.marketing}
                 onChange={(v) => setPrefs((p) => ({ ...p, marketing: v }))}
               />
             </div>
-            <div className="mt-4 flex justify-end gap-2">
-              <Button
+
+            {/* Actions */}
+            <div className="mt-4 flex gap-2">
+              <button
                 onClick={() => accept(prefs)}
-                size="sm"
-                className="rounded-none bg-accent px-5 py-2.5 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-background hover:opacity-90"
+                className="flex-1 rounded-sm bg-accent px-3 py-2 font-mono-tight text-[0.5625rem] font-semibold uppercase tracking-[0.12em] text-background hover:opacity-90"
               >
                 Save Preferences
-              </Button>
+              </button>
+              <button
+                onClick={reject}
+                className="rounded-sm border border-border px-3 py-2 font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground"
+              >
+                Reject All
+              </button>
             </div>
           </div>
         )}

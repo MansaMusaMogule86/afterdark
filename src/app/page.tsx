@@ -20,6 +20,8 @@ import { BookingModal } from "@/components/booking-modal";
 import { CookieConsent } from "@/components/cookie-consent";
 import { CommandPalette } from "@/components/command-palette";
 import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
+import { PromoterWelcomeBanner } from "@/components/promoter-welcome-banner";
+import { ReadingProgress } from "@/components/reading-progress";
 import { AssetManifestView } from "@/components/asset-manifest-view";
 import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
@@ -93,6 +95,8 @@ export default async function Home({ searchParams }: PageProps) {
         <CookieConsent />
         <CommandPalette />
         <WhatsAppFloatingButton />
+        <PromoterWelcomeBanner />
+        <ReadingProgress />
       </div>
     );
   }
@@ -113,6 +117,8 @@ export default async function Home({ searchParams }: PageProps) {
         <CookieConsent />
         <CommandPalette />
         <WhatsAppFloatingButton />
+        <PromoterWelcomeBanner />
+        <ReadingProgress />
       </div>
     );
   }
@@ -171,6 +177,8 @@ export default async function Home({ searchParams }: PageProps) {
         <CookieConsent />
         <CommandPalette />
         <WhatsAppFloatingButton />
+        <PromoterWelcomeBanner />
+        <ReadingProgress />
     </div>
   );
 }

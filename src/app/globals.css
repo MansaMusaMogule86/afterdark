@@ -63,7 +63,7 @@
   --secondary: #16161B;
   --secondary-foreground: #F5EFE6;
   --muted: #16161B;
-  --muted-foreground: #9A9388;   /* soft chrome */
+  --muted-foreground: #ADA59A;   /* soft chrome */
   --accent: #C8B98E;             /* soft chrome / brass-ish neutral */
   --accent-foreground: #07070A;
   --destructive: #C01818;
@@ -131,7 +131,7 @@
   --secondary: #16161B;
   --secondary-foreground: #F5EFE6;
   --muted: #16161B;
-  --muted-foreground: #9A9388;
+  --muted-foreground: #ADA59A;
   --accent: #C8B98E;
   --accent-foreground: #07070A;
   --destructive: #C01818;

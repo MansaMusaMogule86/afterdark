@@ -392,3 +392,67 @@ Platform remains stable (lint: 0 errors, 0 warnings; tsc: 0 errors in src/). The
 6. **Real-time availability**: Would require a live table-availability data source (currently shows "Contact Concierge").
 7. **Venue compare**: Could add a "best for" recommendation row that auto-highlights which venue wins each field based on user preferences.
 8. **Doors countdown**: Only tracks the earliest event — could show per-venue countdowns when multiple venues are live tonight.
+
+---
+Task ID: CRON-REVIEW-3
+Agent: webDevReview (automated cron round 3)
+Task: Redesign cookie consent + add promoter welcome banner + reading progress + tonight-at-a-glance + contrast fix
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean, 0 runtime errors, 0 console errors). Previous round flagged cookie banner obscuring hero CTAs (VLM noted). This round addressed that plus added 3 new features and an accessibility contrast improvement.
+
+## Completed Modifications This Round
+
+### 1. Redesigned cookie consent as slim bottom-left pill (`cookie-consent.tsx`)
+- Was: full-width bottom card with large icon + 3 buttons (obscured hero CTAs — VLM flagged)
+- Now: slim compact bar (bottom-left on desktop, full-width on mobile) with "We use cookies. Privacy · Cookies [Accept] [⚙] [✕]"
+- Expandable to full preferences card (Necessary/Analytics/Marketing toggles + Save/Reject All)
+- Non-intrusive: doesn't overlap hero CTAs, sits in the corner
+- VLM confirmed: "CTA area is significantly cleaner... allows typography and venue card to command attention"
+
+### 2. Added promoter/concierge welcome banner (`promoter-welcome-banner.tsx`) — new feature
+- Detects referral parameters: ?promoter, ?p, ?concierge, ?c, ?partner, ?influencer, ?campaign, ?utm_campaign
+- Shows a personalized welcome banner below the header: "Welcome via {Name}" with type-specific messaging (promoter/concierge/partner/influencer/campaign)
+- Dismissible (sessionStorage — doesn't reappear on navigation within session)
+- Fires `promoter_conversion` tracking event with attribution
+- Uses lazy state initialization (readAttribution) to avoid setState-in-effect lint rule
+- No personal info in URL — only codes/names
+
+### 3. Added reading progress indicator (`reading-progress.tsx`) — new feature
+- Slim 2px gradient bar at the very top of the viewport
+- Shows scroll progress as a percentage (accent gradient)
+- Appears after scrolling past 5% of viewport height
+- role="progressbar" with aria-valuenow for accessibility
+- Respects reduced motion (transition disabled)
+
+### 4. Added "Tonight at a Glance" compact status strip (`tonight-section.tsx`) — new feature
+- 3-venue quick-status row at the top of the Tonight section (before the full venue cards)
+- Each venue shows: live status dot (pulsing green if live), venue short name, doors time + music genres
+- Clickable → opens event drawer (if event) or venue drawer (if no event)
+- Venue-themed via [data-venue]
+- Gives users an immediate scannable overview before diving into detail cards
+
+### 5. Improved text contrast for WCAG AA (`globals.css`)
+- `--muted-foreground`: #9A9388 → #ADA59A (brighter, improves contrast on near-black bg)
+- Applies to all muted text across the site
+- VLM had flagged "low text contrast" on subheadline/nav
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **Runtime errors**: 0
+- **Console errors**: 0
+- **Promoter banner**: Shows "Welcome via Demo Promoter" with ?promoter=demo-promoter ✓, dismissible ✓
+- **Reading progress**: Hidden at top, appears on scroll ✓, role=progressbar with aria ✓
+- **Tonight at a Glance**: 3 venue status buttons render, themed, clickable ✓
+- **Cookie consent slim**: "We use cookies. Privacy · Cookies Accept" compact bar ✓
+- **Hero VLM rating**: 8/10 — "CTA area significantly cleaner"
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Performance**: `next/image` optimization still pending real assets.
+4. **Command palette**: Could add recent searches and event-specific results.
+5. **Real-time availability**: Would require a live table-availability data source.
+6. **Venue compare "best for"**: Could add a recommendation row highlighting which venue wins each field.
+7. **Per-venue countdowns**: Doors countdown only tracks earliest event — could show per-venue.
+8. **Promoter banner**: Could persist attribution across sessions (currently sessionStorage) and pre-fill the booking modal's promoter/concierge code field.

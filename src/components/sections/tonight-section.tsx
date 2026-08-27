@@ -40,6 +40,52 @@ export function TonightSection() {
           </div>
         </div>
 
+        {/* Tonight at a Glance — compact 3-venue status strip */}
+        <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {venues.map((v) => {
+            const ev = tonight.find((e) => e.venue === v.slug);
+            const isLive = ev?.status === "live";
+            return (
+              <button
+                key={v.slug}
+                data-venue={v.slug}
+                onClick={() => {
+                  if (ev) {
+                    track("view_event", { id: ev.id, venue: v.slug, source: "tonight_glance" });
+                    openEventDrawer(ev.id);
+                  } else {
+                    track("view_venue", { venue: v.slug, source: "tonight_glance" });
+                    openVenueDrawer(v.slug);
+                  }
+                }}
+                className="venue-surface group flex items-center gap-3 rounded-sm border border-[var(--venue-foreground)]/10 p-3 text-left transition-colors hover:border-[var(--venue-accent)]/40"
+              >
+                {/* Status dot */}
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  {isLive && (
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                  )}
+                  <span
+                    className="relative inline-flex h-2.5 w-2.5 rounded-full"
+                    style={{ backgroundColor: ev ? (isLive ? "#4ADE80" : v.theme.accent) : "#555" }}
+                  />
+                </span>
+                {/* Venue + status */}
+                <div className="flex-1 min-w-0">
+                  <p className="font-serif-display text-sm text-[var(--venue-foreground)]">
+                    {v.shortName}
+                  </p>
+                  <p className="truncate font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-[var(--venue-muted)]">
+                    {ev ? `${ev.startTime} · ${ev.music.slice(0, 2).join(" · ")}` : "No event tonight"}
+                  </p>
+                </div>
+                {/* Arrow */}
+                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-[var(--venue-muted)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
+            );
+          })}
+        </div>
+
         {/* Venue tonight cards */}
         <div className="mt-12 grid gap-px overflow-hidden rounded-sm border border-border/40 bg-border/40 md:grid-cols-3">
           {venues.map((v) => {
