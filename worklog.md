@@ -809,3 +809,60 @@ Platform stable (lint clean, tsc clean, 0 runtime errors, 14 sections, 9/10 VLM 
 4. **Performance**: `next/image` optimization still pending real assets.
 5. **Vibe Check**: Could expand to more vibes or add a "surprise me" random option.
 6. **Gallery lightbox**: Swipe gestures added; could add pinch-to-zoom on mobile.
+
+---
+Task ID: CRON-REVIEW-10
+Agent: webDevReview (automated cron round 10)
+Task: Add honest social proof strip + surprise me vibe + press view
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean, 0 runtime errors, 14 sections, 9/10 VLM rating). All flows verified. VLM suggested social proof/reviews and noted image aspect ratios. Per directive: "Never use fake customer reviews" — built an HONEST social proof strip using real platform metrics instead.
+
+## Completed Modifications This Round
+
+### 1. Honest social proof strip (`social-proof-strip.tsx`) — new feature
+- Compact stats band between hero and tonight showing REAL metrics from the data layer:
+  - 3 Venues (One owner)
+  - 21 Upcoming Events (Next 10 nights)
+  - 13 Guide Articles (The Night Edit)
+  - 2 Skyline Addresses (Shangri La + Hilton)
+  - 2 Hotel Partners (Shangri La + Hilton)
+- No fake reviews, no fake ratings, no fake testimonials (per directive)
+- Note: "Real metrics from the platform data layer — no fake reviews or testimonials"
+- Hover effects on stat cards (icon scale)
+
+### 2. "Surprise Me" random vibe option (`vibe-check-section.tsx`) — improvement
+- Added a "Surprise Me" button below the vibe grid (Dices icon)
+- Selects a random vibe from the 6 options and shows the result
+- Rounded pill style with accent border
+- Tracks `complete_venue_matcher` with source "vibe_check"
+- Verified: clicking Surprise Me matched "Black Tape" ✓
+
+### 3. Press & Mentions view (`press-view.tsx` + `/?view=press`) — new feature
+- Dedicated press page with 4 placeholder press entries:
+  - Time Out Dubai, Esquire Middle East, The National, What's On Dubai
+- Each entry: outlet name, outlet type (Magazine/Newspaper/Online/Blog/Trade), title, excerpt, date, "Read" link
+- All entries clearly labelled "Placeholder" (amber badge) — no fake quotes or awards (per directive)
+- Press enquiries CTA with links to About + FAQ
+- Note: "No fake awards, fake reviews, or fake quotes — placeholders only until real coverage is confirmed"
+- SEO: dedicated title "Press & Mentions | AFTER MIDNIGHT DXB", indexable
+- Added "Press" link to footer Company column
+- Verified: loads at /?view=press, 4 articles, correct title ✓
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0
+- **Social proof strip**: Shows 3 venues, 21 events, 13 articles, 2 addresses, 2 partners ✓
+- **Surprise Me**: Random vibe selection works, matched Black Tape ✓
+- **Press view**: Loads at /?view=press, 4 placeholder articles, correct title ✓
+- **Sections count**: 14 (social proof strip added without id)
+- **Full page VLM rating**: 9/10
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Weather API**: Currently mock — connect to real weather API when key available.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Press view**: Replace placeholder entries with real press coverage when confirmed.
+6. **Image aspect ratios**: VLM keeps flagging — could enforce stricter aspect ratios on placeholder overlays.

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Heart, Flame, Moon, Zap, ArrowRight, RotateCcw } from "lucide-react";
+import { Sparkles, Heart, Flame, Moon, Zap, ArrowRight, RotateCcw, Dices } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { venues } from "@/lib/venue-data";
 import { track } from "@/lib/analytics";
@@ -115,7 +115,8 @@ export function VibeCheckSection() {
         </div>
 
         {!selected ? (
-          /* Vibe selector grid */
+          <>
+          {/* Vibe selector grid */}
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
             {VIBES.map((vibe) => {
               const Icon = vibe.icon;
@@ -134,6 +135,21 @@ export function VibeCheckSection() {
               );
             })}
           </div>
+
+          {/* Surprise Me */}
+          <div className="mx-auto mt-6 flex max-w-3xl justify-center">
+            <button
+              onClick={() => {
+                const random = VIBES[Math.floor(Math.random() * VIBES.length)];
+                selectVibe(random);
+              }}
+              className="flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-5 py-2.5 font-mono-tight text-[0.6875rem] uppercase tracking-[0.15em] text-accent transition-all hover:bg-accent/20"
+            >
+              <Dices className="h-4 w-4" />
+              Surprise Me
+            </button>
+          </div>
+          </>
         ) : (
           /* Result */
           <div className="mx-auto mt-10 max-w-2xl">

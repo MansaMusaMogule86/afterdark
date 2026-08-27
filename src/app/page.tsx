@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { MobileActionBar } from "@/components/mobile-action-bar";
 import { SiteFooter } from "@/components/site-footer";
 import { HeroSection } from "@/components/sections/hero-section";
+import { SocialProofStrip } from "@/components/sections/social-proof-strip";
 import { TonightSection } from "@/components/sections/tonight-section";
 import { VibeCheckSection } from "@/components/sections/vibe-check-section";
 import { VenuesSection } from "@/components/sections/venues-section";
@@ -32,6 +33,7 @@ import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
 import { EnglishNightsAdminView } from "@/components/english-nights-admin-view";
 import { FaqView } from "@/components/faq-view";
+import { PressView } from "@/components/press-view";
 import { venues } from "@/lib/venue-data";
 import { eventOccurrences } from "@/lib/events-data";
 import { guideArticles } from "@/lib/guide-data";
@@ -66,6 +68,14 @@ export async function generateMetadata({
       title: "FAQ — Dubai Nightlife Questions | AFTER MIDNIGHT DXB",
       description:
         "Answers to common questions about Dubai nightlife, VIP table booking, dress codes, ID requirements, getting to the venues, and English Nights at Avenue, Ora, and Black Tape.",
+      robots: { index: true, follow: true },
+    };
+  }
+  if (view === "press") {
+    return {
+      title: "Press & Mentions | AFTER MIDNIGHT DXB",
+      description:
+        "Media coverage and press mentions of AFTER MIDNIGHT DXB and its three Dubai venues — Avenue, Ora, and Black Tape.",
       robots: { index: true, follow: true },
     };
   }
@@ -141,6 +151,30 @@ export default async function Home({ searchParams }: PageProps) {
     );
   }
 
+  // Press view.
+  if (view === "press") {
+    return (
+      <div className="flex min-h-screen flex-col bg-background">
+        <SiteHeader />
+        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+          <PressView />
+        </main>
+        <SiteFooter />
+        <MobileActionBar />
+        <VenueDrawer />
+        <EventDrawer />
+        <BookingModal />
+        <CookieConsent />
+        <CommandPalette />
+        <WhatsAppFloatingButton />
+        <PromoterWelcomeBanner />
+        <ReadingProgress />
+        <KeyboardShortcutHelp />
+        <ScrollToTopButton />
+      </div>
+    );
+  }
+
   // English Night event detail.
   if (view === "english-night" && venue && date) {
     return (
@@ -196,6 +230,7 @@ export default async function Home({ searchParams }: PageProps) {
 
       <main id="main-content" className="flex-1 pb-20 lg:pb-0">
         <HeroSection />
+        <SocialProofStrip />
         <TonightSection />
         <VibeCheckSection />
         <VenuesSection />

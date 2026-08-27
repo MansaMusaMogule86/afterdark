@@ -88,6 +88,7 @@ export function SiteFooter() {
               <li><a href="#celebrations" className="text-sm text-muted-foreground hover:text-foreground">Celebrations</a></li>
               <li><a href="#vip" className="text-sm text-muted-foreground hover:text-foreground">VIP Tables</a></li>
               <li><a href="#faq" className="text-sm text-muted-foreground hover:text-foreground">FAQ</a></li>
+              <li><Link href="/?view=press" className="text-sm text-muted-foreground hover:text-foreground">Press</Link></li>
               <li><Link href="/?view=asset-manifest" className="text-sm text-muted-foreground hover:text-foreground">Asset Manifest</Link></li>
             </ul>
           </div>
