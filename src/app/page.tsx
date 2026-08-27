@@ -8,6 +8,7 @@ import { VenuesSection } from "@/components/sections/venues-section";
 import { EventsSection } from "@/components/sections/events-section";
 import { MatcherSection } from "@/components/sections/matcher-section";
 import { VipSection } from "@/components/sections/vip-section";
+import { PlanYourNightSection } from "@/components/sections/plan-your-night-section";
 import { CelebrationsSection } from "@/components/sections/celebrations-section";
 import { EnglishNightsPromo } from "@/components/sections/english-nights-promo";
 import { NightEditSection } from "@/components/sections/night-edit-section";
@@ -199,6 +200,7 @@ export default async function Home({ searchParams }: PageProps) {
         <EventsSection />
         <MatcherSection />
         <VipSection />
+        <PlanYourNightSection />
         <CelebrationsSection />
         <EnglishNightsPromo />
         <NightEditSection />

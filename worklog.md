@@ -692,3 +692,62 @@ Platform stable (lint clean, tsc clean, 0 runtime errors, 12 sections, 9/10 hero
 4. **Performance**: `next/image` optimization still pending real assets.
 5. **Command palette**: Could add recent searches and event-specific results.
 6. **Share Tonight**: Could generate an OG image dynamically for shared links.
+
+---
+Task ID: CRON-REVIEW-8
+Agent: webDevReview (automated cron round 8)
+Task: Add immersive gallery lightbox + plan your night timeline tool
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean, 0 runtime errors, 13 sections, 9/10 VLM rating). All flows verified. VLM suggested immersive media gallery and noted excessive whitespace. This round added a fullscreen gallery lightbox and an interactive "Plan Your Night" timeline tool.
+
+## Completed Modifications This Round
+
+### 1. Immersive gallery lightbox (`gallery-lightbox.tsx`) — new feature
+- Fullscreen image viewer with keyboard navigation (← → arrows, Esc, +/- zoom)
+- Image counter (1 / 6), zoom controls (25% increments, 100%–300%)
+- Thumbnail strip at bottom for quick navigation
+- Caption with alt text + purpose
+- Tracks view_event for analytics
+- Derived-state pattern for open/index reset (avoids setState-in-effect)
+- Integrated into venue drawer: gallery images are now clickable, "View all" button opens lightbox
+- Hover effects: scale + gradient overlay + maximize icon
+
+### 2. "Plan Your Night" interactive timeline (`plan-your-night-section.tsx`) — new feature
+- 8-step interactive checklist from venue selection to doors opening:
+  1. Choose your venue (Before 9 PM) — Preparation
+  2. Request a VIP table (Before 9 PM) — Preparation
+  3. Check dress code & ID (Before 10 PM) — Preparation
+  4. Arrange transport (10:30 PM) — Travel
+  5. Arrive at the hotel (11:00 PM) — Arrival
+  6. Present booking reference (11:00 PM) — Arrival
+  7. Doors open (11:30 PM) — The Night
+  8. Enjoy the night (Until 4 AM) — The Night
+- Color-coded categories: Preparation (blue), Travel (amber), Arrival (purple), Night (green)
+- Progress tracker: "{N}% · {checked} / 8 steps"
+- Check/uncheck steps by clicking
+- Completion celebration message when all steps checked
+- Connector lines between steps (desktop)
+- Tracks toggle actions
+
+### 3. Added Plan Your Night to homepage
+- New section between VIP and Celebrations
+- Section count: 12 → 13
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0
+- **Gallery lightbox**: Opens from venue drawer, counter "1 / 6" → "2 / 6" on arrow, Esc closes ✓
+- **Plan Your Night**: 8 steps render, clickable, progress tracker works ✓
+- **Sections count**: 13 (was 12)
+- **Full page VLM rating**: 9/10
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Weather API**: Currently mock — connect to real weather API when key available.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Dev server stability**: Server occasionally crashes during hot-reload cycles; restarts cleanly via dev.sh.
+6. **Gallery lightbox**: Could add swipe gestures for mobile navigation.
+7. **Plan Your Night**: Could persist checklist progress in localStorage.

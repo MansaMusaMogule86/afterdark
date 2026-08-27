@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { X, MapPin, Music2, Clock, ShieldCheck, DoorOpen, Car, Navigation, CalendarCheck, MessageCircle, Phone, Mail, ArrowUpRight, AlertCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, MapPin, Music2, Clock, ShieldCheck, DoorOpen, Car, Navigation, CalendarCheck, MessageCircle, Phone, Mail, ArrowUpRight, AlertCircle, Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUi } from "@/lib/ui-store";
 import { getVenue, venues } from "@/lib/venue-data";
@@ -11,6 +11,7 @@ import { guideArticles } from "@/lib/guide-data";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
 import { Button } from "@/components/ui/button";
+import { GalleryLightbox, type GalleryImage } from "@/components/gallery-lightbox";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
 } from "@/components/ui/accordion";
@@ -18,6 +19,7 @@ import {
 export function VenueDrawer() {
   const { venueDrawer, closeVenueDrawer, openBooking, openEventDrawer } = useUi();
   const venue = venueDrawer ? getVenue(venueDrawer) : null;
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (venueDrawer) {
@@ -164,20 +166,36 @@ export function VenueDrawer() {
 
             {/* Gallery */}
             <section className="mt-8">
-              <SectionLabel>Gallery</SectionLabel>
+              <div className="flex items-center justify-between">
+                <SectionLabel>Gallery</SectionLabel>
+                <button
+                  onClick={() => setLightboxIndex(0)}
+                  className="flex items-center gap-1 font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-[var(--venue-accent)] hover:text-[var(--venue-foreground)]"
+                >
+                  <Maximize2 className="h-3 w-3" /> View all
+                </button>
+              </div>
               <div className="mt-3 grid grid-cols-3 gap-2">
                 {v.gallery.slice(0, 6).map((g, i) => (
-                  <AssetImage
+                  <button
                     key={g}
-                    src={g}
-                    file={`${v.slug}_gallery_${String(i + 1).padStart(2, "0")}.webp`}
-                    purpose={`${v.shortName} gallery image ${i + 1}.`}
-                    dimensions="1600 × 2000"
-                    crop="portrait"
-                    venue={v.slug}
-                    alt={`${v.name} gallery ${i + 1}`}
-                    className="aspect-[3/4] w-full"
-                  />
+                    onClick={() => setLightboxIndex(i)}
+                    className="group relative aspect-[3/4] w-full overflow-hidden"
+                    aria-label={`Open gallery image ${i + 1}`}
+                  >
+                    <AssetImage
+                      src={g}
+                      file={`${v.slug}_gallery_${String(i + 1).padStart(2, "0")}.webp`}
+                      purpose={`${v.shortName} gallery image ${i + 1}.`}
+                      dimensions="1600 × 2000"
+                      crop="portrait"
+                      venue={v.slug}
+                      alt={`${v.name} gallery ${i + 1}`}
+                      className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--venue-bg)]/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <Maximize2 className="absolute bottom-2 right-2 h-3.5 w-3.5 text-[var(--venue-accent)] opacity-0 transition-opacity group-hover:opacity-100" />
+                  </button>
                 ))}
               </div>
             </section>
@@ -375,6 +393,21 @@ export function VenueDrawer() {
           </Button>
         </div>
       </div>
+
+      {/* Gallery Lightbox */}
+      <GalleryLightbox
+        images={v.gallery.map((g, i) => ({
+          src: g,
+          file: `${v.slug}_gallery_${String(i + 1).padStart(2, "0")}.webp`,
+          purpose: `${v.shortName} gallery image ${i + 1}.`,
+          dimensions: "1600 × 2000",
+          venue: v.slug,
+          alt: `${v.name} gallery ${i + 1}`,
+        }))}
+        open={lightboxIndex !== null}
+        initialIndex={lightboxIndex ?? 0}
+        onClose={() => setLightboxIndex(null)}
+      />
     </div>
   );
 }
