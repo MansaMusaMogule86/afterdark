@@ -81,6 +81,21 @@ export function GalleryLightbox({ images, open, initialIndex = 0, onClose }: Gal
     }
   }, [open, index, images]);
 
+  // Touch swipe support for mobile.
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const delta = e.changedTouches[0].clientX - touchStart;
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) prev();
+      else next();
+    }
+    setTouchStart(null);
+  };
+
   if (!open || images.length === 0) return null;
 
   const img = images[index];
@@ -142,7 +157,11 @@ export function GalleryLightbox({ images, open, initialIndex = 0, onClose }: Gal
       </div>
 
       {/* Image area */}
-      <div className="relative flex flex-1 items-center justify-center overflow-hidden p-4 md:p-8">
+      <div
+        className="relative flex flex-1 items-center justify-center overflow-hidden p-4 md:p-8"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         {/* Prev button */}
         {images.length > 1 && (
           <button

@@ -751,3 +751,61 @@ Platform stable (lint clean, tsc clean, 0 runtime errors, 13 sections, 9/10 VLM 
 5. **Dev server stability**: Server occasionally crashes during hot-reload cycles; restarts cleanly via dev.sh.
 6. **Gallery lightbox**: Could add swipe gestures for mobile navigation.
 7. **Plan Your Night**: Could persist checklist progress in localStorage.
+
+---
+Task ID: CRON-REVIEW-9
+Agent: webDevReview (automated cron round 9)
+Task: Persist plan your night + mobile swipe gestures + vibe check mood selector
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean, 0 runtime errors, 14 sections, 9/10 VLM rating). All flows verified: booking, FAQ, English Nights, theme switcher, command palette, gallery lightbox, plan your night. This round addressed priorities #6 (mobile swipe) and #7 (localStorage persistence) plus added a new interactive Vibe Check feature.
+
+## Completed Modifications This Round
+
+### 1. Plan Your Night localStorage persistence (`plan-your-night-section.tsx`) — improvement
+- Checklist progress now persists in localStorage (`amd_plan_your_night`)
+- Lazy state initialization via `loadChecked()` — reads saved progress on first client render
+- Toggling a step writes to localStorage immediately
+- Added a reset button (RotateCcw icon) that appears when any steps are checked
+- Reset clears localStorage + resets UI
+- Verified: checked 2 steps → 25% → localStorage `["s1","s2"]` → reload → still 25% ✓
+
+### 2. Mobile swipe gestures for gallery lightbox (`gallery-lightbox.tsx`) — improvement
+- Added touch event handlers (onTouchStart/onTouchEnd) to the image area
+- Swipe threshold: 50px horizontal movement
+- Swipe left → next image, swipe right → previous image
+- Resets zoom on navigation
+- Works alongside existing keyboard navigation (← → arrows)
+
+### 3. "Vibe Check" interactive mood selector (`vibe-check-section.tsx`) — new feature
+- Quick, fun mood selector with 6 vibe options:
+  - 🥂 Social → Avenue
+  - 🌀 Immersive → Ora
+  - ⚡ High Energy → Black Tape
+  - 🌙 Late Night → Black Tape
+  - 🪕 Arabic Night → Avenue
+  - 🎧 Hip Hop / R&B → Black Tape
+- Selecting a vibe shows a themed result card with the matched venue, quick info (floor/music/area), match reason, and "Explore {venue}" button (opens venue drawer)
+- Reset button to pick a different vibe
+- Tracks `complete_venue_matcher` with source "vibe_check"
+- Positioned between Tonight and Venues sections
+- Section count: 13 → 14
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0
+- **Plan Your Night persistence**: 25% → localStorage → reload → 25% ✓
+- **Reset button**: Appears when steps checked, clears progress ✓
+- **Gallery swipe**: Touch handlers added, 50px threshold ✓
+- **Vibe Check**: 6 vibes, selecting "Immersive" → matches "Ora" with reason ✓
+- **Sections count**: 14 (was 13)
+- **Full page VLM rating**: 9/10 — confirmed "What's your tonight?" mood selector
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Weather API**: Currently mock — connect to real weather API when key available.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Vibe Check**: Could expand to more vibes or add a "surprise me" random option.
+6. **Gallery lightbox**: Swipe gestures added; could add pinch-to-zoom on mobile.

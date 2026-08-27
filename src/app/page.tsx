@@ -4,6 +4,7 @@ import { MobileActionBar } from "@/components/mobile-action-bar";
 import { SiteFooter } from "@/components/site-footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { TonightSection } from "@/components/sections/tonight-section";
+import { VibeCheckSection } from "@/components/sections/vibe-check-section";
 import { VenuesSection } from "@/components/sections/venues-section";
 import { EventsSection } from "@/components/sections/events-section";
 import { MatcherSection } from "@/components/sections/matcher-section";
@@ -196,6 +197,7 @@ export default async function Home({ searchParams }: PageProps) {
       <main id="main-content" className="flex-1 pb-20 lg:pb-0">
         <HeroSection />
         <TonightSection />
+        <VibeCheckSection />
         <VenuesSection />
         <EventsSection />
         <MatcherSection />

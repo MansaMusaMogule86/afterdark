@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Clock, MapPin, Users, Shirt, IdCard, Car, CalendarCheck, Check, ChevronRight, PartyPopper } from "lucide-react";
+import { Clock, MapPin, Users, Shirt, IdCard, Car, CalendarCheck, Check, ChevronRight, PartyPopper, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics";
 
@@ -88,8 +88,24 @@ const CATEGORY_COLORS = {
   night: { label: "The Night", color: "text-green-300", bg: "bg-green-500/10", border: "border-green-500/20" },
 };
 
+const STORAGE_KEY = "amd_plan_your_night";
+
+/** Lazy init: read saved progress from localStorage on first client render. */
+function loadChecked(): Set<string> {
+  if (typeof window === "undefined") return new Set();
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return new Set();
+    const arr = JSON.parse(raw);
+    if (Array.isArray(arr)) return new Set(arr.filter((x) => typeof x === "string"));
+  } catch {
+    /* no-op */
+  }
+  return new Set();
+}
+
 export function PlanYourNightSection() {
-  const [checkedSteps, setCheckedSteps] = useState<Set<string>>(new Set());
+  const [checkedSteps, setCheckedSteps] = useState<Set<string>>(loadChecked);
 
   const toggleStep = (id: string) => {
     setCheckedSteps((prev) => {
@@ -99,9 +115,25 @@ export function PlanYourNightSection() {
       } else {
         next.add(id);
       }
+      // Persist to localStorage.
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(next)));
+      } catch {
+        /* no-op */
+      }
       return next;
     });
     track("filter_events", { source: "plan_your_night", action: "toggle", step: id });
+  };
+
+  const resetProgress = () => {
+    setCheckedSteps(new Set());
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* no-op */
+    }
+    track("filter_events", { source: "plan_your_night", action: "reset" });
   };
 
   const progress = Math.round((checkedSteps.size / TIMELINE.length) * 100);
@@ -133,6 +165,16 @@ export function PlanYourNightSection() {
                 {progress === 100 ? "You're ready!" : "Keep planning"}
               </p>
             </div>
+            {checkedSteps.size > 0 && (
+              <button
+                onClick={resetProgress}
+                className="ml-2 flex h-8 w-8 items-center justify-center rounded-sm border border-border text-muted-foreground transition-colors hover:text-foreground"
+                aria-label="Reset progress"
+                title="Reset progress"
+              >
+                <RotateCcw className="h-3.5 w-3.5" />
+              </button>
+            )}
           </div>
         </div>
 
