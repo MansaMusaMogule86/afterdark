@@ -10,6 +10,7 @@ import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { LiveDubaiClock } from "@/components/live-dubai-clock";
 import { DubaiWeatherWidget } from "@/components/dubai-weather-widget";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const NAV = [
   { label: "Tonight", href: "#tonight" },
@@ -20,6 +21,7 @@ const NAV = [
   { label: "Celebrations", href: "#celebrations" },
   { label: "The Night Edit", href: "#night-edit" },
   { label: "About", href: "#about" },
+  { label: "FAQ", href: "/?view=faq" },
 ];
 
 export function SiteHeader() {
@@ -100,6 +102,9 @@ export function SiteHeader() {
               <span>Search</span>
               <kbd className="rounded border border-border px-1 text-[0.5rem]">⌘K</kbd>
             </button>
+            <div className="hidden lg:block">
+              <ThemeSwitcher />
+            </div>
             <Button
               size="sm"
               onClick={() => {

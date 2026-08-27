@@ -577,3 +577,63 @@ Platform stable (lint clean, tsc clean for src/, 0 runtime errors, 0 console err
 5. **Real-time availability**: Demand indicator shows inquiry volume, but real table availability would require NightOps OS integration.
 6. **Past events**: Currently shows upcoming events as "recent" — need NightOps to sync real completed events.
 7. **Command palette**: Could add recent searches and event-specific results.
+
+---
+Task ID: CRON-REVIEW-6
+Agent: webDevReview (automated cron round 6)
+Task: Add comprehensive FAQ view + global theme switcher + FAQ nav link
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean for src/, 0 runtime errors after clean reload). Note: Fast Refresh "unrecoverable error" warnings appear in dev during hot-reload cycles but resolve on hard reload — not a production issue. Booking flow, English Nights, drawers all verified working. VLM kept suggesting interactive map (already built in round 4) and image consistency.
+
+## Completed Modifications This Round
+
+### 1. Comprehensive FAQ page view (`faq-view.tsx` + `/?view=faq`) — new feature
+- Dedicated searchable FAQ page with 20 questions across 7 categories:
+  - General (3): what is AMDXB, locations, ownership
+  - Tonight & Service Date (3): nightlife service date, tonight status, "Live Tonight" meaning
+  - VIP & Tables (5): booking flow, table types, minimum spend, deposits, response time
+  - Dress Code & Door (4): dress code, ID requirements, minimum age, walk-ins
+  - Getting There (3): Avenue, Ora/Black Tape, parking
+  - English Nights (3): what they are, Instagram import, viewing
+  - Celebrations (2): birthdays, bachelorette/corporate
+- Real-time search across questions + answers
+- Category filter chips (All + 7 categories)
+- Accordion with category labels
+- "Still have questions?" CTA with WhatsApp concierge button
+- SEO: dedicated title "FAQ — Dubai Nightlife Questions | AFTER MIDNIGHT DXB" + meta description, indexable
+- Wired into page.tsx view router + added "FAQ" to header nav
+
+### 2. Global theme switcher (`theme-switcher.tsx`) — new feature
+- Lets users preview the entire site in any of 4 themes: After Midnight (parent dark), Avenue (crimson), Ora (emerald), Black Tape (ink/red)
+- Applies `data-venue` attribute to `<html>` element → activates venue CSS theme tokens site-wide
+- Modal with color swatches (bg/primary/accent) for each theme
+- Persists preference in localStorage (`amd_theme_preference`)
+- Lazy state initialization (reads localStorage on first client render, avoids setState-in-effect)
+- "Reset to After Midnight" button
+- Tracks `filter_events` with source "theme_switch"
+- Positioned in header next to Search button (lg+ breakpoint)
+- VLM confirmed: Ora theme shows "distinct emerald/green background and theming" on venue cards
+
+### 3. Added "FAQ" to header navigation
+- New nav item linking to `/?view=faq`
+- Visible on both desktop nav and mobile menu
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0 (after clean reload)
+- **FAQ view**: Loads at /?view=faq, title correct, 20 questions, search + category filters work ✓
+- **Theme switcher**: Opens, 4 themes listed, selecting Ora applies `data-venue="ora"` to <html>, reset works ✓
+- **Theme persistence**: localStorage stores preference ✓
+- **FAQ nav**: "FAQ" link present in header nav ✓
+- **VLM confirmed**: Ora theme shows emerald theming on venue cards ✓
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Weather API**: Currently mock — connect to real weather API when key available.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Theme switcher scope**: Currently affects venue-themed sections; could extend to recolor the entire page background/base elements for a more dramatic preview.
+6. **Command palette**: Could add FAQ questions and theme switching as palette commands.
+7. **FAQ**: Could add FAQPage JSON-LD structured data for SEO rich results.

@@ -29,6 +29,7 @@ import { AssetManifestView } from "@/components/asset-manifest-view";
 import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
 import { EnglishNightsAdminView } from "@/components/english-nights-admin-view";
+import { FaqView } from "@/components/faq-view";
 import { venues } from "@/lib/venue-data";
 import { eventOccurrences } from "@/lib/events-data";
 import { guideArticles } from "@/lib/guide-data";
@@ -55,6 +56,14 @@ export async function generateMetadata({
       title: "English Nights in Dubai | AFTER MIDNIGHT DXB",
       description:
         "Curated English Night events at Avenue, Ora, and Black Tape — imported exclusively from Instagram posts tagged #AMDXBENGLISHNIGHT. See upcoming English Nights, tonight status, and request VIP tables.",
+      robots: { index: true, follow: true },
+    };
+  }
+  if (view === "faq") {
+    return {
+      title: "FAQ — Dubai Nightlife Questions | AFTER MIDNIGHT DXB",
+      description:
+        "Answers to common questions about Dubai nightlife, VIP table booking, dress codes, ID requirements, getting to the venues, and English Nights at Avenue, Ora, and Black Tape.",
       robots: { index: true, follow: true },
     };
   }
@@ -89,6 +98,30 @@ export default async function Home({ searchParams }: PageProps) {
         <SiteHeader />
         <main id="main-content" className="flex-1 pb-20 lg:pb-0">
           <EnglishNightsView />
+        </main>
+        <SiteFooter />
+        <MobileActionBar />
+        <VenueDrawer />
+        <EventDrawer />
+        <BookingModal />
+        <CookieConsent />
+        <CommandPalette />
+        <WhatsAppFloatingButton />
+        <PromoterWelcomeBanner />
+        <ReadingProgress />
+        <KeyboardShortcutHelp />
+        <ScrollToTopButton />
+      </div>
+    );
+  }
+
+  // FAQ view.
+  if (view === "faq") {
+    return (
+      <div className="flex min-h-screen flex-col bg-background">
+        <SiteHeader />
+        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+          <FaqView />
         </main>
         <SiteFooter />
         <MobileActionBar />
