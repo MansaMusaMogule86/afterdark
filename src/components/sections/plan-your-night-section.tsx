@@ -251,7 +251,7 @@ export function PlanYourNightSection() {
           <div className="mt-8 flex items-center gap-3 rounded-sm border border-green-500/30 bg-green-500/5 p-4">
             <PartyPopper className="h-5 w-5 text-green-400" />
             <p className="text-sm text-foreground">
-              You're all set. Have a great night at AFTER MIDNIGHT DXB. Present your booking reference at the table host line.
+              You're all set. Have a great night at ABOVE MIDNIGHT DXB. Present your booking reference at the table host line.
             </p>
           </div>
         )}

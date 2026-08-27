@@ -37,7 +37,7 @@ export function InteractiveLocationMap() {
               Two skyline addresses
             </p>
             <p className="mt-1 font-serif-display text-sm text-foreground">
-              After Midnight DXB
+              ABOVE MIDNIGHT DXB
             </p>
           </div>
         </div>

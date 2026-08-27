@@ -5,7 +5,7 @@ import { Moon } from "lucide-react";
 
 /**
  * LiveDubaiClock — shows current Asia/Dubai time.
- * Reinforces the "After Midnight" brand identity.
+ * Reinforces the "Above Midnight" brand identity.
  * Updates every second. Respects reduced motion (updates but doesn't animate).
  */
 export function LiveDubaiClock() {

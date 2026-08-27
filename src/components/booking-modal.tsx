@@ -353,7 +353,7 @@ export function BookingModal() {
                     <label className="flex items-start gap-2 cursor-pointer">
                       <Checkbox checked={form.marketingConsent} onCheckedChange={(v) => set("marketingConsent", v === true)} className="mt-0.5" />
                       <span className="text-xs text-muted-foreground">
-                        I agree to be contacted about my request and to receive marketing updates about AFTER MIDNIGHT DXB events and offers. I can withdraw consent at any time.
+                        I agree to be contacted about my request and to receive marketing updates about ABOVE MIDNIGHT DXB events and offers. I can withdraw consent at any time.
                       </span>
                     </label>
                   </Field>

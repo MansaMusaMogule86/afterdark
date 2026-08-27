@@ -71,7 +71,7 @@ export function CommandPalette() {
       { id: "celebrations", label: "Celebrations", hint: "Birthdays & events", icon: <Cake className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#celebrations") },
       { id: "night-edit", label: "The Night Edit", hint: "Dubai nightlife guide", icon: <BookOpen className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#night-edit") },
       { id: "locations", label: "Locations", hint: "Two skyline addresses", icon: <MapPin className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#locations") },
-      { id: "about", label: "About", hint: "About AFTER MIDNIGHT DXB", icon: <Info className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#about") },
+      { id: "about", label: "About", hint: "About ABOVE MIDNIGHT DXB", icon: <Info className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#about") },
       { id: "faq", label: "FAQ", hint: "Searchable frequently asked questions", icon: <HelpCircle className="h-4 w-4" />, group: "Navigation", action: () => router.push("/?view=faq") },
     ];
 
@@ -95,7 +95,7 @@ export function CommandPalette() {
     ];
 
     const themeCmds: CommandItem[] = [
-      { id: "theme-parent", label: "Theme: After Midnight", hint: "Default dark theme", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("parent") },
+      { id: "theme-parent", label: "Theme: Above Midnight", hint: "Default dark theme", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("parent") },
       { id: "theme-avenue", label: "Theme: Avenue", hint: "Crimson / gold", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("avenue") },
       { id: "theme-ora", label: "Theme: Ora", hint: "Emerald / brass", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("ora") },
       { id: "theme-blacktape", label: "Theme: Black Tape", hint: "Ink / red accent", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("blacktape") },
@@ -248,7 +248,7 @@ export function CommandPalette() {
             </span>
           </div>
           <span className="font-mono-tight text-[0.5rem] uppercase tracking-[0.1em] text-muted-foreground">
-            After Midnight DXB
+            ABOVE MIDNIGHT DXB
           </span>
         </div>
       </div>

@@ -1,5 +1,5 @@
 /**
- * W W Nightlife Dubai — Central Site Configuration
+ * ABOVE MIDNIGHT DXB — Central Site Configuration
  * --------------------------------------------------
  * This is the SINGLE source of truth for parent group identity, venue records,
  * contact details, social profiles, and operational mode flags.
@@ -66,8 +66,8 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  parentName: "AFTER MIDNIGHT DXB",
-  parentShortName: "After Midnight",
+  parentName: "ABOVE MIDNIGHT DXB",
+  parentShortName: "Above Midnight",
   promise: "Three venues. Two skyline addresses. One Dubai after dark.",
   eyebrow: "Avenue. Ora. Black Tape.",
   heroHeading: "Three venues. Two skyline addresses. One Dubai after dark.",
@@ -81,12 +81,12 @@ export const siteConfig: SiteConfig = {
   serviceDayBoundaryHour: 6,
   timezone: "Asia/Dubai",
   seo: {
-    siteName: "AFTER MIDNIGHT DXB",
-    defaultTitle: "Dubai Nightlife Events and VIP Tables | AFTER MIDNIGHT DXB",
+    siteName: "ABOVE MIDNIGHT DXB",
+    defaultTitle: "Dubai Nightlife Events and VIP Tables | ABOVE MIDNIGHT DXB",
     defaultDescription:
       "Discover and reserve the right Dubai night across three distinct venues — Avenue, Ora, and Black Tape. See what is live tonight, compare venues, and book VIP tables through one direct nightlife concierge.",
     defaultOgImage: "/placeholders/global_og_default.jpg",
-    siteUrl: "https://after-midnight-dxb.example",
+    siteUrl: "https://above-midnight-dxb.example",
   },
   contact: {
     whatsappPlaceholder: "Contact Concierge",

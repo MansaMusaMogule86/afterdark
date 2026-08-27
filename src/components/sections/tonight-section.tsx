@@ -24,13 +24,13 @@ export function TonightSection() {
   const shareTonight = async () => {
     track("click_map", { source: "share_tonight" });
     const summary = tonight.length > 0
-      ? `${tonight.length} event${tonight.length > 1 ? "s" : ""} live tonight at AFTER MIDNIGHT DXB`
-      : "Check what's live tonight at AFTER MIDNIGHT DXB";
+      ? `${tonight.length} event${tonight.length > 1 ? "s" : ""} live tonight at ABOVE MIDNIGHT DXB`
+      : "Check what's live tonight at ABOVE MIDNIGHT DXB";
     const url = typeof window !== "undefined" ? `${window.location.origin}/#tonight` : "";
     const text = `${summary} — ${longLabel}. See tonight: ${url}`;
     try {
       if (navigator.share) {
-        await navigator.share({ title: "Tonight at AFTER MIDNIGHT DXB", text, url });
+        await navigator.share({ title: "Tonight at ABOVE MIDNIGHT DXB", text, url });
       } else {
         await navigator.clipboard?.writeText(text);
         setCopied(true);

@@ -6,22 +6,80 @@ import { eventOccurrences } from "@/lib/events-data";
 import { guideArticles } from "@/lib/guide-data";
 
 /**
- * SocialProofStrip — honest social proof using real platform metrics.
+ * SocialProofStrip — platform statistics with honest verification labels.
  *
- * Per directive: "Never use fake customer reviews" and "Never publish a fake award."
- * This component shows REAL counts: venues, upcoming events, guide articles,
- * locations, hotel partners. No fake reviews, no fake ratings, no fake testimonials.
+ * Per directive: Do not call data "real" merely because it comes from the
+ * application data layer. Do not hardcode public numbers. When a count is
+ * zero or unverifiable, hide the statistic instead of displaying a fake value.
  *
- * Numbers are computed from the actual data layer.
+ * Current data layer state:
+ * - Venues: sample data, factsVerified = false on all 3
+ * - Events: sample data, sample = true on all
+ * - Guides: sample content, no verification flag
+ * - Locations: 2 hotel records (Shangri La + Hilton)
+ *
+ * Until verification status fields exist on records, we display:
+ * - Venue count (3) — labelled as "venues in the group" (factual)
+ * - Location count (2) — labelled as "Skyline Locations" (NOT "Hotel Partners"
+ *   unless a documented partnership claim is approved)
+ * - Event count — labelled as "sample schedule" (honest)
+ * - Guide count — labelled as "published guides" (factual)
+ *
+ * No fake reviews, no fake ratings, no fake testimonials.
  */
+
+interface StatConfig {
+  icon: typeof Users;
+  label: string;
+  value: number;
+  sub: string;
+  /** Hide when value is 0 or unverifiable. */
+  show: boolean;
+}
+
 export function SocialProofStrip() {
-  const stats = [
-    { icon: Building2, label: "Venues", value: venues.length, sub: "One owner" },
-    { icon: CalendarDays, label: "Upcoming Events", value: eventOccurrences.length, sub: "Next 10 nights" },
-    { icon: BookOpen, label: "Guide Articles", value: guideArticles.length, sub: "The Night Edit" },
-    { icon: MapPin, label: "Skyline Addresses", value: 2, sub: "Shangri La + Hilton" },
-    { icon: Users, label: "Hotel Partners", value: 2, sub: "Shangri La + Hilton" },
+  // Factual counts from the data layer (not "verified" — just counted).
+  const venueCount = venues.length;
+  const locationCount = new Set(venues.map((v) => v.location.hotelName)).size;
+  const eventCount = eventOccurrences.length;
+  const guideCount = guideArticles.length;
+
+  const stats: StatConfig[] = [
+    {
+      icon: Building2,
+      label: "Venues",
+      value: venueCount,
+      sub: "In the group",
+      show: venueCount > 0,
+    },
+    {
+      icon: CalendarDays,
+      label: "Sample Schedule",
+      value: eventCount,
+      sub: "Next 10 nights · sample data",
+      show: eventCount > 0,
+    },
+    {
+      icon: BookOpen,
+      label: "Published Guides",
+      value: guideCount,
+      sub: "The Night Edit",
+      show: guideCount > 0,
+    },
+    {
+      icon: MapPin,
+      label: "Skyline Locations",
+      value: locationCount,
+      sub: "Shangri La + Hilton",
+      show: locationCount > 0,
+    },
   ];
+
+  // Filter out hidden stats (zero or unverifiable).
+  const visibleStats = stats.filter((s) => s.show);
+
+  // If nothing is visible, don't render the section at all.
+  if (visibleStats.length === 0) return null;
 
   return (
     <section className="relative border-y border-border/40 bg-secondary/20">
@@ -29,13 +87,16 @@ export function SocialProofStrip() {
         {/* Label */}
         <div className="mb-6 flex items-center justify-center gap-2">
           <span className="h-px w-8 bg-accent/30" />
-          <span className="eyebrow text-accent">By the numbers</span>
+          <span className="eyebrow text-accent">Platform overview</span>
           <span className="h-px w-8 bg-accent/30" />
         </div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border/40 bg-border/40 sm:grid-cols-3 lg:grid-cols-5">
-          {stats.map((stat) => {
+        <div
+          className="grid gap-px overflow-hidden rounded-sm border border-border/40 bg-border/40"
+          style={{ gridTemplateColumns: `repeat(${visibleStats.length}, minmax(0, 1fr))` }}
+        >
+          {visibleStats.map((stat) => {
             const Icon = stat.icon;
             return (
               <div
@@ -57,9 +118,9 @@ export function SocialProofStrip() {
           })}
         </div>
 
-        {/* Note */}
+        {/* Honest note */}
         <p className="mt-4 text-center font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-muted-foreground/60">
-          Real metrics from the platform data layer — no fake reviews or testimonials
+          Platform data — venue facts pending owner verification · no fake reviews or testimonials
         </p>
       </div>
     </section>

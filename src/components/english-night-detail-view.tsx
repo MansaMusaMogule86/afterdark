@@ -81,8 +81,8 @@ export function EnglishNightDetailView({ venue, date }: Props) {
     const start = toICS(ev.serviceDate, ev.startTime);
     const end = toICS(ev.serviceDate, ev.endTime);
     const ics = [
-      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//After Midnight DXB//EN",
-      "BEGIN:VEVENT", `UID:${ev.id}@after-midnight-dxb`,
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//ABOVE MIDNIGHT DXB//EN",
+      "BEGIN:VEVENT", `UID:${ev.id}@above-midnight-dxb`,
       `DTSTAMP:${start}`, `DTSTART:${start}`, `DTEND:${end}`,
       `SUMMARY:${ev.title}`, `LOCATION:${v.name} - ${v.location.hotelName}`,
       `DESCRIPTION:${ev.description}`, "END:VEVENT", "END:VCALENDAR",

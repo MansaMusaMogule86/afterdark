@@ -11,7 +11,7 @@ type ThemeKey = "parent" | "avenue" | "ora" | "blacktape";
 const THEME_STORAGE_KEY = "amd_theme_preference";
 
 const THEMES: { key: ThemeKey; label: string; colors: { bg: string; primary: string; accent: string } }[] = [
-  { key: "parent", label: "After Midnight", colors: { bg: "#07070A", primary: "#C8B98E", accent: "#C8B98E" } },
+  { key: "parent", label: "Above Midnight", colors: { bg: "#07070A", primary: "#C8B98E", accent: "#C8B98E" } },
   ...venues.map((v) => ({
     key: v.slug as ThemeKey,
     label: v.shortName,
@@ -151,7 +151,7 @@ export function ThemeSwitcher() {
                 onClick={() => select("parent")}
                 className="mt-4 w-full rounded-sm border border-border py-2 font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground"
               >
-                Reset to After Midnight (default)
+                Reset to Above Midnight (default)
               </button>
             </div>
           </div>

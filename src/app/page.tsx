@@ -5,13 +5,10 @@ import { SiteFooter } from "@/components/site-footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { SocialProofStrip } from "@/components/sections/social-proof-strip";
 import { TonightSection } from "@/components/sections/tonight-section";
-import { VibeCheckSection } from "@/components/sections/vibe-check-section";
 import { VenuesSection } from "@/components/sections/venues-section";
-import { EventsSection } from "@/components/sections/events-section";
 import { MatcherSection } from "@/components/sections/matcher-section";
 import { VipSection } from "@/components/sections/vip-section";
 import { PlanYourNightSection } from "@/components/sections/plan-your-night-section";
-import { CelebrationsSection } from "@/components/sections/celebrations-section";
 import { EnglishNightsPromo } from "@/components/sections/english-nights-promo";
 import { NightEditSection } from "@/components/sections/night-edit-section";
 import { LocationsSection } from "@/components/sections/locations-section";
@@ -33,7 +30,6 @@ import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
 import { EnglishNightsAdminView } from "@/components/english-nights-admin-view";
 import { FaqView } from "@/components/faq-view";
-import { PressView } from "@/components/press-view";
 import { venues } from "@/lib/venue-data";
 import { eventOccurrences } from "@/lib/events-data";
 import { guideArticles } from "@/lib/guide-data";
@@ -57,7 +53,7 @@ export async function generateMetadata({
   }
   if (view === "english-nights") {
     return {
-      title: "English Nights in Dubai | AFTER MIDNIGHT DXB",
+      title: "English Nights in Dubai | ABOVE MIDNIGHT DXB",
       description:
         "Curated English Night events at Avenue, Ora, and Black Tape — imported exclusively from Instagram posts tagged #AMDXBENGLISHNIGHT. See upcoming English Nights, tonight status, and request VIP tables.",
       robots: { index: true, follow: true },
@@ -65,23 +61,15 @@ export async function generateMetadata({
   }
   if (view === "faq") {
     return {
-      title: "FAQ — Dubai Nightlife Questions | AFTER MIDNIGHT DXB",
+      title: "FAQ — Dubai Nightlife Questions | ABOVE MIDNIGHT DXB",
       description:
         "Answers to common questions about Dubai nightlife, VIP table booking, dress codes, ID requirements, getting to the venues, and English Nights at Avenue, Ora, and Black Tape.",
       robots: { index: true, follow: true },
     };
   }
-  if (view === "press") {
-    return {
-      title: "Press & Mentions | AFTER MIDNIGHT DXB",
-      description:
-        "Media coverage and press mentions of AFTER MIDNIGHT DXB and its three Dubai venues — Avenue, Ora, and Black Tape.",
-      robots: { index: true, follow: true },
-    };
-  }
   if (view === "english-night") {
     return {
-      title: "English Night | AFTER MIDNIGHT DXB",
+      title: "English Night | ABOVE MIDNIGHT DXB",
       description: "English Night event details — venue, doors, music, DJs, and VIP request.",
       robots: { index: true, follow: true },
     };
@@ -134,30 +122,6 @@ export default async function Home({ searchParams }: PageProps) {
         <SiteHeader />
         <main id="main-content" className="flex-1 pb-20 lg:pb-0">
           <FaqView />
-        </main>
-        <SiteFooter />
-        <MobileActionBar />
-        <VenueDrawer />
-        <EventDrawer />
-        <BookingModal />
-        <CookieConsent />
-        <CommandPalette />
-        <WhatsAppFloatingButton />
-        <PromoterWelcomeBanner />
-        <ReadingProgress />
-        <KeyboardShortcutHelp />
-        <ScrollToTopButton />
-      </div>
-    );
-  }
-
-  // Press view.
-  if (view === "press") {
-    return (
-      <div className="flex min-h-screen flex-col bg-background">
-        <SiteHeader />
-        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
-          <PressView />
         </main>
         <SiteFooter />
         <MobileActionBar />
@@ -230,16 +194,13 @@ export default async function Home({ searchParams }: PageProps) {
 
       <main id="main-content" className="flex-1 pb-20 lg:pb-0">
         <HeroSection />
-        <SocialProofStrip />
         <TonightSection />
-        <VibeCheckSection />
-        <VenuesSection />
-        <EventsSection />
+        <EnglishNightsPromo />
         <MatcherSection />
+        <VenuesSection />
+        <SocialProofStrip />
         <VipSection />
         <PlanYourNightSection />
-        <CelebrationsSection />
-        <EnglishNightsPromo />
         <NightEditSection />
         <PastEventsSection />
         <LocationsSection />

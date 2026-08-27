@@ -1,5 +1,5 @@
 /**
- * Core domain types for W W Nightlife Dubai.
+ * Core domain types for ABOVE MIDNIGHT DXB.
  * Mirrors the NightOps OS source-of-truth model so the typed mock adapter
  * and the future production adapter share an identical interface.
  */

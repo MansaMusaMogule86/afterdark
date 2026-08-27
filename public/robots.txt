@@ -15,4 +15,4 @@ Allow: /
 Disallow: /?view=asset-manifest
 Disallow: /thankyou
 
-Sitemap: https://after-midnight-dxb.example/sitemap.xml
+Sitemap: https://above-midnight-dxb.example/sitemap.xml

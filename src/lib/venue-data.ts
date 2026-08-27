@@ -1,5 +1,5 @@
 /**
- * Venue Records — W W Nightlife Dubai
+ * Venue Records — ABOVE MIDNIGHT DXB
  * -----------------------------------
  * SAMPLE / WORKING DATA — clearly labelled. All phone numbers, emails,
  * opening hours, prices, minimum spends, and event schedules require

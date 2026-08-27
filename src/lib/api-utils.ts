@@ -64,7 +64,7 @@ export function getClientIP(req: NextRequest): string {
 }
 
 /* ----------------------------------------------------------------------------
- * Booking reference — `AMD-YYMMDD-XXXX` (After Midnight DXB).
+ * Booking reference — `AMD-YYMMDD-XXXX` (ABOVE MIDNIGHT DXB).
  * XXXX is a 4-char uppercase alphanumeric suffix (crypto-sourced).
  * ------------------------------------------------------------------------- */
 

@@ -21,7 +21,7 @@ export function EnglishNightsPromo() {
                 dimensions="2000 × 1125"
                 crop="wide"
                 venue="global"
-                alt="English Nights at After Midnight DXB"
+                alt="English Nights at ABOVE MIDNIGHT DXB"
                 className="h-full w-full"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-background via-background/30 to-transparent" />

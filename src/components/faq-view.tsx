@@ -20,9 +20,9 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   // General
-  { id: "g1", category: "General", question: "What is AFTER MIDNIGHT DXB?", answer: "AFTER MIDNIGHT DXB is the unified nightlife platform for three Dubai venues — Avenue Club, Ora Club, and Black Tape Club. All three share the same owner. The platform lets you see what's live tonight, compare venues, and reserve VIP tables through one direct nightlife concierge." },
+  { id: "g1", category: "General", question: "What is ABOVE MIDNIGHT DXB?", answer: "ABOVE MIDNIGHT DXB is the unified nightlife platform for three Dubai venues — Avenue Club, Ora Club, and Black Tape Club. All three share the same owner. The platform lets you see what's live tonight, compare venues, and reserve VIP tables through one direct nightlife concierge." },
   { id: "g2", category: "General", question: "Where are the three venues located?", answer: "Avenue Club is on level 42 of Shangri La Dubai on Sheikh Zayed Road. Ora Club and Black Tape Club are both on level 44 of Hilton Dubai Al Habtoor City in Business Bay. The two Al Habtoor venues share the same floor but are different rooms with different music identities." },
-  { id: "g3", category: "General", question: "Do the three venues share the same owner?", answer: "Yes. All three venues — Avenue, Ora, and Black Tape — are owned by the same group. AFTER MIDNIGHT DXB is the working parent name until the permanent group identity is confirmed." },
+  { id: "g3", category: "General", question: "Do the three venues share the same owner?", answer: "Yes. All three venues — Avenue, Ora, and Black Tape — are owned by the same group. ABOVE MIDNIGHT DXB is the working parent name until the permanent group identity is confirmed." },
 
   // Tonight & Service Date
   { id: "t1", category: "Tonight & Service Date", question: "What is a nightlife service date?", answer: "A nightlife service date does not reset at midnight. It resets at 6:00 AM Dubai time. An event that starts at 11:00 PM and finishes at 4:00 AM belongs to the same service date. This affects guest list cutoffs, table reservations, and event listings." },
