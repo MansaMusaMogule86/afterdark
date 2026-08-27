@@ -4,6 +4,7 @@ import { DoorOpen, Building2, Car, Navigation, MapPin, ArrowUpRight } from "luci
 import { locationRecords, venues } from "@/lib/venue-data";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { InteractiveLocationMap } from "@/components/interactive-location-map";
 import { Button } from "@/components/ui/button";
 
 export function LocationsSection() {
@@ -38,6 +39,9 @@ export function LocationsSection() {
             className="aspect-[16/7] w-full md:aspect-[16/5]"
           />
         </div>
+
+        {/* Interactive map */}
+        <InteractiveLocationMap />
 
         {/* Location blocks */}
         <div className="mt-12 space-y-6">

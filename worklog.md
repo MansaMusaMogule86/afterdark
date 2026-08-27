@@ -456,3 +456,58 @@ Platform stable (lint clean, tsc clean, 0 runtime errors, 0 console errors). Pre
 6. **Venue compare "best for"**: Could add a recommendation row highlighting which venue wins each field.
 7. **Per-venue countdowns**: Doors countdown only tracks earliest event — could show per-venue.
 8. **Promoter banner**: Could persist attribution across sessions (currently sessionStorage) and pre-fill the booking modal's promoter/concierge code field.
+
+---
+Task ID: CRON-REVIEW-4
+Agent: webDevReview (automated cron round 4)
+Task: Add interactive location map + keyboard shortcut help + event card hierarchy polish
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean for src/, 0 runtime errors, 0 console errors). Verified promoter attribution pre-fills into booking modal (priority #8 from round 3 — already working). VLM suggested interactive venue map and noted event card hierarchy inconsistencies. This round addressed both + added keyboard shortcut help.
+
+## Completed Modifications This Round
+
+### 1. Interactive location map (`interactive-location-map.tsx`) — new feature
+- Stylized SVG-based map of Dubai showing both hotel locations (Shangri La on SZR, Hilton Al Habtoor in Business Bay)
+- Clickable pins with pulse animation when active
+- Shows Sheikh Zayed Road, Business Bay area, Downtown marker, coastline
+- Side panel shows active location's hotel name, area, description, venues at that location (themed), and "Open in Google Maps" button
+- "View {other location}" switch button
+- Labeled "Stylized · Not to scale" (doesn't claim to be a real map)
+- Tracks `click_map` with location + source attribution
+- Integrated into Locations section between the skyline image and the location blocks
+
+### 2. Keyboard shortcut help overlay (`keyboard-shortcut-help.tsx`) — new feature
+- Press "?" anywhere (except in inputs) to show all keyboard shortcuts
+- Lists 6 shortcuts: ⌘K (palette), Esc (close), ↑↓ (navigate), ↵ (select), ? (help), Tab
+- Tip box highlighting ⌘K for quick navigation
+- Esc to close, click outside to close
+- Tracks `filter_events` with source "shortcut_help"
+- Accessible: role="dialog", aria-label, proper focus management
+
+### 3. Event card visual hierarchy polish (`events-section.tsx`) — styling improvement
+- Fixed inconsistent card heights: title now has `min-h-[3.2rem]`, meta block has `min-h-[4.5rem]`
+- All 6 visible event cards now have identical heights (818.19px verified)
+- Meta component: changed `<p>` to `<div>`, label width 14→12 for better alignment, added `title` attribute for hover tooltip on truncated values
+- More uniform, luxurious grid appearance
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0
+- **Console errors**: 0
+- **Interactive map**: 2 clickable pins, clicking switches panel (Shangri La ↔ Hilton Al Habtoor) ✓
+- **Keyboard shortcut help**: Opens with "?", shows 6 shortcuts, closes with Esc ✓
+- **Event card heights**: All 6 cards identical (818.19px) ✓
+- **Mobile**: No horizontal overflow, Tonight section readable ✓
+- **Full page VLM rating**: 9/10
+- **Mobile VLM**: "highly readable, clean, well-structured, no significant issues"
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Performance**: `next/image` optimization still pending real assets. VLM noted page length — consider lazy-loading below-the-fold sections.
+4. **Command palette**: Could add recent searches and event-specific results.
+5. **Real-time availability**: Would require a live table-availability data source.
+6. **Venue compare "best for"**: Could add a recommendation row highlighting which venue wins each field.
+7. **Per-venue countdowns**: Doors countdown only tracks earliest event — could show per-venue.

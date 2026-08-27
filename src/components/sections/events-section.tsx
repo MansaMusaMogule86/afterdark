@@ -181,12 +181,12 @@ export function EventsSection() {
                       onClick={() => { track("view_event", { id: ev.id, source: "events_title" }); openEventDrawer(ev.id); }}
                       className="mt-1 text-left"
                     >
-                      <h3 className="line-clamp-2 font-serif-display text-lg leading-snug text-[var(--venue-foreground)] group-hover:text-[var(--venue-accent)]">
+                      <h3 className="line-clamp-2 min-h-[3.2rem] font-serif-display text-lg leading-snug text-[var(--venue-foreground)] group-hover:text-[var(--venue-accent)]">
                         {ev.title}
                       </h3>
                     </button>
 
-                    <div className="mt-3 space-y-1.5">
+                    <div className="mt-3 space-y-1.5 min-h-[4.5rem]">
                       <Meta label="Music" value={ev.music.map(genreLabel).join(" · ")} />
                       <Meta label="Doors" value={`${ev.startTime} – ${ev.endTime}`} />
                       {ev.artist && <Meta label="Artist" value={ev.artist} />}
@@ -267,12 +267,12 @@ function FilterChip({ active, onClick, children }: { active: boolean; onClick: (
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
-    <p className="flex items-baseline gap-2 text-xs">
-      <span className="font-mono-tight w-14 shrink-0 text-[0.5625rem] uppercase tracking-[0.15em] text-muted-foreground">
+    <div className="flex items-baseline gap-2 text-xs">
+      <span className="font-mono-tight w-12 shrink-0 text-[0.5625rem] uppercase tracking-[0.15em] text-muted-foreground">
         {label}
       </span>
-      <span className="truncate text-foreground/90">{value}</span>
-    </p>
+      <span className="flex-1 truncate text-foreground/90" title={value}>{value}</span>
+    </div>
   );
 }
 
