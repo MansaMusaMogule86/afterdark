@@ -51,7 +51,7 @@ const CELEBRATIONS = [
 ];
 
 export function CelebrationsSection() {
-  const { openBooking } = useUi();
+  const { openConcierge } = useUi();
 
   return (
     <section id="celebrations" className="relative border-t border-border/40 bg-background">
@@ -94,7 +94,7 @@ export function CelebrationsSection() {
               <button
                 onClick={() => {
                   track("start_vip_inquiry", { occasion: c.slug, source: "celebrations" });
-                  openBooking({ venue: "any", eventOrDate: c.name });
+                  openConcierge({ venue: "any", eventOrDate: c.name });
                 }}
                 className="mt-5 flex items-center gap-1 font-mono-tight text-[0.625rem] uppercase tracking-[0.15em] text-accent transition-colors hover:text-foreground"
               >

@@ -26,7 +26,7 @@ function useMounted(): boolean {
 }
 
 export function TonightSection() {
-  const { openEventDrawer, openBooking, openVenueDrawer } = useUi();
+  const { openEventDrawer, openConcierge, openVenueDrawer } = useUi();
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const mounted = useMounted();
@@ -206,7 +206,7 @@ export function TonightSection() {
                         <button
                           onClick={() => {
                             track("start_vip_inquiry", { venue: v.slug, source: "tonight" });
-                            openBooking({ venue: v.slug, eventOrDate: ev.title });
+                            openConcierge({ venue: v.slug, eventOrDate: ev.title });
                           }}
                           className="flex-1 rounded-none bg-[var(--venue-accent)] py-2.5 text-center font-mono-tight text-[0.6875rem] uppercase tracking-[0.15em] text-[var(--venue-bg)] transition-opacity hover:opacity-90"
                         >

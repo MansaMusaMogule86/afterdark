@@ -21,7 +21,7 @@ interface Props {
 }
 
 export function EnglishNightDetailView({ venue, date }: Props) {
-  const { openBooking, openVenueDrawer } = useUi();
+  const { openConcierge, openVenueDrawer } = useUi();
   const [ev, setEv] = useState<EnglishNightEvent | null>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -242,7 +242,7 @@ export function EnglishNightDetailView({ venue, date }: Props) {
             {/* Actions */}
             <div className="mt-8 flex flex-wrap gap-2">
               <Button
-                onClick={() => { track("start_vip_inquiry", { venue: v.slug, event: ev.id, source: "english_night_detail" }); openBooking({ venue: v.slug, eventOrDate: ev.title }); }}
+                onClick={() => { track("start_vip_inquiry", { venue: v.slug, event: ev.id, source: "english_night_detail" }); openConcierge({ venue: v.slug, eventOrDate: ev.title }); }}
                 className="flex-1 rounded-none bg-[var(--venue-accent)] py-3 text-[var(--venue-bg)] hover:opacity-90"
               >
                 <CalendarCheck className="mr-2 h-4 w-4" /> Request VIP

@@ -16,10 +16,10 @@ import { NewsletterSection } from "@/components/sections/newsletter-section";
 import { AboutFaqSection } from "@/components/sections/about-faq-section";
 import { VenueDrawer } from "@/components/drawers/venue-drawer";
 import { EventDrawer } from "@/components/drawers/event-drawer";
-import { BookingModal } from "@/components/booking-modal";
+import { ConciergeBottomSheet } from "@/components/concierge-bottom-sheet";
 import { CookieConsent } from "@/components/cookie-consent";
 import { CommandPalette } from "@/components/command-palette";
-import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
+import { NightConciergeButton } from "@/components/night-concierge-button";
 import { PromoterWelcomeBanner } from "@/components/promoter-welcome-banner";
 import { ReadingProgress } from "@/components/reading-progress";
 import { KeyboardShortcutHelp } from "@/components/keyboard-shortcut-help";
@@ -103,10 +103,10 @@ export default async function Home({ searchParams }: PageProps) {
         <MobileActionBar />
         <VenueDrawer />
         <EventDrawer />
-        <BookingModal />
+        <ConciergeBottomSheet />
         <CookieConsent />
         <CommandPalette />
-        <WhatsAppFloatingButton />
+        <NightConciergeButton />
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />
@@ -127,10 +127,10 @@ export default async function Home({ searchParams }: PageProps) {
         <MobileActionBar />
         <VenueDrawer />
         <EventDrawer />
-        <BookingModal />
+        <ConciergeBottomSheet />
         <CookieConsent />
         <CommandPalette />
-        <WhatsAppFloatingButton />
+        <NightConciergeButton />
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />
@@ -151,10 +151,10 @@ export default async function Home({ searchParams }: PageProps) {
         <MobileActionBar />
         <VenueDrawer />
         <EventDrawer />
-        <BookingModal />
+        <ConciergeBottomSheet />
         <CookieConsent />
         <CommandPalette />
-        <WhatsAppFloatingButton />
+        <NightConciergeButton />
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />
@@ -214,10 +214,10 @@ export default async function Home({ searchParams }: PageProps) {
       {/* Overlays */}
       <VenueDrawer />
       <EventDrawer />
-      <BookingModal />
+      <ConciergeBottomSheet />
         <CookieConsent />
         <CommandPalette />
-        <WhatsAppFloatingButton />
+        <NightConciergeButton />
         <PromoterWelcomeBanner />
         <ReadingProgress />
         <KeyboardShortcutHelp />

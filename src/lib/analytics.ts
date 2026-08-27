@@ -23,7 +23,14 @@ export type TrackEventName =
   | "click_map"
   | "add_to_calendar"
   | "newsletter_signup"
-  | "promoter_conversion";
+  | "promoter_conversion"
+  | "concierge_open"
+  | "concierge_request_type_selected"
+  | "concierge_venue_selected"
+  | "concierge_details_completed"
+  | "concierge_lead_created"
+  | "concierge_whatsapp_opened"
+  | "concierge_fallback_selected";
 
 interface ConsentPreferences {
   status: "accepted" | "rejected" | null;

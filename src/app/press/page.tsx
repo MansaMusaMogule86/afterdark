@@ -4,10 +4,10 @@ import { MobileActionBar } from "@/components/mobile-action-bar";
 import { SiteFooter } from "@/components/site-footer";
 import { VenueDrawer } from "@/components/drawers/venue-drawer";
 import { EventDrawer } from "@/components/drawers/event-drawer";
-import { BookingModal } from "@/components/booking-modal";
+import { ConciergeBottomSheet } from "@/components/concierge-bottom-sheet";
 import { CookieConsent } from "@/components/cookie-consent";
 import { CommandPalette } from "@/components/command-palette";
-import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
+import { NightConciergeButton } from "@/components/night-concierge-button";
 import { PromoterWelcomeBanner } from "@/components/promoter-welcome-banner";
 import { ReadingProgress } from "@/components/reading-progress";
 import { KeyboardShortcutHelp } from "@/components/keyboard-shortcut-help";
@@ -43,10 +43,10 @@ export default function PressPage() {
       <MobileActionBar />
       <VenueDrawer />
       <EventDrawer />
-      <BookingModal />
+      <ConciergeBottomSheet />
       <CookieConsent />
       <CommandPalette />
-      <WhatsAppFloatingButton />
+      <NightConciergeButton />
       <PromoterWelcomeBanner />
       <ReadingProgress />
       <KeyboardShortcutHelp />

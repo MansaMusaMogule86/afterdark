@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/accordion";
 
 export function VenueDrawer() {
-  const { venueDrawer, closeVenueDrawer, openBooking, openEventDrawer } = useUi();
+  const { venueDrawer, closeVenueDrawer, openConcierge, openEventDrawer } = useUi();
   const venue = venueDrawer ? getVenue(venueDrawer) : null;
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -229,7 +229,7 @@ export function VenueDrawer() {
                 Capacities, minimum spends, inclusions, and table names are shown only when verified. The floor plan above is a placeholder until the real plan is supplied.
               </p>
               <Button
-                onClick={() => { track("start_vip_inquiry", { venue: v.slug, source: "venue_drawer" }); openBooking({ venue: v.slug }); }}
+                onClick={() => { track("start_vip_inquiry", { venue: v.slug, source: "venue_drawer" }); openConcierge({ venue: v.slug }); }}
                 className="mt-3 rounded-none bg-[var(--venue-accent)] px-5 text-[var(--venue-bg)] hover:opacity-90"
               >
                 <CalendarCheck className="mr-2 h-4 w-4" /> Request VIP Table
@@ -379,7 +379,7 @@ export function VenueDrawer() {
         {/* Sticky bottom CTA */}
         <div className="venue-surface flex items-center gap-2 border-t border-[var(--venue-foreground)]/10 p-4">
           <Button
-            onClick={() => { track("start_vip_inquiry", { venue: v.slug, source: "venue_drawer_cta" }); openBooking({ venue: v.slug }); }}
+            onClick={() => { track("start_vip_inquiry", { venue: v.slug, source: "venue_drawer_cta" }); openConcierge({ venue: v.slug }); }}
             className="flex-1 rounded-none bg-[var(--venue-accent)] py-3 text-[var(--venue-bg)] hover:opacity-90"
           >
             <CalendarCheck className="mr-2 h-4 w-4" /> Request VIP

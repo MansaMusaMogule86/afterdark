@@ -40,7 +40,7 @@ function applyThemeCommand(key: "parent" | "avenue" | "ora" | "blacktape") {
 
 export function CommandPalette() {
   const router = useRouter();
-  const { openBooking, openVenueDrawer } = useUi();
+  const { openConcierge, openVenueDrawer } = useUi();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -102,12 +102,12 @@ export function CommandPalette() {
     ];
 
     const actionCmds: CommandItem[] = [
-      { id: "book-vip", label: "Book VIP Table", hint: "Start a VIP request", icon: <Crown className="h-4 w-4" />, group: "Actions", action: () => openBooking() },
+      { id: "book-vip", label: "Book VIP Table", hint: "Start a VIP request", icon: <Crown className="h-4 w-4" />, group: "Actions", action: () => openConcierge() },
       { id: "faq-search", label: "Search FAQ", hint: "Find answers to common questions", icon: <HelpCircle className="h-4 w-4" />, group: "Actions", action: () => router.push("/?view=faq") },
     ];
 
     return [...nav, ...venueCmds, ...enCmds, ...themeCmds, ...actionCmds];
-  }, [router, openBooking, openVenueDrawer]);
+  }, [router, openConcierge, openVenueDrawer]);
 
   const filtered = useMemo(() => {
     if (!query.trim()) return commands;

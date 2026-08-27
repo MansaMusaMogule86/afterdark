@@ -10,7 +10,7 @@ import { VenueCompareModal } from "@/components/venue-compare-modal";
 import { siteConfig } from "@/lib/site-config";
 
 export function VenuesSection() {
-  const { openVenueDrawer, openBooking, openEventDrawer } = useUi();
+  const { openVenueDrawer, openConcierge, openEventDrawer } = useUi();
 
   return (
     <section id="venues" className="relative border-t border-border/40 bg-background">
@@ -169,7 +169,7 @@ export function VenuesSection() {
                     <button
                       onClick={() => {
                         track("start_vip_inquiry", { venue: v.slug, source: "venues_panel" });
-                        openBooking({ venue: v.slug });
+                        openConcierge({ venue: v.slug });
                       }}
                       className="rounded-none bg-[var(--venue-accent)] px-6 py-3 font-mono-tight text-[0.6875rem] uppercase tracking-[0.18em] text-[var(--venue-bg)] transition-opacity hover:opacity-90"
                     >

@@ -24,7 +24,7 @@ function useMounted(): boolean {
 }
 
 export function HeroSection() {
-  const { heroVenue, setHeroVenue, openBooking, openVenueDrawer } = useUi();
+  const { heroVenue, setHeroVenue, openConcierge, openVenueDrawer } = useUi();
   const [auto, setAuto] = useState(true);
   const mounted = useMounted();
 
@@ -142,7 +142,7 @@ export function HeroSection() {
                 className="rounded-none px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-foreground/5"
                 onClick={() => {
                   track("start_vip_inquiry", { source: "hero_direct_vip" });
-                  openBooking({ venue: active.slug });
+                  openConcierge({ venue: active.slug });
                 }}
               >
                 <CalendarCheck className="mr-2 h-4 w-4" />

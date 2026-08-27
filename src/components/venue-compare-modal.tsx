@@ -74,7 +74,7 @@ const FIELDS: CompareField[] = [
 ];
 
 export function VenueCompareModal() {
-  const { openVenueDrawer, openBooking } = useUi();
+  const { openVenueDrawer, openConcierge } = useUi();
   const [selected, setSelected] = useState<string[]>(["avenue", "ora", "blacktape"]);
   const [open, setOpen] = useState(false);
 
@@ -211,7 +211,7 @@ export function VenueCompareModal() {
                 <button
                   onClick={() => {
                     track("start_vip_inquiry", { venue: v.slug, source: "compare_modal" });
-                    openBooking({ venue: v.slug });
+                    openConcierge({ venue: v.slug });
                   }}
                   className="rounded-sm border border-border px-3 py-2 font-mono-tight text-[0.5625rem] uppercase tracking-[0.12em] text-muted-foreground hover:text-foreground"
                 >

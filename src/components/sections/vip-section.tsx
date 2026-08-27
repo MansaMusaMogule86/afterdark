@@ -15,7 +15,7 @@ const TABLE_TYPES = [
 ] as const;
 
 export function VipSection() {
-  const { openBooking } = useUi();
+  const { openConcierge } = useUi();
 
   return (
     <section id="vip" className="relative border-t border-border/40 bg-background">
@@ -64,7 +64,7 @@ export function VipSection() {
               <button
                 onClick={() => {
                   track("start_vip_inquiry", { table_type: t.slug, source: "vip_section" });
-                  openBooking({});
+                  openConcierge({});
                 }}
                 className="mt-4 flex items-center gap-1 font-mono-tight text-[0.625rem] uppercase tracking-[0.15em] text-accent transition-colors hover:text-foreground"
               >
@@ -99,7 +99,7 @@ export function VipSection() {
             </p>
           </div>
           <Button
-            onClick={() => { track("start_vip_inquiry", { source: "vip_cta" }); openBooking(); }}
+            onClick={() => { track("start_vip_inquiry", { source: "vip_cta" }); openConcierge(); }}
             className="rounded-none bg-accent px-8 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-background hover:opacity-90"
           >
             Start VIP Request <ArrowRight className="ml-2 h-4 w-4" />

@@ -41,7 +41,7 @@ type StatusFilter = "all" | "live" | "scheduled";
 
 export function EnglishNightsView() {
   const router = useRouter();
-  const { openBooking } = useUi();
+  const { openConcierge } = useUi();
   const [events, setEvents] = useState<LightEvent[]>([]);
   const [stats, setStats] = useState<{ total: number; ready: number; needsReview: number; rejected: number } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -276,7 +276,7 @@ export function EnglishNightsView() {
                         View Event <ArrowUpRight className="ml-1 inline h-3 w-3" />
                       </button>
                       <button
-                        onClick={() => { track("start_vip_inquiry", { venue: e.venue, event: e.id, source: "english_nights" }); openBooking({ venue: e.venue, eventOrDate: e.title }); }}
+                        onClick={() => { track("start_vip_inquiry", { venue: e.venue, event: e.id, source: "english_nights" }); openConcierge({ venue: e.venue, eventOrDate: e.title }); }}
                         className="flex-1 rounded-none bg-[var(--venue-accent)] py-2.5 text-center font-mono-tight text-[0.625rem] uppercase tracking-[0.15em] text-[var(--venue-bg)] transition-opacity hover:opacity-90"
                       >
                         <CalendarCheck className="mr-1 inline h-3 w-3" /> VIP

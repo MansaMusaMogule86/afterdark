@@ -26,7 +26,7 @@ const NAV = [
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
-  const { mobileMenuOpen, setMobileMenu, openBooking } = useUi();
+  const { mobileMenuOpen, setMobileMenu, openConcierge } = useUi();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -109,7 +109,7 @@ export function SiteHeader() {
               size="sm"
               onClick={() => {
                 track("start_vip_inquiry", { source: "header" });
-                openBooking();
+                openConcierge();
               }}
               className="hidden rounded-none bg-foreground px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-background hover:bg-accent hover:text-background md:inline-flex"
             >
@@ -159,7 +159,7 @@ export function SiteHeader() {
           <Button
             onClick={() => {
               track("start_vip_inquiry", { source: "mobile_menu" });
-              openBooking();
+              openConcierge();
             }}
             className="mt-8 rounded-none bg-accent py-4 text-sm font-semibold uppercase tracking-[0.18em] text-background"
           >

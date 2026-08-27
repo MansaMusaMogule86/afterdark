@@ -1055,3 +1055,124 @@ The lint rule `react-hooks/set-state-in-effect` flags `setMounted(true)` in `use
 - **Weather widget**: Renders null on server, shows "36° Dubai" on client ✓
 - **Clock**: Renders empty on server, shows "DXB 06:35" on client ✓
 - **Booking flow**: Opens correctly to "Step 1 of 3 — Night" ✓
+
+---
+Task ID: CONCIERGE-REBUILD
+Agent: lead (Z.ai Code)
+Task: Complete Night Concierge experience rebuild — removed WhatsApp popup, built premium 3-step concierge
+
+## What Was Removed
+1. ✅ WhatsAppFloatingButton component (deleted) — bright green button, pulsing animation, auto-expand panel, "Online" indicator, "No phone number required" text, notification dot
+2. ✅ BookingModal component (deleted) — old 3-step booking modal (replaced by concierge bottom sheet)
+3. ✅ All `openBooking` calls → replaced with `openConcierge` across 8 components
+4. ✅ No duplicated chat/support/feedback widgets remain
+
+## What Was Built
+
+### 1. NightConciergeButton (desktop, `night-concierge-button.tsx`)
+- Positioned bottom-right (desktop only, lg+)
+- Near-black background (`bg-background/95`)
+- Thin champagne border (`border-accent/40`)
+- Warm ivory text ("Night Concierge")
+- AM monogram in champagne
+- Max height 44px (under 52px limit)
+- No WhatsApp green, no pulsing, no auto-expansion
+- Opens only after intentional click
+- Detects cookie banner and positions above it (`bottom-20` when banner visible, `bottom-6` otherwise)
+- Respects safe areas
+
+### 2. ConciergeBottomSheet (`concierge-bottom-sheet.tsx`)
+Premium bottom sheet with 3-step flow:
+
+**Header:** "Plan Your Night" / "Night Concierge" + "Tell us what you need and we will route your request to the correct venue team."
+
+**Step 1: Request Type** — 5 compact selectable rows with icons:
+- VIP Table (Crown)
+- Guest List (ListChecks)
+- Birthday or Celebration (Cake)
+- Private Event (Building2)
+- General Event Question (HelpCircle)
+
+**Step 2: Night Details** — collects:
+- Preferred venue (Avenue / Ora / Black Tape / Help Me Choose)
+- Event or date (select)
+- Number of guests
+- Expected arrival time
+- Budget range (only for VIP or private event requests)
+- Occasion (only for celebrations/private events)
+
+**Step 3: Contact Details** — collects:
+- Full name (required)
+- Mobile number (required, validated)
+- Email (optional)
+- Marketing consent (separate optional checkbox, not combined with service contact)
+- Honeypot field
+
+**Final Action:** "Continue to Concierge" (not "Start WhatsApp Chat")
+
+### 3. NightOps Lead Creation
+- POST /api/bookings creates a structured lead before WhatsApp opens
+- Stores: request type, venue, event ID, event date, party size, arrival time, budget range, occasion, full name, mobile number, campaign attribution, referring page, promoter code, concierge code, created time, lead reference
+- Returns reference (e.g. "AMD-260827-2LTX")
+
+### 4. WhatsApp Handoff
+- WhatsApp is the FINAL communication channel, not the booking interface
+- Generates prefilled message with visitor's selections:
+  ```
+  Hi ABOVE MIDNIGHT DXB,
+  I would like to enquire about a VIP Table.
+  Venue: Avenue
+  Event: Tonight — Thu 27 Aug
+  Guests: 4
+  Arrival: 11:00 PM
+  Reference: AMD-260827-2LTX
+  ```
+- Opens WhatsApp only after "Continue to WhatsApp" click
+- Fallback options: Call venue (pending), Submit without WhatsApp, Copy reference
+
+### 5. Mobile BOOK Integration
+- Mobile action bar BOOK button now opens the concierge bottom sheet (not old booking modal)
+- No floating concierge button on mobile (single entry point)
+
+## Interaction Rules Implemented
+1. ✅ Never opens automatically
+2. ✅ Never opens on scroll
+3. ✅ Never reopens after close in same session
+4. ✅ Form data preserved if sheet closes accidentally (state not reset on close)
+5. ✅ Close with Escape on desktop
+6. ✅ Keyboard navigation supported
+7. ✅ Focus trap while open (Tab cycles within dialog)
+8. ✅ Focus restored to trigger button on close
+9. ✅ Background scroll locked while open
+10. ✅ Reduced motion respected (animation disabled)
+11. ✅ 100svh/100dvh on mobile (max-h-[92svh])
+12. ✅ Bottom safe areas respected (safe-pb on footer)
+13. ✅ Does not overlap cookie banner (button positions above it)
+
+## Analytics Events
+- concierge_open ✓
+- concierge_request_type_selected ✓
+- concierge_venue_selected ✓
+- concierge_details_completed ✓
+- concierge_lead_created ✓
+- concierge_whatsapp_opened ✓
+- concierge_fallback_selected ✓
+- No PII sent to analytics (names, numbers, emails excluded)
+
+## Cookie Consent Interaction
+- Desktop concierge button detects cookie banner and positions above it
+- Does not auto-open concierge
+- Cookie controls remain accessible
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript**: 0 errors
+- **Runtime errors**: 0
+- **Console errors**: 0
+- **Old WhatsApp button**: Removed ✓
+- **Old booking modal**: Removed ✓
+- **Desktop NIGHT CONCIERGE button**: Present, restrained luxury design ✓
+- **Mobile BOOK bar**: Opens concierge ✓
+- **Full flow**: Step 1 (VIP Table) → Step 2 (Avenue + date) → Step 3 (name + mobile) → Lead created "AMD-260827-2LTX" → "Continue to WhatsApp" ✓
+- **Mobile overflow**: 0px ✓
+- **VLM confirmed**: "restrained NIGHT CONCIERGE button present, no bright green WhatsApp button"

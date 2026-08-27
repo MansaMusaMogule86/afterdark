@@ -17,7 +17,7 @@ type MusicFilter = "all" | MusicGenre;
 type StatusFilter = "all" | "live" | "scheduled" | "available";
 
 export function EventsSection() {
-  const { openEventDrawer, openBooking } = useUi();
+  const { openEventDrawer, openConcierge } = useUi();
   const [venueF, setVenueF] = useState<VenueFilter>("all");
   const [musicF, setMusicF] = useState<MusicFilter>("all");
   const [statusF, setStatusF] = useState<StatusFilter>("all");
@@ -214,7 +214,7 @@ export function EventsSection() {
                         <ArrowUpRight className="ml-1 inline h-3 w-3" />
                       </button>
                       <button
-                        onClick={() => { track("start_vip_inquiry", { venue: ev.venue, event: ev.id, source: "events_grid" }); openBooking({ venue: ev.venue, eventOrDate: ev.title }); }}
+                        onClick={() => { track("start_vip_inquiry", { venue: ev.venue, event: ev.id, source: "events_grid" }); openConcierge({ venue: ev.venue, eventOrDate: ev.title }); }}
                         className="flex-1 rounded-none bg-[var(--venue-accent)] py-2.5 text-center font-mono-tight text-[0.625rem] uppercase tracking-[0.15em] text-[var(--venue-bg)] transition-opacity hover:opacity-90"
                       >
                         <CalendarCheck className="mr-1 inline h-3 w-3" />

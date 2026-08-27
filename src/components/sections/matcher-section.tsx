@@ -57,7 +57,7 @@ const BUDGET_OPTIONS: { value: Budget; label: string; desc: string }[] = [
 ];
 
 export function MatcherSection() {
-  const { openBooking, openEventDrawer } = useUi();
+  const { openConcierge, openEventDrawer } = useUi();
   const dates = matcherDateOptions();
   const [step, setStep] = useState(0);
   const [input, setInput] = useState<MatcherInput>({
@@ -336,7 +336,7 @@ export function MatcherSection() {
                   </Button>
                 )}
                 <Button
-                  onClick={() => { track("start_vip_inquiry", { venue: top?.venue, source: "matcher_result" }); openBooking({ venue: top?.venue, eventOrDate: topEvent?.title }); }}
+                  onClick={() => { track("start_vip_inquiry", { venue: top?.venue, source: "matcher_result" }); openConcierge({ venue: top?.venue, eventOrDate: topEvent?.title }); }}
                   className="rounded-none bg-accent px-6 text-background hover:opacity-90"
                 >
                   <CalendarCheck className="mr-2 h-4 w-4" /> Reserve VIP

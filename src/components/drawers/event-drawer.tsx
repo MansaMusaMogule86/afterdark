@@ -13,7 +13,7 @@ import { AssetImage } from "@/components/asset-image";
 import { Button } from "@/components/ui/button";
 
 export function EventDrawer() {
-  const { eventDrawer, closeEventDrawer, openBooking, openVenueDrawer } = useUi();
+  const { eventDrawer, closeEventDrawer, openConcierge, openVenueDrawer } = useUi();
   const ev = eventDrawer ? getOccurrence(eventDrawer) : null;
 
   useEffect(() => {
@@ -164,7 +164,7 @@ export function EventDrawer() {
             {/* Actions */}
             <div className="mt-8 flex flex-wrap gap-2">
               <Button
-                onClick={() => { track("start_vip_inquiry", { venue: v.slug, event: ev.id, source: "event_drawer" }); openBooking({ venue: v.slug, eventOrDate: ev.title }); }}
+                onClick={() => { track("start_vip_inquiry", { venue: v.slug, event: ev.id, source: "event_drawer" }); openConcierge({ venue: v.slug, eventOrDate: ev.title }); }}
                 className="flex-1 rounded-none bg-[var(--venue-accent)] py-3 text-[var(--venue-bg)] hover:opacity-90"
               >
                 <CalendarCheck className="mr-2 h-4 w-4" /> Request VIP

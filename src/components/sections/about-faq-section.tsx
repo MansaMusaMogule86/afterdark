@@ -63,7 +63,7 @@ const FAQS: { slug: string; q: string; a: string }[] = [
 ];
 
 export function AboutFaqSection() {
-  const { openBooking } = useUi();
+  const { openConcierge } = useUi();
 
   return (
     <section id="about" className="relative border-t border-border/40 bg-background">
@@ -167,7 +167,7 @@ export function AboutFaqSection() {
                 <Button
                   onClick={() => {
                     track("start_vip_inquiry", { source: "about_faq_cta" });
-                    openBooking();
+                    openConcierge();
                   }}
                   className="mt-5 w-full rounded-none bg-accent px-6 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-background hover:opacity-90"
                 >
