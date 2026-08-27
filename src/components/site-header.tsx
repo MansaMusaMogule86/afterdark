@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, CalendarClock } from "lucide-react";
+import { Menu, X, CalendarClock, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUi } from "@/lib/ui-store";
 import { siteConfig } from "@/lib/site-config";
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
+import { LiveDubaiClock } from "@/components/live-dubai-clock";
 
 const NAV = [
   { label: "Tonight", href: "#tonight" },
@@ -82,6 +83,21 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
+            <div className="hidden xl:block">
+              <LiveDubaiClock />
+            </div>
+            <button
+              onClick={() => {
+                // Dispatch Cmd+K programmatically by toggling a custom event
+                window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
+              }}
+              className="hidden items-center gap-2 rounded-sm border border-border/40 bg-secondary/30 px-3 py-2 font-mono-tight text-[0.625rem] uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground lg:flex"
+              aria-label="Open command palette"
+            >
+              <Search className="h-3.5 w-3.5" />
+              <span>Search</span>
+              <kbd className="rounded border border-border px-1 text-[0.5rem]">⌘K</kbd>
+            </button>
             <Button
               size="sm"
               onClick={() => {

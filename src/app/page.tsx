@@ -17,6 +17,8 @@ import { AboutFaqSection } from "@/components/sections/about-faq-section";
 import { VenueDrawer } from "@/components/drawers/venue-drawer";
 import { EventDrawer } from "@/components/drawers/event-drawer";
 import { BookingModal } from "@/components/booking-modal";
+import { CookieConsent } from "@/components/cookie-consent";
+import { CommandPalette } from "@/components/command-palette";
 import { AssetManifestView } from "@/components/asset-manifest-view";
 import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
@@ -87,6 +89,8 @@ export default async function Home({ searchParams }: PageProps) {
         <VenueDrawer />
         <EventDrawer />
         <BookingModal />
+        <CookieConsent />
+        <CommandPalette />
       </div>
     );
   }
@@ -104,6 +108,8 @@ export default async function Home({ searchParams }: PageProps) {
         <VenueDrawer />
         <EventDrawer />
         <BookingModal />
+        <CookieConsent />
+        <CommandPalette />
       </div>
     );
   }
@@ -159,6 +165,8 @@ export default async function Home({ searchParams }: PageProps) {
       <VenueDrawer />
       <EventDrawer />
       <BookingModal />
+        <CookieConsent />
+        <CommandPalette />
     </div>
   );
 }

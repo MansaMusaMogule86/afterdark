@@ -249,3 +249,79 @@ Unresolved / next-phase:
 - Instagram adapter is a typed mock — swap to real Instagram Graph API adapter when credentials are available.
 - English Night event media uses designed placeholders — real Instagram media URLs would replace them in production.
 - The /events/english-night/[venue]/[date] route is adapted to ?view=english-night&venue=&date= due to the single-route environment constraint.
+
+---
+Task ID: CRON-REVIEW-1
+Agent: webDevReview (automated cron round 1)
+Task: QA assessment + fix hero visual imbalance + add cookie consent, live Dubai clock, command palette, events show-more
+
+## Current Project Status Assessment
+The AFTER MIDNIGHT DXB platform is stable and feature-complete across all major flows:
+- 11 homepage sections (hero, tonight, venues, events, matcher, VIP, celebrations, English Nights promo, Night Edit, locations, about/FAQ, newsletter)
+- 3 query-param views (english-nights landing, english-night detail, english-nights-admin)
+- Full booking flow (3-step modal), venue drawer, event drawer
+- English Night Instagram Automation (hashtag-only import, 3-status classification, auto-publish)
+- API layer (tonight, events, bookings, match-venue, newsletter, track, english-nights, instagram/import)
+- Lint: 0 errors, 0 warnings. No runtime errors. No console errors.
+
+## Completed Modifications This Round
+
+### 1. Fixed hero visual imbalance (VLM 6/10 → 8/10)
+- Redesigned `hero-section.tsx` with a split-layout: left = heading + CTAs (col-span-7), right = dedicated `VenueVisualPanel` (col-span-5)
+- The VenueVisualPanel shows the active venue's hero preview image with overlays: "Now showing" label, venue name, floor badge, tonight status (live event title + doors + music), and an "Explore {venue}" button
+- Footer strip shows music genres + area
+- Removed the full-bleed background image (which caused the "dead zone" on the left) and replaced with a cleaner color wash + radial glow + grain
+- The panel transitions smoothly when the auto-cycling venue tabs change
+
+### 2. Added cookie consent banner (`cookie-consent.tsx`)
+- Required by the directive for consent-aware analytics (GA4/GTM/Meta Pixel)
+- Compact bar with Accept / Customize / Reject actions
+- Expandable preferences: Necessary (always on), Analytics, Marketing
+- Stores consent in localStorage with 180-day expiry
+- Pushes consent mode to dataLayer/gtag for GTM/GA4 integration
+- Appears after 1.2s delay to avoid layout shift during initial render
+- Respects safe-area insets
+
+### 3. Added live Dubai clock widget (`live-dubai-clock.tsx`)
+- Shows current Asia/Dubai time (HH:MM, 24h), updates every second
+- Displays "After Dark" badge when between 6 PM and 6 AM (reinforces the brand identity)
+- Moon icon turns accent-colored during night hours
+- Positioned in the header (xl breakpoint) next to the search button
+
+### 4. Added Cmd+K command palette (`command-palette.tsx`)
+- Full quick-navigation system: sections, venues, English Nights, actions
+- Keyboard navigation (↑↓ to navigate, Enter to select, Esc to close)
+- Real-time fuzzy search across labels, hints, groups, and keywords
+- Grouped results (Navigation, Venues, English Nights, Actions)
+- Triggered by Cmd+K / Ctrl+K or a "Search ⌘K" button in the header
+- Tracks usage via analytics
+
+### 5. Added events "show more" collapse (`events-section.tsx`)
+- Shows 6 events by default, with a "Show N More" button
+- Expands to show all filtered events, button changes to "Show Less"
+- Reduces page length and cognitive fatigue (VLM identified this as a top issue)
+
+### 6. Added search trigger button to header
+- "Search ⌘K" button visible on lg+ screens
+- Dispatches synthetic Cmd+K event to open the command palette
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **Runtime errors**: 0
+- **Console errors**: 0 (after clean reload)
+- **Hero VLM rating**: 6/10 → 8/10 (split-layout fix)
+- **Full page VLM rating**: 9/10 (overall)
+- **Cookie consent**: Accept → stored in localStorage → dismissed ✓
+- **Command palette**: Opens via Cmd+K, search filters results, keyboard nav works ✓
+- **Dubai clock**: Shows live time + "After Dark" badge ✓
+- **Events show-more**: 6 → 13 cards on expand, "Show Less" toggles back ✓
+- **Mobile**: No horizontal overflow, bottom action bar present ✓
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: hreflang declares it but RTL Arabic versions are not yet built — next phase should add Arabic content + RTL layout.
+2. **Instagram adapter**: Currently a typed mock — swap to real Instagram Graph API when credentials are available.
+3. **Cookie consent persistence**: Currently per-browser localStorage — for server-side consent enforcement (e.g., blocking GA4 script injection), integrate with a consent management platform or server-side check.
+4. **Performance**: Consider adding `next/image` optimization once real assets exist; currently using AssetImage with lazy loading.
+5. **Accessibility**: Some secondary text (grey on black) could be improved for WCAG AA contrast — VLM noted this.
+6. **Command palette**: Could be enhanced with recent searches, event-specific results, and venue-specific actions.
+7. **Consent-aware analytics**: The track() function currently fires regardless of consent — should gate GA4/GTM/Meta Pixel calls behind the stored consent preferences.

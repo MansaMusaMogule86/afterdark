@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CalendarDays, Filter, ArrowUpRight, CalendarCheck, X } from "lucide-react";
+import { CalendarDays, Filter, ArrowUpRight, CalendarCheck, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { eventOccurrences } from "@/lib/events-data";
 import { venues, getVenue } from "@/lib/venue-data";
@@ -20,6 +20,8 @@ export function EventsSection() {
   const [venueF, setVenueF] = useState<VenueFilter>("all");
   const [musicF, setMusicF] = useState<MusicFilter>("all");
   const [statusF, setStatusF] = useState<StatusFilter>("all");
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_SHOW = 6;
 
   const start = getServiceDate();
   const window7 = addDays(start, 6);
@@ -118,8 +120,9 @@ export function EventsSection() {
             </p>
           </div>
         ) : (
+          <>
           <div className="mt-8 grid gap-px overflow-hidden rounded-sm border border-border/40 bg-border/40 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((ev) => {
+            {(showAll ? filtered : filtered.slice(0, INITIAL_SHOW)).map((ev) => {
               const v = getVenue(ev.venue)!;
               return (
                 <article
@@ -219,6 +222,18 @@ export function EventsSection() {
               );
             })}
           </div>
+          {filtered.length > INITIAL_SHOW && (
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="flex items-center gap-2 rounded-none border border-border/60 bg-card px-6 py-3 font-mono-tight text-[0.6875rem] uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+              >
+                {showAll ? "Show Less" : `Show ${filtered.length - INITIAL_SHOW} More`}
+                <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", showAll && "rotate-180")} />
+              </button>
+            </div>
+          )}
+          </>
         )}
       </div>
     </section>
