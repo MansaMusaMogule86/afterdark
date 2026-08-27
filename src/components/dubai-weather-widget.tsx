@@ -1,8 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { Sun, Moon, Cloud, CloudMoon, Wind, Droplets, Thermometer } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+/**
+ * Subscribe to a ticking weather store. The store updates every 60s.
+ * useSyncExternalStore handles the server/client snapshot difference
+ * automatically (getServerSnapshot returns null).
+ *
+ * The client snapshot is cached and only refreshed when the interval fires
+ * to avoid an infinite loop (getSnapshot must return a stable reference).
+ */
+let cachedWeather: WeatherInfo | null = null;
+
+function subscribe(callback: () => void): () => void {
+  // Update the cache, then notify subscribers.
+  const tick = () => {
+    cachedWeather = generateMockWeather();
+    callback();
+  };
+  // Initialize cache on first subscribe.
+  if (!cachedWeather) cachedWeather = generateMockWeather();
+  const interval = setInterval(tick, 60000);
+  return () => clearInterval(interval);
+}
+
+function getClientSnapshot(): WeatherInfo | null {
+  return cachedWeather;
+}
+
+function getServerSnapshot(): null {
+  return null;
+}
 
 /**
  * DubaiWeatherWidget — shows current Dubai weather for nightlife planning.
@@ -53,12 +83,9 @@ function generateMockWeather(): WeatherInfo {
 }
 
 export function DubaiWeatherWidget() {
-  const [weather, setWeather] = useState<WeatherInfo | null>(() => generateMockWeather());
-
-  useEffect(() => {
-    const t = setInterval(() => setWeather(generateMockWeather()), 60000);
-    return () => clearInterval(t);
-  }, []);
+  // useSyncExternalStore handles server/client snapshot difference automatically.
+  // Server renders null (no weather), client computes on mount.
+  const weather = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   if (!weather) return null;
 

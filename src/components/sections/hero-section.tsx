@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { ChevronDown, Sparkles, ArrowRight, CalendarCheck, MapPin, Music2, Clock, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { venues } from "@/lib/venue-data";
@@ -14,10 +14,23 @@ import { DoorsCountdown } from "@/components/doors-countdown";
 
 const VENUE_ORDER = ["avenue", "ora", "blacktape"] as const;
 
+/** useMounted — hydration-safe mounted flag via useSyncExternalStore. */
+function useMounted(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
 export function HeroSection() {
   const { heroVenue, setHeroVenue, openBooking, openVenueDrawer } = useUi();
   const [auto, setAuto] = useState(true);
-  const tonight = getTonightOccurrences();
+  const mounted = useMounted();
+
+  // Gate time-dependent tonight data behind a mounted flag to avoid hydration
+  // mismatch (server and client may compute different service dates).
+  const tonight = mounted ? getTonightOccurrences() : [];
 
   // Auto-cycle venues on desktop when not interacting.
   useEffect(() => {

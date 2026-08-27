@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { ArrowUpRight, MapPin, Music2, Clock, CalendarCheck, Info, Share2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { venues } from "@/lib/venue-data";
@@ -12,14 +12,31 @@ import { AssetImage } from "@/components/asset-image";
 import { useToast } from "@/hooks/use-toast";
 import type { EventOccurrence } from "@/lib/types";
 
+/**
+ * useMounted — returns true after the component has mounted on the client.
+ * Uses useSyncExternalStore to avoid the setState-in-effect lint rule
+ * while providing a stable hydration-safe mounted flag.
+ */
+function useMounted(): boolean {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
+}
+
 export function TonightSection() {
   const { openEventDrawer, openBooking, openVenueDrawer } = useUi();
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
+  const mounted = useMounted();
 
-  // Compute once; service date is stable across server/client (Asia/Dubai date).
-  const { label, longLabel } = useMemo(() => getServiceDateLabel(), []);
-  const tonight = useMemo(() => getTonightOccurrences(), []);
+  // Compute once on the client after mount; service date is stable within a session.
+  // On the server (before mount), use stable fallback strings to avoid hydration mismatch.
+  const dateInfo = useMemo(() => (mounted ? getServiceDateLabel() : { label: "Tonight", longLabel: "", date: "" }), [mounted]);
+  const label = dateInfo.label;
+  const longLabel = dateInfo.longLabel;
+  const tonight = useMemo(() => (mounted ? getTonightOccurrences() : []), [mounted]);
 
   const shareTonight = async () => {
     track("click_map", { source: "share_tonight" });

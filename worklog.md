@@ -1007,3 +1007,51 @@ Task: Truth, brand consistency and production hardening — 12-phase audit
 18. ✅ Accessibility: skip link, ARIA labels, keyboard nav, single H1 per page
 19. ✅ Structured data validates (Organization, WebSite, NightClub, MusicEvent, Article, FAQPage)
 20. ✅ Zero console errors remain
+
+---
+Task ID: HYDRATION-FIX
+Agent: lead (Z.ai Code)
+Task: Fix hydration mismatch error in TonightSection (and preventatively in HeroSection + DubaiWeatherWidget)
+
+## Root Cause
+The hydration error occurred in `tonight-section.tsx` at the "Tonight at a Glance" strip. The `getTonightOccurrences()` function calls `getServiceDate()` which reads the current time via `Intl.DateTimeFormat` with `timeZone: "Asia/Dubai"`. This produces different results on the server (render time) vs client (hydration time), especially:
+- Near the 6 AM service-day boundary
+- When the server and client clocks differ by even a second
+
+The `isLive` flag (`ev?.status === "live"`) depended on this time-dependent data, causing the `animate-ping` element to render on one side but not the other — a classic hydration mismatch.
+
+## Fix Applied
+
+### 1. TonightSection (`tonight-section.tsx`)
+- Added `useMounted()` hook using `useSyncExternalStore` (returns `false` on server, `true` on client)
+- Gated `getTonightOccurrences()` and `getServiceDateLabel()` behind `mounted` flag
+- Server renders stable fallback: `label="Tonight"`, `longLabel=""`, `tonight=[]`
+- Client computes actual data after mount
+- The "Tonight at a Glance" strip now renders consistently on server (all venues show "No event tonight") then updates on client
+
+### 2. HeroSection (`hero-section.tsx`)
+- Same `useMounted()` pattern applied to `getTonightOccurrences()` call
+- Server renders `tonight=[]`, client computes after mount
+
+### 3. DubaiWeatherWidget (`dubai-weather-widget.tsx`)
+- Replaced `useState` + `useEffect` pattern with `useSyncExternalStore`
+- Server snapshot returns `null` (no weather rendered on server)
+- Client snapshot returns a cached `WeatherInfo` object (stable reference to avoid infinite loop)
+- Cache is refreshed every 60s via the subscribe callback
+- This is the React-recommended pattern for external time-based data
+
+## Why useSyncExternalStore instead of useState + useEffect?
+The lint rule `react-hooks/set-state-in-effect` flags `setMounted(true)` in `useEffect` as a cascading render risk. `useSyncExternalStore` is the React-recommended API for reading external (time-based) data in a hydration-safe way. It:
+- Returns `getServerSnapshot()` on the server (stable)
+- Returns `getClientSnapshot()` on the client (can differ)
+- React handles the transition automatically without hydration errors
+
+## Verification
+- **Lint**: 0 errors, 0 warnings
+- **Hydration errors**: 0 (was 1 recurring error)
+- **Console errors**: 0
+- **Infinite loops**: 0 (cached snapshot reference is stable)
+- **Tonight section**: Renders "Tonight" on server, updates to full date label on client ✓
+- **Weather widget**: Renders null on server, shows "36° Dubai" on client ✓
+- **Clock**: Renders empty on server, shows "DXB 06:35" on client ✓
+- **Booking flow**: Opens correctly to "Step 1 of 3 — Night" ✓
