@@ -15,7 +15,7 @@ import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
 import { Button } from "@/components/ui/button";
 import { ENGLISH_NIGHT_HASHTAG } from "@/lib/english-nights";
-import type { EnglishNightEvent, VenueSlug } from "@/lib/types";
+import type { VenueSlug } from "@/lib/types";
 
 interface LightEvent {
   id: string;

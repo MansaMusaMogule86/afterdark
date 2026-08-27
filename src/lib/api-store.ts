@@ -33,7 +33,7 @@ export const bookingDedupStore = new Map<string, number>();
 export interface TrackLogEntry {
   receivedAt: number;
   name: string;
-  params: Record<string, string | number | boolean>;
+  params: Record<string, string | number | boolean | undefined>;
 }
 export const trackLog: TrackLogEntry[] = [];
 export const TRACK_LOG_MAX = 500;

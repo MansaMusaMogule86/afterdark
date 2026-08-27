@@ -1,11 +1,12 @@
 "use client";
 
-import { ArrowUpRight, MapPin, Music2, Clock } from "lucide-react";
+import { ArrowUpRight, MapPin, Music2, Clock, GitCompare } from "lucide-react";
 import { venues } from "@/lib/venue-data";
 import { getOccurrencesByVenue } from "@/lib/events-data";
 import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { VenueCompareModal } from "@/components/venue-compare-modal";
 import { siteConfig } from "@/lib/site-config";
 
 export function VenuesSection() {
@@ -22,9 +23,12 @@ export function VenuesSection() {
               Three rooms. Three sounds. One night, your way.
             </h2>
           </div>
-          <p className="max-w-sm text-sm text-muted-foreground">
-            Each venue keeps its own visual world and music identity. Compare them, then open the one that fits your night.
-          </p>
+          <div className="flex flex-col gap-3 md:items-end">
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Each venue keeps its own visual world and music identity. Compare them, then open the one that fits your night.
+            </p>
+            <VenueCompareModal />
+          </div>
         </div>
 
         {/* Editorial panels */}

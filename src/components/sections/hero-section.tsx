@@ -10,6 +10,7 @@ import { track } from "@/lib/analytics";
 import { getTonightOccurrences } from "@/lib/events-data";
 import { Button } from "@/components/ui/button";
 import { AssetImage } from "@/components/asset-image";
+import { DoorsCountdown } from "@/components/doors-countdown";
 
 const VENUE_ORDER = ["avenue", "ora", "blacktape"] as const;
 
@@ -81,6 +82,10 @@ export function HeroSection() {
                 ? `Live Tonight at ${active.shortName} — ${tonightAtActive.startTime}`
                 : "No confirmed event tonight — Contact Concierge"}
             </span>
+            {/* Doors countdown */}
+            <div className="ml-2 hidden sm:block">
+              <DoorsCountdown />
+            </div>
           </div>
         </div>
 

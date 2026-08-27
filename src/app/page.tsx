@@ -19,6 +19,7 @@ import { EventDrawer } from "@/components/drawers/event-drawer";
 import { BookingModal } from "@/components/booking-modal";
 import { CookieConsent } from "@/components/cookie-consent";
 import { CommandPalette } from "@/components/command-palette";
+import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
 import { AssetManifestView } from "@/components/asset-manifest-view";
 import { EnglishNightsView } from "@/components/english-nights-view";
 import { EnglishNightDetailView } from "@/components/english-night-detail-view";
@@ -81,7 +82,7 @@ export default async function Home({ searchParams }: PageProps) {
     return (
       <div className="flex min-h-screen flex-col bg-background">
         <SiteHeader />
-        <main className="flex-1 pb-20 lg:pb-0">
+        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
           <EnglishNightsView />
         </main>
         <SiteFooter />
@@ -91,6 +92,7 @@ export default async function Home({ searchParams }: PageProps) {
         <BookingModal />
         <CookieConsent />
         <CommandPalette />
+        <WhatsAppFloatingButton />
       </div>
     );
   }
@@ -100,7 +102,7 @@ export default async function Home({ searchParams }: PageProps) {
     return (
       <div className="flex min-h-screen flex-col bg-background">
         <SiteHeader />
-        <main className="flex-1 pb-20 lg:pb-0">
+        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
           <EnglishNightDetailView venue={venue} date={date} />
         </main>
         <SiteFooter />
@@ -110,6 +112,7 @@ export default async function Home({ searchParams }: PageProps) {
         <BookingModal />
         <CookieConsent />
         <CommandPalette />
+        <WhatsAppFloatingButton />
       </div>
     );
   }
@@ -143,7 +146,7 @@ export default async function Home({ searchParams }: PageProps) {
 
       <SiteHeader />
 
-      <main className="flex-1 pb-20 lg:pb-0">
+      <main id="main-content" className="flex-1 pb-20 lg:pb-0">
         <HeroSection />
         <TonightSection />
         <VenuesSection />
@@ -167,6 +170,7 @@ export default async function Home({ searchParams }: PageProps) {
       <BookingModal />
         <CookieConsent />
         <CommandPalette />
+        <WhatsAppFloatingButton />
     </div>
   );
 }

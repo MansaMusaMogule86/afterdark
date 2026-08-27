@@ -325,3 +325,70 @@ The AFTER MIDNIGHT DXB platform is stable and feature-complete across all major 
 5. **Accessibility**: Some secondary text (grey on black) could be improved for WCAG AA contrast — VLM noted this.
 6. **Command palette**: Could be enhanced with recent searches, event-specific results, and venue-specific actions.
 7. **Consent-aware analytics**: The track() function currently fires regardless of consent — should gate GA4/GTM/Meta Pixel calls behind the stored consent preferences.
+
+---
+Task ID: CRON-REVIEW-2
+Agent: webDevReview (automated cron round 2)
+Task: Gate analytics behind consent + add venue compare, WhatsApp floating button, doors countdown, accessibility skip-link
+
+## Current Project Status Assessment
+Platform remains stable (lint: 0 errors, 0 warnings; tsc: 0 errors in src/). The previous round flagged 7 next-phase priorities. This round addressed priority #7 (consent-aware analytics) and added 4 new features.
+
+## Completed Modifications This Round
+
+### 1. Consent-aware analytics gating (`analytics.ts`) — fixed risk #7
+- `track()` now gates dataLayer/GA4/Meta Pixel pushes behind `hasAnalyticsConsent()` — only fires when the user has explicitly granted analytics consent via the cookie banner.
+- Server log (`/api/track`) ALWAYS fires (first-party, anonymous, no PII) — this is necessary for core functionality monitoring and is not a third-party tracker.
+- Added `getConsent()`, `hasAnalyticsConsent()`, `hasMarketingConsent()` exported helpers.
+- Track payloads now include a `consent` field ("granted"/"denied") for server-side audit.
+- Fixed a TypeScript error in `api-store.ts` (TrackLogEntry.params type to accept `undefined`).
+
+### 2. Venue comparison tool (`venue-compare-modal.tsx`) — new feature
+- Trigger button "Compare Venues" in the Venues section header.
+- Opens a side-by-side modal comparing up to 3 venues across 11 fields: music identity, location, area, signature nights, genres, dress code, age, ID required, entry policy, table types, parking.
+- Venue selector chips (max 3, toggle on/off).
+- Each venue header is theme-colored via `[data-venue]`.
+- Footer actions: explore venue drawer + request VIP per venue.
+- Tracks `view_venue`, `start_vip_inquiry`, `filter_events` from the modal.
+
+### 3. WhatsApp floating action button (`whatsapp-floating-button.tsx`) — new feature
+- Persistent quick-contact for the concierge.
+- Appears after the user scrolls past 50% of the viewport (doesn't clutter the hero).
+- Positioned above the mobile bottom action bar (bottom-20 on mobile, bottom-6 on desktop).
+- Pulsing green button with notification dot → expands to a concierge card with "Start WhatsApp Chat" CTA.
+- Opens `https://wa.me/?text=...` with a prefilled message.
+- Tracks `click_whatsapp` with source attribution.
+
+### 4. Doors countdown widget (`doors-countdown.tsx`) — new feature
+- Shows live time until tonight's earliest event doors open: "Doors in HH:MM:SS".
+- When an event is live (current time between start and end), shows "Live Now" + time until close.
+- Calculates using Asia/Dubai timezone, respects the 6 AM service-date boundary (events crossing midnight).
+- Venue-themed via `[data-venue]`.
+- Positioned in the hero tonight-status row.
+- Updates every second.
+
+### 5. Accessibility skip link (layout.tsx) — accessibility improvement
+- Added "Skip to content" link (sr-only, visible on focus) as the first focusable element.
+- Added `id="main-content"` to all `<main>` elements across view branches.
+- Enables keyboard users to skip the header/nav directly to content.
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors (fixed the TrackLogEntry type mismatch)
+- **Runtime errors**: 0
+- **Consent gating**: dataLayer push only fires when analytics consent = granted ✓
+- **Venue compare**: modal opens, 11 fields render, venue chips toggle, themed headers ✓
+- **WhatsApp floating button**: appears on scroll, expands to concierge card ✓
+- **Doors countdown**: shows "Doors in 18:40:26" (live countdown), venue-themed ✓
+- **Skip link**: present, focuses to #main-content ✓
+- **Hero VLM rating**: 8/10 (countdown adds anticipation; cookie banner noted as minor obstruction)
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout (hreflang declares it).
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Cookie banner position**: Could be repositioned or made less intrusive (VLM noted it obscures CTAs slightly). Consider a top bar or smaller pill.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Command palette**: Could add recent searches and event-specific results.
+6. **Real-time availability**: Would require a live table-availability data source (currently shows "Contact Concierge").
+7. **Venue compare**: Could add a "best for" recommendation row that auto-highlights which venue wins each field based on user preferences.
+8. **Doors countdown**: Only tracks the earliest event — could show per-venue countdowns when multiple venues are live tonight.

@@ -115,6 +115,13 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${bodoni.variable} font-sans antialiased bg-background text-foreground`}
       >
+        {/* Skip to content — accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-sm focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:font-mono-tight focus:text-xs focus:uppercase focus:tracking-[0.15em] focus:text-accent"
+        >
+          Skip to content
+        </a>
         {children}
         <Toaster />
       </body>

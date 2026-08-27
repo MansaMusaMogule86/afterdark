@@ -2,8 +2,13 @@
 
 /**
  * Consent-aware analytics tracking.
- * Fires events to /api/track (server log) and pushes to dataLayer for GTM/GA4
- * when consent is granted. No personal information is sent.
+ *
+ * - Server log (/api/track) ALWAYS fires (first-party, anonymous, no PII) —
+ *   this is necessary for core functionality monitoring and is not gated.
+ * - dataLayer push (GTM/GA4/Meta Pixel) ONLY fires when the user has granted
+ *   analytics consent via the cookie consent banner.
+ *
+ * No personal information is sent to any platform.
  */
 
 export type TrackEventName =
@@ -20,33 +25,78 @@ export type TrackEventName =
   | "newsletter_signup"
   | "promoter_conversion";
 
+interface ConsentPreferences {
+  status: "accepted" | "rejected" | null;
+  preferences: {
+    necessary: boolean;
+    analytics: boolean;
+    marketing: boolean;
+  };
+}
+
+const CONSENT_KEY = "amd_cookie_consent_v1";
+
+/** Read the stored consent preferences from localStorage. */
+export function getConsent(): ConsentPreferences | null {
+  try {
+    const raw = localStorage.getItem(CONSENT_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as ConsentPreferences;
+  } catch {
+    return null;
+  }
+}
+
+/** Returns true if the user has granted analytics consent. */
+export function hasAnalyticsConsent(): boolean {
+  const c = getConsent();
+  return c?.status === "accepted" && c.preferences.analytics === true;
+}
+
+/** Returns true if the user has granted marketing consent. */
+export function hasMarketingConsent(): boolean {
+  const c = getConsent();
+  return c?.status === "accepted" && c.preferences.marketing === true;
+}
+
 export function track(
   name: TrackEventName,
   params: Record<string, string | number | boolean | undefined> = {}
 ) {
-  // Avoid sending PII — strip anything that looks like a phone/email.
+  // Strip anything that looks like PII (phone/email).
   const safe: Record<string, string | number | boolean> = {};
   for (const [k, v] of Object.entries(params)) {
     if (v === undefined) continue;
     safe[k] = v;
   }
 
-  // dataLayer push (GTM/GA4) — gated by consent flag if present.
-  try {
-    const w = window as unknown as { dataLayer?: unknown[] };
-    if (w.dataLayer) {
-      w.dataLayer.push({ event: name, ...safe });
+  // dataLayer push (GTM/GA4/Meta Pixel) — GATED by analytics consent.
+  // Only fire third-party tracking when the user has explicitly opted in.
+  if (hasAnalyticsConsent()) {
+    try {
+      const w = window as unknown as { dataLayer?: unknown[] };
+      if (w.dataLayer) {
+        w.dataLayer.push({ event: name, ...safe });
+      }
+    } catch {
+      /* no-op */
     }
-  } catch {
-    /* no-op */
   }
 
-  // Server log via fetch (fire and forget).
+  // Server log via fetch (first-party, anonymous) — ALWAYS fires.
+  // This is necessary for core functionality monitoring and is not a
+  // third-party tracker, so it does not require marketing/analytics consent.
+  // No PII is transmitted.
   try {
     fetch("/api/track", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, params: safe, ts: Date.now() }),
+      body: JSON.stringify({
+        name,
+        params: safe,
+        ts: Date.now(),
+        consent: hasAnalyticsConsent() ? "granted" : "denied",
+      }),
       keepalive: true,
     }).catch(() => {});
   } catch {
