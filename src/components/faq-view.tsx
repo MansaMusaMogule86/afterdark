@@ -74,8 +74,26 @@ export function FaqView() {
     });
   }, [query, category]);
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* FAQPage JSON-LD structured data for SEO rich results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mx-auto max-w-3xl px-4 py-10 md:px-8 md:py-14">
         {/* Back link */}
         <Link

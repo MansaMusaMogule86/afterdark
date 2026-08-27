@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
-import { ArrowUpRight, MapPin, Music2, Clock, CalendarCheck, Info } from "lucide-react";
+import { useMemo, useState } from "react";
+import { ArrowUpRight, MapPin, Music2, Clock, CalendarCheck, Info, Share2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { venues } from "@/lib/venue-data";
 import { getTonightOccurrences } from "@/lib/events-data";
@@ -9,14 +9,38 @@ import { getServiceDateLabel } from "@/lib/tonight";
 import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { useToast } from "@/hooks/use-toast";
 import type { EventOccurrence } from "@/lib/types";
 
 export function TonightSection() {
   const { openEventDrawer, openBooking, openVenueDrawer } = useUi();
+  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
 
   // Compute once; service date is stable across server/client (Asia/Dubai date).
   const { label, longLabel } = useMemo(() => getServiceDateLabel(), []);
   const tonight = useMemo(() => getTonightOccurrences(), []);
+
+  const shareTonight = async () => {
+    track("click_map", { source: "share_tonight" });
+    const summary = tonight.length > 0
+      ? `${tonight.length} event${tonight.length > 1 ? "s" : ""} live tonight at AFTER MIDNIGHT DXB`
+      : "Check what's live tonight at AFTER MIDNIGHT DXB";
+    const url = typeof window !== "undefined" ? `${window.location.origin}/#tonight` : "";
+    const text = `${summary} — ${longLabel}. See tonight: ${url}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: "Tonight at AFTER MIDNIGHT DXB", text, url });
+      } else {
+        await navigator.clipboard?.writeText(text);
+        setCopied(true);
+        toast({ title: "Copied to clipboard", description: "Tonight summary link copied." });
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch {
+      /* user cancelled share */
+    }
+  };
 
   return (
     <section id="tonight" className="relative border-t border-border/40 bg-background">
@@ -32,11 +56,23 @@ export function TonightSection() {
               {longLabel}
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-sm border border-border/60 bg-secondary/40 px-4 py-3">
-            <Info className="h-4 w-4 text-accent" />
-            <p className="font-mono-tight text-[0.6875rem] text-muted-foreground">
-              Service day resets at 6:00 AM Dubai time.
-            </p>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 rounded-sm border border-border/60 bg-secondary/40 px-4 py-3">
+              <Info className="h-4 w-4 text-accent" />
+              <p className="font-mono-tight text-[0.6875rem] text-muted-foreground">
+                Service day resets at 6:00 AM Dubai time.
+              </p>
+            </div>
+            <button
+              onClick={shareTonight}
+              className="flex items-center gap-2 rounded-sm border border-border/60 bg-secondary/40 px-4 py-3 transition-colors hover:border-accent/40 hover:text-foreground"
+              aria-label="Share tonight summary"
+            >
+              {copied ? <Check className="h-4 w-4 text-green-400" /> : <Share2 className="h-4 w-4 text-accent" />}
+              <span className="font-mono-tight text-[0.6875rem] uppercase tracking-[0.12em] text-muted-foreground">
+                {copied ? "Copied" : "Share"}
+              </span>
+            </button>
           </div>
         </div>
 

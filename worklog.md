@@ -637,3 +637,58 @@ Platform stable (lint clean, tsc clean for src/, 0 runtime errors after clean re
 5. **Theme switcher scope**: Currently affects venue-themed sections; could extend to recolor the entire page background/base elements for a more dramatic preview.
 6. **Command palette**: Could add FAQ questions and theme switching as palette commands.
 7. **FAQ**: Could add FAQPage JSON-LD structured data for SEO rich results.
+
+---
+Task ID: CRON-REVIEW-7
+Agent: webDevReview (automated cron round 7)
+Task: Add FAQPage JSON-LD + command palette themes + share tonight + FAQ command
+
+## Current Project Status Assessment
+Platform stable (lint clean, tsc clean, 0 runtime errors, 12 sections, 9/10 hero VLM rating). All flows verified: booking, FAQ, English Nights, theme switcher, command palette. This round addressed SEO (FAQPage structured data), UX (share tonight, command palette themes), and nav improvements.
+
+## Completed Modifications This Round
+
+### 1. FAQPage JSON-LD structured data (`faq-view.tsx`) — SEO improvement
+- Added FAQPage JSON-LD structured data to the FAQ view with all 20 questions as Question/Answer entities
+- Enables Google rich results (accordion display in search results)
+- Verified: FAQ page now serves Organization + WebSite + FAQPage JSON-LD
+
+### 2. Command palette theme switching (`command-palette.tsx`) — new feature
+- Added 4 theme commands to the command palette (Themes group):
+  - Theme: After Midnight (default dark)
+  - Theme: Avenue (crimson / gold)
+  - Theme: Ora (emerald / brass)
+  - Theme: Black Tape (ink / red accent)
+- Selecting a theme applies `data-venue` to `<html>` + persists to localStorage
+- Mirrors the ThemeSwitcher modal logic via `applyThemeCommand()` helper
+- Verified: selecting "Theme: Ora" applies `data-venue="ora"` + stores in localStorage ✓
+
+### 3. "Share Tonight" button (`tonight-section.tsx`) — new feature
+- Share button in the Tonight section header (next to service-day info)
+- Uses native `navigator.share()` when available, falls back to clipboard copy
+- Copies a summary: "{N} events live tonight at AFTER MIDNIGHT DXB — {date}. See tonight: {url}"
+- Shows "Copied" state for 2 seconds after clipboard copy
+- Toast notification confirms copy
+- Tracks `click_map` with source "share_tonight"
+
+### 4. Command palette FAQ + nav improvements
+- Updated FAQ nav command to point to `/?view=faq` (the dedicated searchable FAQ page)
+- Added "Search FAQ" action command in the Actions group
+- Split "About + FAQ" into separate "About" and "FAQ" nav commands
+
+## Verification Results
+- **Lint**: 0 errors, 0 warnings
+- **TypeScript (src/)**: 0 errors
+- **Runtime errors**: 0
+- **FAQPage JSON-LD**: Present on /?view=faq ✓
+- **Command palette themes**: 4 theme commands, selecting Ora applies data-venue="ora" + localStorage ✓
+- **Share Tonight**: Button present, click handler works (native share / clipboard fallback) ✓
+- **Hero VLM rating**: 9/10 — "striking luxury aesthetic, bold typography, clear hierarchy"
+
+## Unresolved Issues / Risks / Next-Phase Priorities
+1. **Arabic (/ar) route**: Still not built — should add RTL Arabic content + layout.
+2. **Instagram adapter**: Still a typed mock — swap to real Graph API when credentials available.
+3. **Weather API**: Currently mock — connect to real weather API when key available.
+4. **Performance**: `next/image` optimization still pending real assets.
+5. **Command palette**: Could add recent searches and event-specific results.
+6. **Share Tonight**: Could generate an OG image dynamically for shared links.

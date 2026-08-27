@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import {
   Search, Moon, Building2, CalendarDays, Sparkles, Crown, Cake, BookOpen,
-  MapPin, Info, HelpCircle, Instagram, ArrowRight, CornerDownLeft, Home,
+  MapPin, Info, HelpCircle, Instagram, ArrowRight, CornerDownLeft, Home, Palette,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { venues } from "@/lib/venue-data";
@@ -20,6 +20,22 @@ interface CommandItem {
   group: string;
   action: () => void;
   keywords?: string;
+}
+
+/** Apply a theme directly via the command palette (mirrors ThemeSwitcher logic). */
+function applyThemeCommand(key: "parent" | "avenue" | "ora" | "blacktape") {
+  const root = document.documentElement;
+  if (key === "parent") {
+    root.removeAttribute("data-venue");
+  } else {
+    root.setAttribute("data-venue", key);
+  }
+  try {
+    localStorage.setItem("amd_theme_preference", key);
+  } catch {
+    /* no-op */
+  }
+  track("filter_events", { source: "command_palette_theme", value: key });
 }
 
 export function CommandPalette() {
@@ -55,8 +71,8 @@ export function CommandPalette() {
       { id: "celebrations", label: "Celebrations", hint: "Birthdays & events", icon: <Cake className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#celebrations") },
       { id: "night-edit", label: "The Night Edit", hint: "Dubai nightlife guide", icon: <BookOpen className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#night-edit") },
       { id: "locations", label: "Locations", hint: "Two skyline addresses", icon: <MapPin className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#locations") },
-      { id: "about", label: "About + FAQ", hint: "About & frequently asked", icon: <Info className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#about") },
-      { id: "faq", label: "FAQ", hint: "Frequently asked questions", icon: <HelpCircle className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#faq") },
+      { id: "about", label: "About", hint: "About AFTER MIDNIGHT DXB", icon: <Info className="h-4 w-4" />, group: "Navigation", action: () => router.push("/#about") },
+      { id: "faq", label: "FAQ", hint: "Searchable frequently asked questions", icon: <HelpCircle className="h-4 w-4" />, group: "Navigation", action: () => router.push("/?view=faq") },
     ];
 
     const venueCmds: CommandItem[] = venues.map((v) => ({
@@ -78,11 +94,19 @@ export function CommandPalette() {
       { id: "en-admin", label: "Import Review", hint: "Admin panel", icon: <Search className="h-4 w-4" />, group: "English Nights", action: () => router.push("/?view=english-nights-admin") },
     ];
 
-    const actionCmds: CommandItem[] = [
-      { id: "book-vip", label: "Book VIP Table", hint: "Start a VIP request", icon: <Crown className="h-4 w-4" />, group: "Actions", action: () => openBooking() },
+    const themeCmds: CommandItem[] = [
+      { id: "theme-parent", label: "Theme: After Midnight", hint: "Default dark theme", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("parent") },
+      { id: "theme-avenue", label: "Theme: Avenue", hint: "Crimson / gold", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("avenue") },
+      { id: "theme-ora", label: "Theme: Ora", hint: "Emerald / brass", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("ora") },
+      { id: "theme-blacktape", label: "Theme: Black Tape", hint: "Ink / red accent", icon: <Palette className="h-4 w-4" />, group: "Themes", action: () => applyThemeCommand("blacktape") },
     ];
 
-    return [...nav, ...venueCmds, ...enCmds, ...actionCmds];
+    const actionCmds: CommandItem[] = [
+      { id: "book-vip", label: "Book VIP Table", hint: "Start a VIP request", icon: <Crown className="h-4 w-4" />, group: "Actions", action: () => openBooking() },
+      { id: "faq-search", label: "Search FAQ", hint: "Find answers to common questions", icon: <HelpCircle className="h-4 w-4" />, group: "Actions", action: () => router.push("/?view=faq") },
+    ];
+
+    return [...nav, ...venueCmds, ...enCmds, ...themeCmds, ...actionCmds];
   }, [router, openBooking, openVenueDrawer]);
 
   const filtered = useMemo(() => {
