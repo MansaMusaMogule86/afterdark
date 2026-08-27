@@ -155,3 +155,97 @@ Unresolved issues / risks / next-phase priorities:
 - Newsletter/booking storage is in-memory — migrate to persistent DB (Prisma) when approved.
 - Consent/cookie banner not yet implemented — needed for GA4/GTM/Meta Pixel consent-aware loading.
 - Performance: should add next/image optimization once real assets exist; currently using AssetImage with lazy loading.
+
+---
+Task ID: en-2
+Agent: full-stack-developer
+Task: Build English Nights API routes
+
+Work Log:
+- Read `/home/z/my-project/worklog.md` to confirm prior agents' work (Task 12 = base API routes; Task 11 = content sections; LEAD-FINAL = platform shell). The English Nights data layer (`src/lib/english-nights.ts`) was already in place — confirmed exported symbols: `ENGLISH_NIGHT_HASHTAG`, `approvedAccounts`, `parseCaption`, `classifyImport`, `importToOccurrence`, `runImport`, `getImportStats`, `getAllImports`, `getPublishedEnglishNights`, `getAllEnglishNights`, `getEnglishNight`, `getTonightEnglishNights`, `publishImport`, `rejectImport`, `ensureSeeded`. Types: `InstagramImport`, `EnglishNightEvent`, `ImportStatus`, `ParsedCaption`.
+- Reviewed the established API conventions by reading `src/app/api/events/route.ts` and `src/app/api/tonight/route.ts` — both use `export const dynamic = "force-dynamic"`, `NextRequest`/`NextResponse`, named DTO interfaces, type guards for query validation, and 400 responses with `{ error }` body on bad query. Mirrored this exact style for the new English Nights routes.
+- Created `src/app/api/english-nights/route.ts` (`force-dynamic`):
+  - `GET` with `?status=published|all|tonight` (default `published`) and optional `?venue=avenue|ora|blacktape`.
+  - Calls `ensureSeeded()` first, then dispatches to `getPublishedEnglishNights()`, `getAllEnglishNights()`, or `getTonightEnglishNights()`, applies the venue filter, and returns `{ events: [...light DTO], count, stats }`.
+  - Light DTO exposes: `id, title, venue, serviceDate, startTime, endTime, status, music, artist, importStatus, mediaId, permalink, accountHandle, poster, sample`.
+  - Returns 400 on bad `?status=` or `?venue=` values with a descriptive `{ error }` body.
+- Created `src/app/api/english-night/route.ts` (`force-dynamic`):
+  - `GET` with required `?venue=` and `?date=YYYY-MM-DD`.
+  - Validates venue slug and ISO date format (`/^\d{4}-\d{2}-\d{2}$/`) — 400 on missing/invalid.
+  - Calls `ensureSeeded()` + `getEnglishNight(venue, date)`, returns the full `EnglishNightEvent` wrapped as `{ event }`, or 404 with `{ error }` if no occurrence exists for that venue+date.
+  - Chose flat `/api/english-night?venue=&date=` route (per task spec) because event ids are `en-{venue}-{date}` and the date segment is dynamic, so a query-string lookup is cleaner than a `[id]` dynamic segment with embedded parsing.
+- Created `src/app/api/instagram/import/route.ts` (`force-dynamic`):
+  - `GET`: returns `{ stats, imports }` — `stats` from `getImportStats()`, `imports` from `getAllImports()` (full objects including `parsed` caption + `statusReason`). Calls `ensureSeeded()` first.
+  - `POST`: triggers one import pass. Calls `ensureSeeded()` then `runImport()`, returns `{ ok: true, result: {imported, updated, skipped}, stats }`. Idempotent — re-running returns `skipped > 0` because the data layer tracks seen media IDs.
+  - `POST` accepts a `_req: NextRequest` arg (unused body) for signature stability; no request body required.
+- Created `src/app/api/instagram/import/[id]/route.ts` (`force-dynamic`):
+  - `GET`: fetches a single import by id (`params: Promise<{ id: string }>`, awaited per Next 16 convention), returns `{ import }` or 404.
+  - `POST`: body `{ action: "publish" | "reject", reason?: string }`. Validates `action` against a string-literal union (400 on invalid), parses `reason` only if it's a non-empty string.
+  - Publish path: verifies import exists (404 if not) → calls `publishImport(id)` → on `ok: true` returns `{ ok: true, occurrenceId }` (200); on `ok: false` returns `{ ok: false, error }` (409, e.g. when the import is missing required fields like `doors`).
+  - Reject path: verifies import exists (404 if not) → calls `rejectImport(id, reason)` → returns `{ ok: true }` (200) or 409 on failure.
+  - Bad JSON body → 400. Bad `action` value → 400.
+- Input validation summary across all routes:
+  - `?status=` and `?venue=` validated against string-literal unions; 400 with descriptive error on mismatch.
+  - `?date=` validated with strict ISO regex `/^\d{4}-\d{2}-\d{2}$/`; rejects `MM-DD-YYYY` and other formats.
+  - `action` body field validated against `["publish","reject"]` union.
+  - `reason` only accepted if `string`; otherwise ignored.
+- No PII is processed by these routes. No Instagram credentials are exposed (the data layer is a typed mock adapter; only media IDs + permalinks + public handles surface in responses).
+- TypeScript strict throughout, no `any`. All handlers use `NextRequest`/`NextResponse` and `export async function GET/POST`. `params` is typed as `Promise<{ id: string }>` and awaited (Next 16 requirement).
+- Ran `bun run lint`: zero errors, zero warnings in all 4 new files (and globally).
+- Ran `bunx tsc --noEmit` and grep-filtered for `english-night`/`instagram`: zero TypeScript errors in the new files.
+- Curl-tested every route against `http://localhost:3000`:
+  - `GET /api/english-nights` (200), `?status=all` (200), `?status=tonight` (200), `?status=bogus` (400), `?venue=avenue` (200), `?venue=bogus` (400). Default `published` returns 3 events; `all` returns 3 published + 2 needs-review = 5 total. Stats correctly reflect `{total:5, ready:3, needsReview:2, rejected:0, runs:1, lastImportAt}` after the seed run.
+  - `GET /api/english-night?venue=blacktape&date=2026-08-27` (200, full event JSON with conceptSlug, dressCode, agePolicy, location, etc.); `?venue=avenue&date=1999-01-01` (404); `?venue=bogus` (400); missing `?venue=` (400); missing `?date=` (400); `?date=08-28-2026` (400 — non-ISO).
+  - `GET /api/instagram/import` (200, returns stats + 5 imports with full parsed captions + statusReason). `POST /api/instagram/import` (200, returns `{ ok:true, result:{imported:0, updated:0, skipped:5}, stats }` on a re-run — idempotency confirmed).
+  - `GET /api/instagram/import/imp_ig_avenue_2026-08-25` (200, returns single import). `GET /api/instagram/import/imp_does_not_exist` (404).
+  - `POST /api/instagram/import/<needs_review_id>` with `{action:"publish"}` on the doors-missing sample → 409 `{ ok:false, error:"Cannot build occurrence — missing required fields." }` (correct: data layer refuses to publish without `doors`).
+  - `POST /api/instagram/import/<needs_review_id_missing_only_title>` with `{action:"publish"}` → 200 `{ ok:true, occurrenceId:"en-ora-2026-09-02" }` (correct: manual publish promotes a needs-review import whose required fields are actually present).
+  - `POST {action:"reject",reason:"..."}` → 200 `{ ok:true }`.
+  - `POST {action:"delete"}` → 400 (invalid action). Malformed JSON body → 400. Publish on non-existent import id → 404.
+- Verified in `dev.log`: all 4 routes compiled and served correctly with expected HTTP status codes (200/400/404/409) — no runtime errors, no warnings.
+
+Stage Summary:
+- Created 4 new API route files (5 endpoints total — `/api/english-nights` has GET, `/api/english-night` has GET, `/api/instagram/import` has GET+POST, `/api/instagram/import/[id]` has GET+POST):
+  1. `src/app/api/english-nights/route.ts`
+  2. `src/app/api/english-night/route.ts`
+  3. `src/app/api/instagram/import/route.ts`
+  4. `src/app/api/instagram/import/[id]/route.ts`
+- All routes use `force-dynamic`, `NextRequest`/`NextResponse`, Next 16 async `params: Promise<{ id: string }>` pattern, strict TypeScript with no `any`, and 400/404/409 error responses with descriptive `{ error }` bodies.
+- End-to-end curl tests pass for all happy paths and all validation error paths. Lint passes clean (0 errors, 0 warnings). `tsc --noEmit` passes clean for all new files.
+- No Instagram credentials or PII exposed. The Instagram import pipeline only ingests `#AMDXBENGLISHNIGHT` posts from the three approved venue accounts (avenue / ora / blacktape) via the existing typed-mock data layer; auto-publish happens only when venue ✓ + date ✓ + time ✓ + media ✓ per the directive.
+
+---
+Task ID: EN-FEATURE
+Agent: lead (Z.ai Code)
+Task: Rename parent to AFTER MIDNIGHT DXB + build English Night Instagram Automation feature
+
+Work Log:
+- Renamed parent group from "W W Nightlife Dubai" to "AFTER MIDNIGHT DXB" centrally in site-config.ts (parentName, parentShortName, seo.siteName, seo.defaultTitle, siteUrl). The rename propagates everywhere via siteConfig references. Updated: header logo monogram (W→AM), footer logo, favicon.svg, booking-modal consent text, hero aria-label, celebrations alt text, matcher WhatsApp text, event-drawer calendar PRODID/UID, booking reference prefix (WW-→AMD-), robots.txt sitemap URL, layout metadata. Code comments retained as historical notes.
+- Scheduled 15-minute webDevReview cron job (job ID 339173, `0 */15 * * * ?`, Asia/Dubai, kind=webDevReview).
+- Built English Night Instagram Automation feature:
+  - `src/lib/english-nights.ts` — full data layer: ENGLISH_NIGHT_HASHTAG (#AMDXBENGLISHNIGHT), approvedAccounts (3 venue IG handles), parseCaption() (extracts venue/title/date/doors/close/music/DJs/entry/VIP/guestList from structured key:value or natural language), classifyImport() (READY_TO_PUBLISH / NEEDS_REVIEW / REJECTED), importToOccurrence(), runImport() (mock import pass, idempotent via mediaId tracking), getImportStats/getAllImports/getPublishedEnglishNights/getEnglishNight/getTonightEnglishNights, publishImport/rejectImport (manual review actions), ensureSeeded(). 5 sample captions covering ready/needs-review/duplicate scenarios.
+  - API routes (delegated to subagent Task en-2): GET /api/english-nights (?status=published|all|tonight, ?venue=), GET /api/english-night (?venue=&date=), GET+POST /api/instagram/import (trigger run + list all), GET+POST /api/instagram/import/[id] (publish/reject). All force-dynamic, validated, no PII/credentials.
+  - `src/components/english-nights-view.tsx` — public landing (?view=english-nights): tonight status band, venue/music/status filters, event grid with Instagram-source badges, how-it-works, admin link. noindex=false.
+  - `src/components/english-night-detail-view.tsx` — event detail (?view=english-night&venue=&date=): hero, breadcrumb, meta grid, description, entry/dress/age, Contact Concierge table info, Request VIP / WhatsApp / Add to Calendar / Share actions, location + map, Instagram source post link + media ID, JSON-LD MusicEvent structured data.
+  - `src/components/english-nights-admin-view.tsx` — import review (?view=english-nights-admin, noindex): stats (total/ready/needsReview/rejected/runs), status tabs, import rows with parsed-field grid + caption preview + publish/reject actions, Run Import button. Full review workflow.
+  - `src/components/sections/english-nights-promo.tsx` — homepage promo section explaining the hashtag-only import system with CTA to landing + admin.
+  - Wired all views into page.tsx view router with proper metadata (english-nights = indexable, english-nights-admin = noindex). Added "English Nights" to header nav.
+- Fixed Next.js scroll-behavior warning (added data-scroll-behavior="smooth" to <html>).
+
+QA / Verification (agent-browser):
+- English Nights landing (?view=english-nights): title "English Nights in Dubai | AFTER MIDNIGHT DXB", 3 event cards render, tonight status band, filters work.
+- English Night detail (?view=english-night&venue=blacktape&date=2026-08-27): title "English Night — Thursday", breadcrumb "Home / English Nights / Black Tape · 27 Aug", JSON-LD structured data present, Instagram permalink + media ID shown, all actions present.
+- Admin review (?view=english-nights-admin): title "English Nights Import Review — Internal" (noindex), stats render (5 total, 4 ready, 1 rejected), Run Import button works (runs 2→3, idempotent), Reject action works (ready 4→3, rejected 1→2), rejected event removed from public landing (3→2 cards).
+- Homepage: nav link "English Nights" present, promo section "English Nights, direct from Instagram." renders.
+- Lint: 0 errors, 0 warnings. No console errors. No runtime errors.
+
+Stage Summary:
+- Parent renamed to AFTER MIDNIGHT DXB across the entire platform (central config + all user-facing strings + favicon + booking prefix AMD-).
+- English Night Instagram Automation feature complete: hashtag-only import (#AMDXBENGLISHNIGHT), caption parser, 3-status classification (READY/NEEDS REVIEW/REJECTED), auto-publish when validated, manual review panel, public landing + detail pages with SEO + structured data.
+- 15-minute webDevReview cron job scheduled.
+- All flows verified end-to-end with agent-browser.
+
+Unresolved / next-phase:
+- Instagram adapter is a typed mock — swap to real Instagram Graph API adapter when credentials are available.
+- English Night event media uses designed placeholders — real Instagram media URLs would replace them in production.
+- The /events/english-night/[venue]/[date] route is adapted to ?view=english-night&venue=&date= due to the single-route environment constraint.

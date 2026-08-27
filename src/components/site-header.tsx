@@ -13,6 +13,7 @@ const NAV = [
   { label: "Tonight", href: "#tonight" },
   { label: "Venues", href: "#venues" },
   { label: "Events", href: "#events" },
+  { label: "English Nights", href: "/?view=english-nights" },
   { label: "VIP", href: "#vip" },
   { label: "Celebrations", href: "#celebrations" },
   { label: "The Night Edit", href: "#night-edit" },

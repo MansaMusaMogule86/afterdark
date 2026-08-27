@@ -85,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning className="dark" data-scroll-behavior="smooth">
       <head>
         {/* JSON-LD: Organization + WebSite (parent) */}
         <script
