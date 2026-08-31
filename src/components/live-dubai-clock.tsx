@@ -41,7 +41,7 @@ export function LiveDubaiClock() {
 
   return (
     <div
-      className="flex items-center gap-2 rounded-sm border border-border/40 bg-secondary/30 px-3 py-1.5"
+      className="hidden xl:flex items-center gap-2 rounded-sm border border-border/40 bg-secondary/30 px-3 py-1.5 shrink-0"
       title="Current time in Dubai"
     >
       <Moon

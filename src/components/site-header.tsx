@@ -50,33 +50,33 @@ export function SiteHeader() {
             : "bg-transparent"
         )}
       >
-        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 md:h-20 md:px-8">
+        <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 md:h-20 md:px-8">
           {/* Logo */}
           <Link
             href="#top"
             onClick={() => go("#top")}
-            className="group flex items-center gap-3"
+            className="group flex items-center gap-3 shrink-0"
             aria-label={`${siteConfig.parentName} home`}
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-accent/40 font-serif-display text-accent text-lg">
               AM
             </span>
-            <span className="hidden flex-col leading-none sm:flex">
+            <span className="hidden flex-col leading-none sm:flex whitespace-nowrap">
               <span className="font-serif-display text-sm text-foreground">
                 {siteConfig.parentShortName}
               </span>
-              <span className="eyebrow mt-0.5 text-[0.5rem]">DXB · After Dark</span>
+              <span className="eyebrow mt-0.5 text-[0.5rem] whitespace-nowrap">DXB · After Dark</span>
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
             {NAV.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={() => go(item.href)}
-                className="group relative font-mono-tight text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+                className="group relative font-mono-tight text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground whitespace-nowrap"
               >
                 {item.label}
                 <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover:w-full" />
@@ -85,8 +85,8 @@ export function SiteHeader() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-2">
-            <div className="hidden xl:flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
+            <div className="hidden 2xl:flex items-center gap-2">
               <LiveDubaiClock />
               <DubaiWeatherWidget />
             </div>
@@ -102,7 +102,7 @@ export function SiteHeader() {
               <span>Search</span>
               <kbd className="rounded border border-border px-1 text-[0.5rem]">⌘K</kbd>
             </button>
-            <div className="hidden lg:block">
+            <div className="hidden 2xl:block shrink-0">
               <ThemeSwitcher />
             </div>
             <Button
@@ -111,7 +111,7 @@ export function SiteHeader() {
                 track("start_vip_inquiry", { source: "header" });
                 openConcierge();
               }}
-              className="hidden rounded-none bg-foreground px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-background hover:bg-accent hover:text-background md:inline-flex"
+              className="hidden rounded-none bg-foreground px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-background hover:bg-accent hover:text-background lg:inline-flex shrink-0"
             >
               Book VIP
             </Button>

@@ -95,7 +95,7 @@ export function DubaiWeatherWidget() {
 
   return (
     <div
-      className="flex items-center gap-3 rounded-sm border border-border/40 bg-secondary/30 px-3 py-2"
+      className="hidden xl:flex items-center gap-3 rounded-sm border border-border/40 bg-secondary/30 px-3 py-2 shrink-0"
       title="Dubai weather — sample data"
     >
       <Icon className={cn("h-4 w-4", weather.isNight ? "text-accent" : "text-amber-400")} />
