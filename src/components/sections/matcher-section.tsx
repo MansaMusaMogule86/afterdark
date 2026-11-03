@@ -9,6 +9,7 @@ import { getOccurrence } from "@/lib/events-data";
 import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
+import { VenueVideo } from "@/components/venue-video";
 import type { MusicGenre } from "@/lib/types";
 
 type Mood = MatcherInput["mood"];
@@ -120,32 +121,61 @@ export function MatcherSection() {
           {!submitted ? (
             <div className="grid md:grid-cols-12">
               {/* Progress rail */}
-              <div className="border-b border-border/40 p-6 md:col-span-4 md:border-b-0 md:border-r md:p-8">
-                <p className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.2em] text-muted-foreground">
-                  Step {step + 1} / {STEPS.length}
-                </p>
-                <h3 className="mt-2 font-serif-display text-2xl text-foreground">
-                  {STEPS[step]}
-                </h3>
-                <div className="mt-6 space-y-1.5">
-                  {STEPS.map((s, i) => (
-                    <button
-                      key={s}
-                      onClick={() => setStep(i)}
-                      className={cn(
-                        "flex w-full items-center gap-3 py-1 text-left font-mono-tight text-[0.6875rem] uppercase tracking-[0.12em] transition-colors",
-                        i === step ? "text-accent" : i < step ? "text-foreground/70" : "text-muted-foreground/50"
-                      )}
-                    >
-                      <span className={cn(
-                        "flex h-5 w-5 items-center justify-center rounded-full border text-[0.5rem]",
-                        i < step ? "border-accent bg-accent text-background" : i === step ? "border-accent text-accent" : "border-border"
-                      )}>
-                        {i < step ? <Check className="h-3 w-3" /> : i + 1}
-                      </span>
-                      {s}
-                    </button>
-                  ))}
+              <div className="border-b border-border/40 p-4 md:col-span-4 md:border-b-0 md:border-r md:p-8">
+                {/* Mobile progress summary */}
+                <div className="md:hidden">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.2em] text-accent">
+                      Step {step + 1} of {STEPS.length}
+                    </span>
+                    <span className="font-mono-tight text-xs text-muted-foreground">
+                      {STEPS[step]}
+                    </span>
+                  </div>
+                  {/* Progress bar */}
+                  <div className="mt-2.5 flex gap-1">
+                    {STEPS.map((s, i) => (
+                      <button
+                        key={s}
+                        onClick={() => setStep(i)}
+                        className={cn(
+                          "h-1.5 flex-1 rounded-full transition-colors",
+                          i <= step ? "bg-accent" : "bg-border/60"
+                        )}
+                        aria-label={`Go to step ${i + 1}: ${s}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Desktop progress rail */}
+                <div className="hidden md:block">
+                  <p className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.2em] text-muted-foreground">
+                    Step {step + 1} / {STEPS.length}
+                  </p>
+                  <h3 className="mt-2 font-serif-display text-2xl text-foreground">
+                    {STEPS[step]}
+                  </h3>
+                  <div className="mt-6 space-y-1.5">
+                    {STEPS.map((s, i) => (
+                      <button
+                        key={s}
+                        onClick={() => setStep(i)}
+                        className={cn(
+                          "flex w-full items-center gap-3 py-1 text-left font-mono-tight text-[0.6875rem] uppercase tracking-[0.12em] transition-colors",
+                          i === step ? "text-accent" : i < step ? "text-foreground/70" : "text-muted-foreground/50"
+                        )}
+                      >
+                        <span className={cn(
+                          "flex h-5 w-5 items-center justify-center rounded-full border text-[0.5rem]",
+                          i < step ? "border-accent bg-accent text-background" : i === step ? "border-accent text-accent" : "border-border"
+                        )}>
+                          {i < step ? <Check className="h-3 w-3" /> : i + 1}
+                        </span>
+                        {s}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -212,26 +242,26 @@ export function MatcherSection() {
                 )}
                 {step === 4 && (
                   <StepWrap title="How many in your group?">
-                    <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                       {[2, 3, 4, 6, 8, 10, 12].map((n) => (
                         <button
                           key={n}
                           onClick={() => setInput({ ...input, groupSize: n })}
                           className={cn(
-                            "flex h-14 w-14 items-center justify-center rounded-sm border font-serif-display text-xl transition-colors",
+                            "flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-sm border font-serif-display text-lg sm:text-xl transition-colors",
                             input.groupSize === n ? "border-accent bg-accent text-background" : "border-border text-foreground hover:border-foreground/50"
                           )}
                         >
                           {n}
                         </button>
                       ))}
-                      <div className="ml-2">
-                        <label className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground">Or enter</label>
+                      <div className="flex items-center gap-2 mt-2 sm:mt-0 sm:ml-2">
+                        <label className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground whitespace-nowrap">Or enter</label>
                         <input
                           type="number" min={1} max={50}
                           value={input.groupSize}
                           onChange={(e) => setInput({ ...input, groupSize: parseInt(e.target.value) || 1 })}
-                          className="ml-2 w-20 rounded-sm border border-border bg-background px-3 py-2 text-foreground"
+                          className="w-20 rounded-sm border border-border bg-background px-3 py-2 text-base md:text-sm text-foreground"
                         />
                       </div>
                     </div>
@@ -321,6 +351,18 @@ export function MatcherSection() {
                     <span className="font-mono-tight text-[0.625rem] text-[var(--venue-muted)]">
                       Doors {topEvent.startTime}
                     </span>
+                  </div>
+                )}
+                {top?.venue === "blacktape" && topVenue?.heroVideo && (
+                  <div className="mt-4 overflow-hidden rounded-sm border border-[var(--venue-foreground)]/15 aspect-[16/9] max-h-56">
+                    <VenueVideo
+                      src={topVenue.heroVideo}
+                      alt="Black Tape recommendation preview"
+                      className="h-full w-full"
+                      allowSound={false}
+                      showPlayPause={false}
+                      overlay={false}
+                    />
                   </div>
                 )}
               </div>

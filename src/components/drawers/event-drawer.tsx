@@ -91,7 +91,7 @@ export function EventDrawer() {
             </div>
           </div>
 
-          <div className="p-6 md:p-8">
+          <div className="p-6 pb-12 safe-pb md:p-8">
             {/* Venue + status */}
             <div className="flex items-center justify-between">
               <button

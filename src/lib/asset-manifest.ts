@@ -94,6 +94,7 @@ export const assetManifest: AssetManifestEntry[] = [
   })),
 
   // Black Tape
+  { id: "b0", file: "TAPE-Generic-1-1080x1080-1.mp4", path: "/venues/blacktape/TAPE-Generic-1-1080x1080-1.mp4", purpose: "Official Black Tape urban video reel.", dimensions: "1080 × 1080", crop: "square", present: true, venue: "blacktape", pageUsage: ["venue hero", "home venue panel", "venue drawer", "tonight preview"] },
   { id: "b1", file: "black_tape_logo_light.svg", path: "/placeholders/black_tape_logo_light.svg", purpose: "Black Tape logo for dark backgrounds.", dimensions: "vector", crop: "svg", present: false, venue: "blacktape", pageUsage: ["venue page", "home"] },
   { id: "b2", file: "black_tape_logo_dark.svg", path: "/placeholders/black_tape_logo_dark.svg", purpose: "Black Tape logo for light backgrounds.", dimensions: "vector", crop: "svg", present: false, venue: "blacktape", pageUsage: ["venue page"] },
   { id: "b3", file: "black_tape_hero_desktop.webp", path: "/placeholders/black_tape_hero_desktop.webp", purpose: "Wide Black Tape room with a strong urban crowd.", dimensions: DIM.desktopHero, crop: "desktop", present: false, venue: "blacktape", pageUsage: ["venue hero", "home venue panel"] },

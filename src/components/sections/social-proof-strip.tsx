@@ -92,10 +92,7 @@ export function SocialProofStrip() {
         </div>
 
         {/* Stats grid */}
-        <div
-          className="grid gap-px overflow-hidden rounded-sm border border-border/40 bg-border/40"
-          style={{ gridTemplateColumns: `repeat(${visibleStats.length}, minmax(0, 1fr))` }}
-        >
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border/40 bg-border/40 sm:grid-cols-4">
           {visibleStats.map((stat) => {
             const Icon = stat.icon;
             return (

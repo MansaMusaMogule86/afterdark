@@ -9,8 +9,8 @@ import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { getTonightOccurrences } from "@/lib/events-data";
 import { Button } from "@/components/ui/button";
-import { AssetImage } from "@/components/asset-image";
 import { DoorsCountdown } from "@/components/doors-countdown";
+import { VenueHeroMedia, hasRealHeroVideo } from "@/components/venue-hero-media";
 
 const VENUE_ORDER = ["avenue", "ora", "blacktape"] as const;
 
@@ -74,6 +74,18 @@ export function HeroSection() {
                   background: `radial-gradient(120% 80% at 75% 20%, ${v.theme.primary}33 0%, transparent 55%), radial-gradient(100% 70% at 15% 90%, ${v.theme.accent}1f 0%, transparent 60%)`,
                 }}
               />
+              {slug === "blacktape" && v.heroVideo && (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 mix-blend-screen">
+                  <video
+                    src={v.heroVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover filter contrast-125 brightness-75"
+                  />
+                </div>
+              )}
               <div className="grain absolute inset-0" />
             </div>
           );
@@ -114,22 +126,22 @@ export function HeroSection() {
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href="#tonight">
+            <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
+              <a href="#tonight" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="rounded-none bg-foreground px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-background hover:bg-accent hover:text-background"
+                  className="w-full sm:w-auto rounded-none bg-foreground px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-background hover:bg-accent hover:text-background"
                   onClick={() => track("filter_events", { source: "hero_see_tonight" })}
                 >
                   See Tonight
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </a>
-              <a href="#find-my-venue">
+              <a href="#find-my-venue" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-none border-foreground/30 bg-transparent px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-foreground/10"
+                  className="w-full sm:w-auto rounded-none border-foreground/30 bg-transparent px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-foreground/10"
                   onClick={() => track("complete_venue_matcher", { source: "hero_find" })}
                 >
                   <Sparkles className="mr-2 h-4 w-4" />
@@ -139,7 +151,7 @@ export function HeroSection() {
               <Button
                 size="lg"
                 variant="ghost"
-                className="rounded-none px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-foreground/5"
+                className="w-full sm:w-auto rounded-none px-7 py-6 text-xs font-semibold uppercase tracking-[0.2em] text-foreground hover:bg-foreground/5"
                 onClick={() => {
                   track("start_vip_inquiry", { source: "hero_direct_vip" });
                   openConcierge({ venue: active.slug });
@@ -242,25 +254,25 @@ function VenueVisualPanel({
       data-venue={active.slug}
       className="venue-surface group relative overflow-hidden rounded-sm border border-[var(--venue-foreground)]/10"
     >
-      {/* Visual — hero preview image */}
+      {/* Visual — hero preview image or video */}
       <div className="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/10] lg:aspect-[4/5]">
-        <AssetImage
-          src={active.heroDesktop}
-          file={`${active.slug}_hero_desktop.webp`}
+        <VenueHeroMedia
+          venue={active}
           purpose={`Wide ${active.shortName} hero — crowd, lighting, and venue identity.`}
-          dimensions="2400 × 1350"
-          crop="desktop"
-          venue={active.slug}
           alt={`${active.name} hero image`}
-          className="h-full w-full transition-transform duration-1000 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full transition-transform duration-1000 group-hover:scale-105"
+          allowSound
+          controlsClassName="right-4 top-14"
         />
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--venue-bg)] via-[var(--venue-bg)]/40 to-transparent" />
-        {/* Color tint */}
-        <div
-          className="absolute inset-0 mix-blend-color opacity-30"
-          style={{ backgroundColor: active.theme.primary }}
-        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--venue-bg)] via-[var(--venue-bg)]/40 to-transparent" />
+        {/* Color tint (images only — keeps real footage true to colour) */}
+        {!hasRealHeroVideo(active) && (
+          <div
+            className="pointer-events-none absolute inset-0 mix-blend-color opacity-30"
+            style={{ backgroundColor: active.theme.primary }}
+          />
+        )}
 
         {/* Top overlay: venue name + floor */}
         <div className="absolute left-4 top-4 right-4 flex items-start justify-between">

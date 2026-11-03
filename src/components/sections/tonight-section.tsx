@@ -73,7 +73,7 @@ export function TonightSection() {
               {longLabel}
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-2 rounded-sm border border-border/60 bg-secondary/40 px-4 py-3">
               <Info className="h-4 w-4 text-accent" />
               <p className="font-mono-tight text-[0.6875rem] text-muted-foreground">
@@ -221,16 +221,27 @@ export function TonightSection() {
 
                 {/* Subtle poster strip */}
                 <div className="relative h-20 overflow-hidden border-t border-[var(--venue-foreground)]/10">
-                  <AssetImage
-                    src={v.gallery[0]}
-                    file={`${v.slug}_gallery_01.webp`}
-                    purpose={`${v.shortName} gallery image.`}
-                    dimensions="1600 × 2000"
-                    crop="portrait"
-                    venue={v.slug}
-                    alt={`${v.name} gallery`}
-                    className="h-full w-full opacity-50"
-                  />
+                  {v.slug === "blacktape" && v.heroVideo ? (
+                    <video
+                      src={v.heroVideo}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="h-full w-full object-cover opacity-60"
+                    />
+                  ) : (
+                    <AssetImage
+                      src={v.gallery[0]}
+                      file={`${v.slug}_gallery_01.webp`}
+                      purpose={`${v.shortName} gallery image.`}
+                      dimensions="1600 × 2000"
+                      crop="portrait"
+                      venue={v.slug}
+                      alt={`${v.name} gallery`}
+                      className="h-full w-full opacity-50"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--venue-bg)] to-transparent" />
                 </div>
               </div>

@@ -161,7 +161,7 @@ export function CommandPalette() {
   let flatIndex = -1;
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-start justify-center pt-[15vh]" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div className="fixed inset-0 z-[110] flex items-start justify-center p-4 pt-16 md:pt-[15vh] safe-pt" role="dialog" aria-modal="true" aria-label="Command palette">
       <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" onClick={() => setOpen(false)} />
       <div className="relative z-10 w-full max-w-xl overflow-hidden rounded-lg border border-border/60 bg-card shadow-2xl">
         {/* Search input */}
@@ -173,7 +173,7 @@ export function CommandPalette() {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onInputKeyDown}
             placeholder="Search venues, events, sections…"
-            className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent text-base md:text-sm text-foreground outline-none placeholder:text-muted-foreground"
           />
           <kbd className="rounded border border-border px-1.5 py-0.5 font-mono-tight text-[0.5rem] uppercase tracking-[0.1em] text-muted-foreground">
             ESC

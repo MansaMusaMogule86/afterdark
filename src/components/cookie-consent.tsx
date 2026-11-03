@@ -88,7 +88,7 @@ export function CookieConsent() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-[80] p-3 safe-pb md:inset-x-auto md:bottom-4 md:left-4 md:max-w-sm"
+      className="fixed inset-x-0 bottom-14 z-[80] p-3 safe-pb lg:bottom-4 lg:left-4 lg:max-w-sm lg:inset-x-auto"
       role="dialog"
       aria-label="Cookie consent"
     >

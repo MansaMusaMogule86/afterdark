@@ -78,11 +78,11 @@ export const venues: VenueRecord[] = [
     },
     logoLight: "/placeholders/avenue_logo_light.svg",
     logoDark: "/placeholders/avenue_logo_dark.svg",
-    heroDesktop: "/venues/avenue/avenue_hero_desktop.webp",
-    heroMobile: "/venues/avenue/avenue_hero_mobile.webp",
+    heroDesktop: "/venues/avenue/primary-2.webp",
+    heroMobile: "/venues/avenue/primary-2.webp",
     heroVideo: "/placeholders/avenue_hero_video.mp4",
     gallery: [
-      "/venues/avenue/avenue_hero_desktop.webp",
+      "/venues/avenue/primary-2.webp",
       "/placeholders/avenue_gallery_02.webp",
       "/placeholders/avenue_gallery_03.webp",
       "/placeholders/avenue_gallery_04.webp",
@@ -246,7 +246,7 @@ export const venues: VenueRecord[] = [
     logoDark: "/placeholders/black_tape_logo_dark.svg",
     heroDesktop: "/venues/blacktape/black_tape_hero_desktop.webp",
     heroMobile: "/venues/blacktape/black_tape_hero_mobile.webp",
-    heroVideo: "/placeholders/black_tape_hero_video.mp4",
+    heroVideo: "/venues/blacktape/TAPE-Generic-1-1080x1080-1.mp4",
     gallery: [
       "/venues/blacktape/black_tape_hero_desktop.webp",
       "/placeholders/black_tape_gallery_02.webp",

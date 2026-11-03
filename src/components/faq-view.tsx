@@ -122,7 +122,7 @@ export function FaqView() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search questions…"
-            className="flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent text-base md:text-sm text-foreground outline-none placeholder:text-muted-foreground"
           />
           {query && (
             <button

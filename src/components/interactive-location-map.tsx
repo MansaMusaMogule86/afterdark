@@ -40,6 +40,32 @@ export function InteractiveLocationMap() {
               ABOVE MIDNIGHT DXB
             </p>
           </div>
+
+          {/* Mobile location selector tabs */}
+          <div className="flex border-t border-border/40 lg:hidden bg-card">
+            <button
+              onClick={() => setActive("shangrila")}
+              className={cn(
+                "flex-1 py-3 text-center font-mono-tight text-[0.625rem] sm:text-[0.6875rem] uppercase tracking-[0.12em] transition-colors",
+                active === "shangrila"
+                  ? "bg-accent/15 text-accent font-semibold border-b-2 border-accent"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              Shangri La (Avenue)
+            </button>
+            <button
+              onClick={() => setActive("habtoor")}
+              className={cn(
+                "flex-1 py-3 border-l border-border/40 text-center font-mono-tight text-[0.625rem] sm:text-[0.6875rem] uppercase tracking-[0.12em] transition-colors",
+                active === "habtoor"
+                  ? "bg-accent/15 text-accent font-semibold border-b-2 border-accent"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              Hilton Habtoor (Ora & Black Tape)
+            </button>
+          </div>
         </div>
 
         {/* Active location panel */}
@@ -185,6 +211,8 @@ function StylizedMap({
           role="button"
           aria-label="Shangri La Dubai location"
         >
+          {/* Invisible enlarged hit target for easy mobile tapping */}
+          <circle cx="120" cy="170" r="32" fill="transparent" />
           {/* Pulse ring when active */}
           {active === "shangrila" && (
             <circle cx="120" cy="170" r="14" fill="rgba(134,20,42,0.15)">
@@ -212,6 +240,8 @@ function StylizedMap({
           role="button"
           aria-label="Hilton Dubai Al Habtoor City location"
         >
+          {/* Invisible enlarged hit target for easy mobile tapping */}
+          <circle cx="270" cy="195" r="32" fill="transparent" />
           {active === "habtoor" && (
             <circle cx="270" cy="195" r="14" fill="rgba(0,107,88,0.15)">
               <animate attributeName="r" values="14;20;14" dur="2s" repeatCount="indefinite" />

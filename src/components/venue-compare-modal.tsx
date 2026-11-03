@@ -17,6 +17,18 @@ type CompareField = {
 
 const FIELDS: CompareField[] = [
   {
+    label: "Live Atmosphere",
+    key: "video",
+    render: (v) => v.heroVideo && !v.heroVideo.startsWith("/placeholders/") ? (
+      <div className="relative aspect-square w-24 overflow-hidden rounded-sm border border-[var(--venue-foreground)]/20 shadow-md">
+        <video src={v.heroVideo} autoPlay loop muted playsInline className="h-full w-full object-cover" />
+        <span className="absolute bottom-1 right-1 rounded bg-black/70 px-1 py-0.5 font-mono-tight text-[0.45rem] uppercase text-white">Reel</span>
+      </div>
+    ) : (
+      <span className="text-xs text-muted-foreground">Photos only</span>
+    ),
+  },
+  {
     label: "Music identity",
     key: "musicIdentity",
     render: (v) => v.musicIdentity,
@@ -152,9 +164,15 @@ export function VenueCompareModal() {
           </div>
         </div>
 
+        {/* Mobile horizontal scroll hint */}
+        <div className="flex items-center justify-between px-4 pt-2 text-[0.5rem] font-mono-tight uppercase tracking-wider text-muted-foreground/70 sm:hidden">
+          <span>Scroll horizontally to view all venues</span>
+          <span>→</span>
+        </div>
+
         {/* Comparison table */}
-        <div className="max-h-[60vh] overflow-y-auto">
-          <table className="w-full">
+        <div className="max-h-[60vh] overflow-x-auto overflow-y-auto">
+          <table className="w-full min-w-[560px]">
             <thead className="sticky top-0 bg-card">
               <tr className="border-b border-border/40">
                 <th className="w-40 p-4 text-left font-mono-tight text-[0.5625rem] uppercase tracking-[0.18em] text-muted-foreground">
@@ -195,7 +213,7 @@ export function VenueCompareModal() {
         </div>
 
         {/* Actions footer */}
-        <div className="border-t border-border/40 p-4">
+        <div className="border-t border-border/40 p-4 safe-pb">
           <div className="flex flex-wrap gap-2">
             {selectedVenues.map((v) => (
               <div key={v.slug} className="flex items-center gap-2">

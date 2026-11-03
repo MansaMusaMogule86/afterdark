@@ -138,34 +138,39 @@ export function SiteHeader() {
           className="absolute inset-0 bg-background/90 backdrop-blur-xl"
           onClick={() => setMobileMenu(false)}
         />
-        <nav className="relative flex h-full flex-col justify-center px-8" aria-label="Mobile">
-          {NAV.map((item, i) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => go(item.href)}
-              className={cn(
-                "border-b border-border/40 py-5 font-serif-display text-3xl text-foreground transition-all",
-                mobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-              )}
-              style={{ transitionDelay: mobileMenuOpen ? `${i * 60}ms` : "0ms" }}
+        <nav
+          className="relative flex h-full flex-col justify-start overflow-y-auto px-6 py-20 sm:px-8 safe-pt safe-pb"
+          aria-label="Mobile"
+        >
+          <div className="my-auto w-full max-w-md mx-auto">
+            {NAV.map((item, i) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => go(item.href)}
+                className={cn(
+                  "flex items-center border-b border-border/40 py-3 sm:py-4 font-serif-display text-2xl sm:text-3xl text-foreground transition-all active:text-accent",
+                  mobileMenuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+                )}
+                style={{ transitionDelay: mobileMenuOpen ? `${i * 40}ms` : "0ms" }}
+              >
+                <span className="font-mono-tight mr-4 text-xs text-accent">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {item.label}
+              </a>
+            ))}
+            <Button
+              onClick={() => {
+                track("start_vip_inquiry", { source: "mobile_menu" });
+                openConcierge();
+              }}
+              className="mt-6 w-full rounded-none bg-accent py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-background active:opacity-90"
             >
-              <span className="font-mono-tight mr-4 text-xs text-accent">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              {item.label}
-            </a>
-          ))}
-          <Button
-            onClick={() => {
-              track("start_vip_inquiry", { source: "mobile_menu" });
-              openConcierge();
-            }}
-            className="mt-8 rounded-none bg-accent py-4 text-sm font-semibold uppercase tracking-[0.18em] text-background"
-          >
-            <CalendarClock className="mr-2 h-4 w-4" />
-            Book VIP
-          </Button>
+              <CalendarClock className="mr-2 h-4 w-4" />
+              Book VIP
+            </Button>
+          </div>
         </nav>
       </div>
     </>

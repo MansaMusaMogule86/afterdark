@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -18,6 +18,17 @@ const bodoni = Bodoni_Moda({
   display: "swap",
   weight: ["400", "500", "600"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#07070A" },
+    { media: "(prefers-color-scheme: light)", color: "#07070A" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.seo.siteUrl),

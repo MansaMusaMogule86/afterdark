@@ -6,6 +6,7 @@ import { getOccurrencesByVenue } from "@/lib/events-data";
 import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { VenueHeroMedia } from "@/components/venue-hero-media";
 import { VenueCompareModal } from "@/components/venue-compare-modal";
 import { siteConfig } from "@/lib/site-config";
 
@@ -45,15 +46,13 @@ export function VenuesSection() {
                 {/* Visual */}
                 <div className={reverse ? "md:col-span-5 md:order-2" : "md:col-span-5"}>
                   <div className="relative aspect-[4/5] w-full overflow-hidden md:aspect-auto md:h-full md:min-h-[560px]">
-                    <AssetImage
-                      src={v.heroDesktop}
-                      file={`${v.slug}_hero_desktop.webp`}
+                    <VenueHeroMedia
+                      venue={v}
                       purpose={`Wide ${v.shortName} room — crowd, lighting, and venue identity.`}
-                      dimensions="2400 × 1350"
-                      crop="desktop"
-                      venue={v.slug}
                       alt={`${v.name} interior`}
-                      className="h-full w-full"
+                      className="absolute inset-0 h-full w-full"
+                      allowSound
+                      controlsClassName="right-5 top-5"
                     />
                     {/* Tint with venue color */}
                     <div

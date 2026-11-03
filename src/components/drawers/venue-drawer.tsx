@@ -10,6 +10,7 @@ import { getTonightOccurrences } from "@/lib/events-data";
 import { guideArticles } from "@/lib/guide-data";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { VenueHeroMedia } from "@/components/venue-hero-media";
 import { Button } from "@/components/ui/button";
 import { GalleryLightbox, type GalleryImage } from "@/components/gallery-lightbox";
 import {
@@ -45,15 +46,13 @@ export function VenueDrawer() {
         <div className="flex-1 overflow-y-auto">
           {/* Hero */}
           <div className="relative aspect-[16/10] w-full overflow-hidden">
-            <AssetImage
-              src={v.heroDesktop}
-              file={`${v.slug}_hero_desktop.webp`}
+            <VenueHeroMedia
+              venue={v}
               purpose={`Wide ${v.shortName} room — crowd, lighting, and venue identity.`}
-              dimensions="2400 × 1350"
-              crop="desktop"
-              venue={v.slug}
               alt={`${v.name} hero`}
               className="h-full w-full"
+              allowSound
+              showBadge
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--venue-bg)] via-transparent to-transparent" />
             <button
@@ -377,7 +376,7 @@ export function VenueDrawer() {
         </div>
 
         {/* Sticky bottom CTA */}
-        <div className="venue-surface flex items-center gap-2 border-t border-[var(--venue-foreground)]/10 p-4">
+        <div className="venue-surface flex items-center gap-2 border-t border-[var(--venue-foreground)]/10 p-4 safe-pb">
           <Button
             onClick={() => { track("start_vip_inquiry", { venue: v.slug, source: "venue_drawer_cta" }); openConcierge({ venue: v.slug }); }}
             className="flex-1 rounded-none bg-[var(--venue-accent)] py-3 text-[var(--venue-bg)] hover:opacity-90"

@@ -266,7 +266,7 @@ export function ConciergeBottomSheet() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submission failed");
 
-      track("concierge_lead_created", { request_type: form.requestType, venue: form.venue });
+      track("concierge_lead_created", { request_type: form.requestType || undefined, venue: form.venue });
 
       // Generate WhatsApp prefilled message.
       const venueName = form.venue === "help_choose"
@@ -448,7 +448,7 @@ Reference: ${data.reference}`;
                     <select
                       value={form.eventOrDate}
                       onChange={(e) => set("eventOrDate", e.target.value)}
-                      className="w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm text-foreground"
+                      className="w-full rounded-sm border border-border bg-background px-3 py-2.5 text-base md:text-sm text-foreground"
                     >
                       <option value="">Select a date…</option>
                       {dates.map((d) => (
@@ -471,7 +471,7 @@ Reference: ${data.reference}`;
                       <select
                         value={form.arrivalTime}
                         onChange={(e) => set("arrivalTime", e.target.value)}
-                        className="w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm text-foreground"
+                        className="w-full rounded-sm border border-border bg-background px-3 py-2.5 text-base md:text-sm text-foreground"
                       >
                         {ARRIVAL_TIMES.map((t) => <option key={t} value={t}>{t}</option>)}
                       </select>
@@ -506,7 +506,7 @@ Reference: ${data.reference}`;
                       <select
                         value={form.occasion}
                         onChange={(e) => set("occasion", e.target.value)}
-                        className="w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm text-foreground"
+                        className="w-full rounded-sm border border-border bg-background px-3 py-2.5 text-base md:text-sm text-foreground"
                       >
                         {OCCASIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
                       </select>

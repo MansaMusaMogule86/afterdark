@@ -9,7 +9,7 @@ import { track } from "@/lib/analytics";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-border/60 bg-background">
+    <footer className="mt-auto border-t border-border/60 bg-background pb-20 lg:pb-0">
       {/* Top band — promise + nav columns */}
       <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-8 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
