@@ -95,9 +95,9 @@ export default async function Home({ searchParams }: PageProps) {
   // English Nights landing.
   if (view === "english-nights") {
     return (
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen flex-col bg-background mobile-bar-pb">
         <SiteHeader />
-        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+        <main id="main-content" className="flex-1 header-pt">
           <EnglishNightsView />
         </main>
         <SiteFooter />
@@ -119,9 +119,9 @@ export default async function Home({ searchParams }: PageProps) {
   // FAQ view.
   if (view === "faq") {
     return (
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen flex-col bg-background mobile-bar-pb">
         <SiteHeader />
-        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+        <main id="main-content" className="flex-1 header-pt">
           <FaqView />
         </main>
         <SiteFooter />
@@ -143,9 +143,9 @@ export default async function Home({ searchParams }: PageProps) {
   // English Night event detail.
   if (view === "english-night" && venue && date) {
     return (
-      <div className="flex min-h-screen flex-col bg-background">
+      <div className="flex min-h-screen flex-col bg-background mobile-bar-pb">
         <SiteHeader />
-        <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+        <main id="main-content" className="flex-1 header-pt">
           <EnglishNightDetailView venue={venue} date={date} />
         </main>
         <SiteFooter />
@@ -170,7 +170,7 @@ export default async function Home({ searchParams }: PageProps) {
   const articleLd = guideArticles.slice(0, 6).map(articleJsonLd);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background mobile-bar-pb">
       {/* Structured data — visible, accurate JSON-LD */}
       <script
         type="application/ld+json"
@@ -193,7 +193,7 @@ export default async function Home({ searchParams }: PageProps) {
 
       <SiteHeader />
 
-      <main id="main-content" className="flex-1 pb-20 lg:pb-0">
+      <main id="main-content" className="flex-1">
         <HeroSection />
         <TonightSection />
         <EnglishNightsPromo />

@@ -121,7 +121,7 @@ export function EnglishNightsView() {
               <Moon className="h-5 w-5 text-accent" />
               <div>
                 <p className="font-mono-tight text-[0.5625rem] uppercase tracking-[0.2em] text-muted-foreground">
-                  Tonight — {tonightLabel.longLabel}
+                  {tonightLabel.longLabel}
                 </p>
                 <p className="mt-1 font-serif-display text-xl text-foreground md:text-2xl">
                   {tonightEvents.length > 0

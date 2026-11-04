@@ -52,7 +52,7 @@ export function VenuesSection() {
                       alt={`${v.name} interior`}
                       className="absolute inset-0 h-full w-full"
                       allowSound
-                      controlsClassName="right-5 top-5"
+                      controlsClassName="bottom-5 left-5"
                     />
                     {/* Tint with venue color */}
                     <div

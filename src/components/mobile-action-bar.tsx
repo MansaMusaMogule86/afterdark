@@ -21,7 +21,7 @@ export function MobileActionBar() {
     >
       <div className="mx-auto grid max-w-md grid-cols-3 touch-manipulation">
         <a
-          href="#tonight"
+          href="/#tonight"
           onClick={() => track("filter_events", { nav: "tonight_mobile_bar" })}
           className="flex min-h-[52px] flex-col items-center justify-center gap-1 py-2 text-muted-foreground transition-colors active:bg-secondary/60 hover:text-foreground"
         >
@@ -31,7 +31,7 @@ export function MobileActionBar() {
           </span>
         </a>
         <a
-          href="#venues"
+          href="/#venues"
           onClick={() => track("view_venue", { nav: "venues_mobile_bar" })}
           className="flex min-h-[52px] flex-col items-center justify-center gap-1 border-x border-border/40 py-2 text-muted-foreground transition-colors active:bg-secondary/60 hover:text-foreground"
         >
