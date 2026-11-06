@@ -43,7 +43,7 @@ export const assetManifest: AssetManifestEntry[] = [
   { id: "g6", file: "home_vip_experience.webp", path: "/placeholders/home_vip_experience.webp", purpose: "Real premium table experience from one of the venues.", dimensions: DIM.wideSection, crop: "wide", present: false, venue: "global", pageUsage: ["vip section"] },
   { id: "g7", file: "home_locations_wide.webp", path: "/placeholders/home_locations_wide.webp", purpose: "Dubai skyline connecting the two hotel destinations.", dimensions: DIM.wideSection, crop: "wide", present: false, venue: "global", pageUsage: ["locations section"] },
   { id: "g8", file: "home_night_edit_feature.webp", path: "/placeholders/home_night_edit_feature.webp", purpose: "Editorial Dubai nightlife image.", dimensions: DIM.wideSection, crop: "wide", present: false, venue: "global", pageUsage: ["night edit section"] },
-  { id: "g9", file: "global_og_default.jpg", path: "/placeholders/global_og_default.jpg", purpose: "Default social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: false, venue: "global", pageUsage: ["og default"] },
+  { id: "g9", file: "global_og_default.jpg", path: "/global_og_default.jpg", purpose: "Default social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: true, venue: "global", pageUsage: ["og default"] },
 
   // Locations
   { id: "l1", file: "shangri_la_arrival.webp", path: "/placeholders/shangri_la_arrival.webp", purpose: "Exact hotel arrival and entrance used for Avenue guests.", dimensions: DIM.wideSection, crop: "wide", present: false, venue: "global", pageUsage: ["locations"] },
@@ -58,10 +58,10 @@ export const assetManifest: AssetManifestEntry[] = [
   // Avenue
   { id: "a1", file: "avenue_logo_light.svg", path: "/placeholders/avenue_logo_light.svg", purpose: "Avenue logo for dark backgrounds.", dimensions: "vector", crop: "svg", present: false, venue: "avenue", pageUsage: ["venue page", "home"] },
   { id: "a2", file: "avenue_logo_dark.svg", path: "/placeholders/avenue_logo_dark.svg", purpose: "Avenue logo for light backgrounds.", dimensions: "vector", crop: "svg", present: false, venue: "avenue", pageUsage: ["venue page"] },
-  { id: "a3", file: "primary-2.webp", path: "/venues/avenue/primary-2.webp", purpose: "Wide Avenue dance floor with strong crowd and skyline context.", dimensions: DIM.desktopHero, crop: "desktop", present: true, venue: "avenue", pageUsage: ["venue hero", "home venue panel"] },
+  { id: "a3", file: "avenue_hero_desktop.webp", path: "/venues/avenue/avenue_hero_desktop.webp", purpose: "Wide Avenue dance floor with strong crowd and skyline context.", dimensions: DIM.desktopHero, crop: "desktop", present: true, venue: "avenue", pageUsage: ["venue hero", "home venue panel"] },
   { id: "a4", file: "avenue_hero_mobile.webp", path: "/placeholders/avenue_hero_mobile.webp", purpose: "Vertical Avenue crowd or performer moment.", dimensions: DIM.mobileHero, crop: "mobile", present: false, venue: "avenue", pageUsage: ["venue hero mobile"] },
   { id: "a5", file: "avenue_floorplan.svg", path: "/placeholders/avenue_floorplan.svg", purpose: "Accurate Avenue seating and table plan.", dimensions: "vector", crop: "svg", present: false, venue: "avenue", pageUsage: ["venue vip"] },
-  { id: "a6", file: "avenue_og.jpg", path: "/placeholders/avenue_og.jpg", purpose: "Avenue social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: false, venue: "avenue", pageUsage: ["og"] },
+  { id: "a6", file: "avenue_og.jpg", path: "/venues/avenue/avenue_og.jpg", purpose: "Avenue social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: true, venue: "avenue", pageUsage: ["og"] },
   ...Array.from({ length: 12 }, (_, i) => ({
     id: `ag${i + 1}`,
     file: `avenue_gallery_${String(i + 1).padStart(2, "0")}.webp`,
@@ -80,7 +80,7 @@ export const assetManifest: AssetManifestEntry[] = [
   { id: "o3", file: "ora_hero_desktop.webp", path: "/venues/ora/ora_hero_desktop.webp", purpose: "Wide Ora room showing its immersive visual identity.", dimensions: DIM.desktopHero, crop: "desktop", present: true, venue: "ora", pageUsage: ["venue hero", "home venue panel"] },
   { id: "o4", file: "ora_hero_mobile.webp", path: "/placeholders/ora_hero_mobile.webp", purpose: "Vertical Ora crowd or performance image.", dimensions: DIM.mobileHero, crop: "mobile", present: false, venue: "ora", pageUsage: ["venue hero mobile"] },
   { id: "o5", file: "ora_floorplan.svg", path: "/placeholders/ora_floorplan.svg", purpose: "Accurate Ora seating and table plan.", dimensions: "vector", crop: "svg", present: false, venue: "ora", pageUsage: ["venue vip"] },
-  { id: "o6", file: "ora_og.jpg", path: "/placeholders/ora_og.jpg", purpose: "Ora social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: false, venue: "ora", pageUsage: ["og"] },
+  { id: "o6", file: "ora_og.jpg", path: "/venues/ora/ora_og.jpg", purpose: "Ora social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: true, venue: "ora", pageUsage: ["og"] },
   ...Array.from({ length: 12 }, (_, i) => ({
     id: `og${i + 1}`,
     file: `ora_gallery_${String(i + 1).padStart(2, "0")}.webp`,
@@ -94,13 +94,13 @@ export const assetManifest: AssetManifestEntry[] = [
   })),
 
   // Black Tape
-  { id: "b0", file: "TAPE-Generic-1-1080x1080-1.mp4", path: "/venues/blacktape/TAPE-Generic-1-1080x1080-1.mp4", purpose: "Official Black Tape urban video reel.", dimensions: "1080 × 1080", crop: "square", present: true, venue: "blacktape", pageUsage: ["venue hero", "home venue panel", "venue drawer", "tonight preview"] },
+  { id: "b0", file: "black_tape_hero_video.mp4", path: "/venues/blacktape/black_tape_hero_video.mp4", purpose: "Official Black Tape urban video reel.", dimensions: "1080 × 1080", crop: "square", present: true, venue: "blacktape", pageUsage: ["venue hero", "home venue panel", "venue drawer", "tonight preview"] },
   { id: "b1", file: "black_tape_logo_light.svg", path: "/placeholders/black_tape_logo_light.svg", purpose: "Black Tape logo for dark backgrounds.", dimensions: "vector", crop: "svg", present: false, venue: "blacktape", pageUsage: ["venue page", "home"] },
   { id: "b2", file: "black_tape_logo_dark.svg", path: "/placeholders/black_tape_logo_dark.svg", purpose: "Black Tape logo for light backgrounds.", dimensions: "vector", crop: "svg", present: false, venue: "blacktape", pageUsage: ["venue page"] },
   { id: "b3", file: "black_tape_hero_desktop.webp", path: "/venues/blacktape/black_tape_hero_desktop.webp", purpose: "Wide Black Tape room with a strong urban crowd (poster frame from the official reel).", dimensions: DIM.desktopHero, crop: "desktop", present: true, venue: "blacktape", pageUsage: ["venue hero", "home venue panel"] },
   { id: "b4", file: "black_tape_hero_mobile.webp", path: "/placeholders/black_tape_hero_mobile.webp", purpose: "Vertical crowd, DJ, or performance image.", dimensions: DIM.mobileHero, crop: "mobile", present: false, venue: "blacktape", pageUsage: ["venue hero mobile"] },
   { id: "b5", file: "black_tape_floorplan.svg", path: "/placeholders/black_tape_floorplan.svg", purpose: "Accurate Black Tape seating and table plan.", dimensions: "vector", crop: "svg", present: false, venue: "blacktape", pageUsage: ["venue vip"] },
-  { id: "b6", file: "black_tape_og.jpg", path: "/placeholders/black_tape_og.jpg", purpose: "Black Tape social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: false, venue: "blacktape", pageUsage: ["og"] },
+  { id: "b6", file: "black_tape_og.jpg", path: "/venues/blacktape/black_tape_og.jpg", purpose: "Black Tape social sharing image.", dimensions: DIM.openGraph, crop: "wide", present: true, venue: "blacktape", pageUsage: ["og"] },
   ...Array.from({ length: 12 }, (_, i) => ({
     id: `bg${i + 1}`,
     file: `black_tape_gallery_${String(i + 1).padStart(2, "0")}.webp`,

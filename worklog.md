@@ -1198,3 +1198,25 @@ Verification:
 - next build: succeeded (Next 16.4.4, all routes).
 - Remaining lint errors (6) are pre-existing in command-palette.tsx, concierge-bottom-sheet.tsx, ui/carousel.tsx, hooks/use-mobile.ts - untouched by this task.
 - Poster extraction used a one-off @ffmpeg-installer/ffmpeg binary installed with --no-save (not added to package.json).
+
+---
+
+Task: Canonical media naming, OG images, fit audit
+Agent: full-stack-developer
+Date: 2026-11-04
+
+Work Log:
+- Renamed Avenue hero: primary-2.webp -> avenue_hero_desktop.webp (canonical placeholder name); all references updated.
+- Renamed the Black Tape reel: TAPE-Generic-1-1080x1080-1.mp4 -> black_tape_hero_video.mp4.
+- Re-encoded public/venues/ora/ora_hero_desktop.webp: it was PNG data with a .webp extension (2.5 MB); now a true WebP at 148 KB with the same 1672x941 pixels.
+- Generated real social images with canonical names: avenue_og.jpg, ora_og.jpg, black_tape_og.jpg (1200x630) and wired venue-data ogImage.
+- Created public/global_og_default.jpg - a 1200x630 montage of the three real venue photos - and pointed siteConfig.seo.defaultOgImage at it (shares previously referenced a missing file).
+- asset-manifest.ts: a3, b0, a6, o6, b6, g9 now present:true with real paths.
+- Added public/venues/ora/README.md to match the other venue folders.
+
+Fit audit:
+- Every image/video slot uses object-cover (fills the frame, trims edges, no black bars). Only object-contain is the gallery lightbox fullscreen viewer (intentional).
+- Avenue 1080x1350 (4:5) is pixel-perfect in 4:5 panels; centre-crops cleanly elsewhere. Ora 1672x941 and Black Tape 1080x1080 centre-crop cleanly in every slot.
+
+Verification:
+- npx tsc --noEmit: 0 errors. next build: succeeded.

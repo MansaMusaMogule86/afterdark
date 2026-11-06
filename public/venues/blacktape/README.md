@@ -10,6 +10,7 @@ Expected files:
 | File | Purpose | Recommended size |
 | --- | --- | --- |
 | `black_tape_hero_desktop.webp` | Wide Black Tape room with a strong urban crowd | 2400 × 1350 |
+| `black_tape_hero_video.mp4` | Official Black Tape urban reel (plays as the venue hero) | 1080 × 1080 |
 | `black_tape_hero_mobile.webp` | Vertical crowd, DJ, or performance image | 1080 × 1440 |
 | `black_tape_logo_light.svg` | Black Tape logo for dark backgrounds | vector |
 | `black_tape_logo_dark.svg` | Black Tape logo for light backgrounds | vector |

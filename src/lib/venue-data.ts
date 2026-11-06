@@ -78,11 +78,11 @@ export const venues: VenueRecord[] = [
     },
     logoLight: "/placeholders/avenue_logo_light.svg",
     logoDark: "/placeholders/avenue_logo_dark.svg",
-    heroDesktop: "/venues/avenue/primary-2.webp",
-    heroMobile: "/venues/avenue/primary-2.webp",
+    heroDesktop: "/venues/avenue/avenue_hero_desktop.webp",
+    heroMobile: "/venues/avenue/avenue_hero_desktop.webp",
     heroVideo: "/placeholders/avenue_hero_video.mp4",
     gallery: [
-      "/venues/avenue/primary-2.webp",
+      "/venues/avenue/avenue_hero_desktop.webp",
       "/placeholders/avenue_gallery_02.webp",
       "/placeholders/avenue_gallery_03.webp",
       "/placeholders/avenue_gallery_04.webp",
@@ -90,7 +90,7 @@ export const venues: VenueRecord[] = [
       "/placeholders/avenue_gallery_06.webp",
     ],
     floorplan: "/placeholders/avenue_floorplan.svg",
-    ogImage: "/placeholders/avenue_og.jpg",
+    ogImage: "/venues/avenue/avenue_og.jpg",
     seoTitle: "Avenue Club Dubai | Arabic and Urban Nights at Shangri La",
     seoDescription:
       "Avenue Club Dubai — Arabic and Khaleeji nights with selected urban concepts on level forty two of Shangri La Dubai, Sheikh Zayed Road. See tonight's status, upcoming events, and request a VIP table.",
@@ -173,7 +173,7 @@ export const venues: VenueRecord[] = [
       "/placeholders/ora_gallery_06.webp",
     ],
     floorplan: "/placeholders/ora_floorplan.svg",
-    ogImage: "/placeholders/ora_og.jpg",
+    ogImage: "/venues/ora/ora_og.jpg",
     seoTitle: "Ora Club Dubai | Arabic Nights at Hilton Al Habtoor City",
     seoDescription:
       "Ora Club Dubai — immersive visuals, Arabic energy, and premium late night events on level forty four of Hilton Dubai Al Habtoor City. See tonight's status, upcoming events, and request a VIP table.",
@@ -246,7 +246,7 @@ export const venues: VenueRecord[] = [
     logoDark: "/placeholders/black_tape_logo_dark.svg",
     heroDesktop: "/venues/blacktape/black_tape_hero_desktop.webp",
     heroMobile: "/venues/blacktape/black_tape_hero_desktop.webp",
-    heroVideo: "/venues/blacktape/TAPE-Generic-1-1080x1080-1.mp4",
+    heroVideo: "/venues/blacktape/black_tape_hero_video.mp4",
     gallery: [
       "/venues/blacktape/black_tape_hero_desktop.webp",
       "/placeholders/black_tape_gallery_02.webp",
@@ -256,7 +256,7 @@ export const venues: VenueRecord[] = [
       "/placeholders/black_tape_gallery_06.webp",
     ],
     floorplan: "/placeholders/black_tape_floorplan.svg",
-    ogImage: "/placeholders/black_tape_og.jpg",
+    ogImage: "/venues/blacktape/black_tape_og.jpg",
     seoTitle: "Black Tape Dubai | Hip Hop and R&B Club in Business Bay",
     seoDescription:
       "Black Tape Dubai — hip hop, R&B, Afro, and Dancehall on level forty four of Hilton Dubai Al Habtoor City, Business Bay. See tonight's status, upcoming events, and request a VIP table.",

@@ -85,7 +85,7 @@ export const siteConfig: SiteConfig = {
     defaultTitle: "Dubai Nightlife Events and VIP Tables | ABOVE MIDNIGHT DXB",
     defaultDescription:
       "Discover and reserve the right Dubai night across three distinct venues — Avenue, Ora, and Black Tape. See what is live tonight, compare venues, and book VIP tables through one direct nightlife concierge.",
-    defaultOgImage: "/placeholders/global_og_default.jpg",
+    defaultOgImage: "/global_og_default.jpg",
     siteUrl: "https://above-midnight-dxb.example",
   },
   contact: {
