@@ -56,6 +56,7 @@ export function VenueHeroMedia({
     <VenueVideo
       key={v.heroVideo}
       src={v.heroVideo!}
+      poster={v.heroDesktop}
       alt={alt}
       className={className}
       allowSound={allowSound}

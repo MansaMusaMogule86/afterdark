@@ -1176,3 +1176,25 @@ Premium bottom sheet with 3-step flow:
 - **Full flow**: Step 1 (VIP Table) → Step 2 (Avenue + date) → Step 3 (name + mobile) → Lead created "AMD-260827-2LTX" → "Continue to WhatsApp" ✓
 - **Mobile overflow**: 0px ✓
 - **VLM confirmed**: "restrained NIGHT CONCIERGE button present, no bright green WhatsApp button"
+
+---
+
+Task: Real media across the site - Black Tape reel poster, image fallbacks, mobile video performance
+Agent: full-stack-developer
+Date: 2026-11-04
+
+Work Log:
+- Extracted a poster frame (LED ceiling rig shot) from the official Black Tape reel with ffmpeg and converted it to public/venues/blacktape/black_tape_hero_desktop.webp (1080x1080, 60 KB). Black Tape image fallbacks previously pointed at files that did not exist, so every image context (Tonight strip fallback, press card, loading states) showed a missing-asset placeholder.
+- venue-data.ts: Black Tape heroMobile now uses the same poster file (single-image pattern already used by Avenue and Ora).
+- venue-hero-media.tsx: passes poster to the shared video so the real image paints instantly while the reel loads.
+- venue-video.tsx: the fallback image now renders underneath the video while it loads and is replaced by the first frame when ready (previously the frame stayed black until loaded).
+- hero-section.tsx: removed the duplicate ambient Black Tape background video (a second, always-playing, hidden decode of the same 12 MB file behind the main Now showing video).
+- tonight-section.tsx: the Tonight strip now uses the shared VenueVideo (pauses off-screen via IntersectionObserver, poster image, error fallback to the venue image) instead of a raw always-playing video.
+- venue-compare-modal.tsx and matcher-section.tsx: real poster images added to the reel previews.
+- asset-manifest.ts: Avenue (primary-2.webp), Ora and Black Tape hero entries marked present with their real paths.
+
+Verification:
+- npx tsc --noEmit: 0 errors.
+- next build: succeeded (Next 16.4.4, all routes).
+- Remaining lint errors (6) are pre-existing in command-palette.tsx, concierge-bottom-sheet.tsx, ui/carousel.tsx, hooks/use-mobile.ts - untouched by this task.
+- Poster extraction used a one-off @ffmpeg-installer/ffmpeg binary installed with --no-save (not added to package.json).

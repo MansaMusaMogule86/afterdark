@@ -357,6 +357,7 @@ export function MatcherSection() {
                   <div className="mt-4 overflow-hidden rounded-sm border border-[var(--venue-foreground)]/15 aspect-[16/9] max-h-56">
                     <VenueVideo
                       src={topVenue.heroVideo}
+                      poster={topVenue.heroDesktop}
                       alt="Black Tape recommendation preview"
                       className="h-full w-full"
                       allowSound={false}

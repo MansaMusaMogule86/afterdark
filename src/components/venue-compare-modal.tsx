@@ -21,7 +21,7 @@ const FIELDS: CompareField[] = [
     key: "video",
     render: (v) => v.heroVideo && !v.heroVideo.startsWith("/placeholders/") ? (
       <div className="relative aspect-square w-24 overflow-hidden rounded-sm border border-[var(--venue-foreground)]/20 shadow-md">
-        <video src={v.heroVideo} autoPlay loop muted playsInline className="h-full w-full object-cover" />
+        <video src={v.heroVideo} poster={v.heroDesktop} autoPlay loop muted playsInline className="h-full w-full object-cover" />
         <span className="absolute bottom-1 right-1 rounded bg-black/70 px-1 py-0.5 font-mono-tight text-[0.45rem] uppercase text-white">Reel</span>
       </div>
     ) : (

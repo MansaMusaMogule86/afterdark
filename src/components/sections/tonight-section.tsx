@@ -9,6 +9,7 @@ import { getServiceDateLabel } from "@/lib/tonight";
 import { useUi } from "@/lib/ui-store";
 import { track } from "@/lib/analytics";
 import { AssetImage } from "@/components/asset-image";
+import { VenueVideo } from "@/components/venue-video";
 import { useToast } from "@/hooks/use-toast";
 import type { EventOccurrence } from "@/lib/types";
 
@@ -222,13 +223,27 @@ export function TonightSection() {
                 {/* Subtle poster strip */}
                 <div className="relative h-20 overflow-hidden border-t border-[var(--venue-foreground)]/10">
                   {v.slug === "blacktape" && v.heroVideo ? (
-                    <video
+                    <VenueVideo
                       src={v.heroVideo}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="h-full w-full object-cover opacity-60"
+                      poster={v.heroDesktop}
+                      alt={`${v.name} reel`}
+                      className="h-full w-full opacity-60"
+                      showBadge={false}
+                      allowSound={false}
+                      controlsClassName="hidden"
+                      overlay={false}
+                      fallback={
+                        <AssetImage
+                          src={v.gallery[0]}
+                          file={`${v.slug}_gallery_01.webp`}
+                          purpose={`${v.shortName} gallery image.`}
+                          dimensions="1600 × 2000"
+                          crop="portrait"
+                          venue={v.slug}
+                          alt={`${v.name} gallery`}
+                          className="h-full w-full opacity-50"
+                        />
+                      }
                     />
                   ) : (
                     <AssetImage

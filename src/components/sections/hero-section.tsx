@@ -74,18 +74,6 @@ export function HeroSection() {
                   background: `radial-gradient(120% 80% at 75% 20%, ${v.theme.primary}33 0%, transparent 55%), radial-gradient(100% 70% at 15% 90%, ${v.theme.accent}1f 0%, transparent 60%)`,
                 }}
               />
-              {slug === "blacktape" && v.heroVideo && (
-                <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20 mix-blend-screen">
-                  <video
-                    src={v.heroVideo}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="h-full w-full object-cover filter contrast-125 brightness-75"
-                  />
-                </div>
-              )}
               <div className="grain absolute inset-0" />
             </div>
           );

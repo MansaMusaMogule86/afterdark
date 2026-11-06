@@ -245,7 +245,7 @@ export const venues: VenueRecord[] = [
     logoLight: "/placeholders/black_tape_logo_light.svg",
     logoDark: "/placeholders/black_tape_logo_dark.svg",
     heroDesktop: "/venues/blacktape/black_tape_hero_desktop.webp",
-    heroMobile: "/venues/blacktape/black_tape_hero_mobile.webp",
+    heroMobile: "/venues/blacktape/black_tape_hero_desktop.webp",
     heroVideo: "/venues/blacktape/TAPE-Generic-1-1080x1080-1.mp4",
     gallery: [
       "/venues/blacktape/black_tape_hero_desktop.webp",

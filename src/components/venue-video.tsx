@@ -128,6 +128,11 @@ export function VenueVideo({
       className={cn("relative overflow-hidden bg-black", className)}
       aria-label={alt}
     >
+      {/* Load-time fallback — visible until the first video frame is ready. */}
+      {!hasError && fallback && (
+        <div className="absolute inset-0">{fallback}</div>
+      )}
+
       {!hasError && (
         <video
           ref={videoRef}

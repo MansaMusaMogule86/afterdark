@@ -17,6 +17,9 @@ Expected files:
 | `black_tape_og.jpg` | Social sharing image | 1200 × 630 |
 | `black_tape_gallery_01.webp` … `black_tape_gallery_12.webp` | Gallery images | 1600 × 2000 |
 
+> Note: `black_tape_hero_desktop.webp` currently holds a 1080 × 1080 poster frame
+> extracted from the official reel. Replace it with a licensed press image when available.
+
 Wired in: `src/lib/venue-data.ts` (heroDesktop, heroMobile, first gallery item).
 
 Asset rules: real venue media only — owned or properly licensed. Never use

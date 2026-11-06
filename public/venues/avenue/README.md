@@ -17,6 +17,9 @@ Expected files:
 | `avenue_og.jpg` | Social sharing image | 1200 × 630 |
 | `avenue_gallery_01.webp` … `avenue_gallery_12.webp` | Gallery images | 1600 × 2000 |
 
+> Note: `primary-2.webp` currently holds the real Avenue hero image (1080 × 1350)
+> and is wired in place of `avenue_hero_desktop.webp`.
+
 Wired in: `src/lib/venue-data.ts` (heroDesktop, heroMobile, first gallery item).
 
 Asset rules: real venue media only — owned or properly licensed. Never use
